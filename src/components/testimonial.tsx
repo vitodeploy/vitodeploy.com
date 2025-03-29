@@ -122,7 +122,7 @@ export function Testimonial() {
   return (
     <div className="py-10">
       <h2 className="text-4xl text-center">Join the community</h2>
-      <p className="text-lg text-center text-gray-700 dark:text-gray-400">Discover what our community has to say about their Supabase experience.</p>
+      <p className="text-lg text-center text-gray-700 dark:text-gray-400">Discover what the community has to say about their VitoDeploy experience.</p>
       <div className="flex items-center justify-center gap-2 py-4">
         <Button variant="outline" onClick={() => window.open("https://github.com/vitodeploy/vito/discussions")}>
           <MessageCircleIcon className="size-4" />
