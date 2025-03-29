@@ -3,6 +3,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Features from './features';
 import Header from './header';
+import { Testimonial } from '../components/testimonial';
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
@@ -22,6 +23,7 @@ export default function Home(): ReactNode {
         <div className="container mx-auto py-10 space-y-20">
           <Header />
           <Features />
+          <Testimonial />
         </div>
       </main>
     </Layout>
