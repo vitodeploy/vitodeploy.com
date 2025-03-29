@@ -186,3 +186,19 @@
 .footer--dark .footer__copyright {
   @apply text-gray-500 mt-10;
 }
+
+article h2 a {
+  @apply text-foreground hover:no-underline;
+}
+
+.image img {
+  @apply !rounded-lg border border-border;
+}
+
+.image-dark {
+  @apply hidden dark:block;
+}
+
+.image-light {
+  @apply block dark:hidden;
+}
