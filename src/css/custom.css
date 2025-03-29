@@ -175,9 +175,12 @@
   border-radius: 5px;
 }
 
-.footer--dark {
-  --ifm-footer-background-color: #050817 !important;
-  border-top: 1px solid var(--ifm-toc-border-color);
+.footer {
+  @apply bg-background !text-foreground border-t border-border;
+}
+
+.footer * {
+  @apply text-foreground;
 }
 
 .footer--dark .footer__copyright {
