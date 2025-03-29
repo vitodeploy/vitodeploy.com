@@ -40,7 +40,7 @@ const config: Config = {
           sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/vitodeploy/docs/',
+          editUrl: 'https://github.com/vitodeploy/vitodeploy.com/',
         },
         blog: {
           showReadingTime: true,
@@ -48,11 +48,6 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -65,8 +60,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/social-card.jpg',
     navbar: {
       title: 'VitoDeploy',
       logo: {
@@ -74,6 +68,15 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
+        // {
+        //   type: 'docSidebar',
+        //   sidebarId: 'sidebar',
+        //   position: 'left',
+        //   label: 'Docs',
+        //   to: '/docs/getting-started/introduction',
+        // },
+        {to: '/docs/getting-started/introduction', label: 'Docs', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           type: 'docsVersionDropdown',
           position: 'right',
@@ -94,17 +97,11 @@ const config: Config = {
           className: 'header-x-link',
         },
         {
+          
           href: 'https://youtube.com/saeedvaziry',
           position: 'right',
           className: 'header-youtube-link',
         },
-        {
-          type: 'docSidebar',
-          sidebarId: 'sidebar',
-          position: 'left',
-          label: 'Docs',
-        },
-        {to: '/blog', label: 'Blog', position: 'left'},
       ],
     },
     footer: {
@@ -115,7 +112,7 @@ const config: Config = {
           items: [
             {
               label: 'Introduction',
-              to: '/docs/intro',
+              to: '/docs/getting-started/introduction',
             },
             {
               label: 'Installation',
@@ -128,7 +125,7 @@ const config: Config = {
           items: [
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discord.com/invite/uZeeHZZnm5',
             },
             {
               label: 'X',

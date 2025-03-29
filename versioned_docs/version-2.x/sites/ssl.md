@@ -4,6 +4,8 @@
 - [Letsencrypt](#letsencrypt)
 - [Custom SSLs](#custom-ssls)
 - [SSL for Subdomains/Aliases](#ssl-for-subdomainsaliases)
+- [Multiple SSLs](#multiple-ssls)
+- [Force HTTPS/SSL](#force-httpsssl)
 
 ## Introduction
 
@@ -34,3 +36,15 @@ Vito encrypts the input and stores in your Vito Instance's database.
 
 VitoDeploy optionally allows you to install SSLs for your subdomains and aliases. You can check this option when you're
 creating a new SSL.
+
+## Multiple SSLs
+
+You can add multiple SSLs to your server for a website and activate any of them at any time.
+
+## Force HTTPS/SSL
+
+If you already have an SSL installed and activated, you can click the `Force SSL` button to redirect all HTTP requests.
+
+::: warning
+Make sure one of the SSLs is activated before enabling this option.
+:::

@@ -37,6 +37,12 @@ Generate a personal access token on your Gitlab profile and give it repository a
 
 Create an App Password on your Bitbucket account and give it repository and webhook admin permissions.
 
+Vito will ask for username and password to connect to Bitbucket.
+
+First you need to log into your Bitbucket account and navigate to [App Passwords](https://bitbucket.org/account/settings/app-passwords/) under the Personal Settings and then create a password and copy.
+
+The username field when connecting to Vito will be your account's username and the password will be the password you created using App Passwords.
+
 ## Scope
 
 Source controls can be created under a specific project or globally.

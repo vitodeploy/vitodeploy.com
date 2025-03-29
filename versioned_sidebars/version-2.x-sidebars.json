@@ -1,11 +1,6 @@
 {
   "sidebar": [
     {
-      "type": "doc",
-      "label": "Introduction",
-      "id": "intro"
-    },
-    {
       "type": "category",
       "label": "Prologue",
       "items": [
@@ -30,6 +25,11 @@
       "type": "category",
       "label": "Getting Started",
       "items": [
+        {
+          "type": "doc",
+          "label": "Introduction",
+          "id": "getting-started/introduction"
+        },
         {
           "type": "doc",
           "label": "Installation",
@@ -74,6 +74,10 @@
         },
         {
           "type": "doc",
+          "id": "servers/workers"
+        },
+        {
+          "type": "doc",
           "id": "servers/ssh-keys"
         },
         {
@@ -99,6 +103,10 @@
         {
           "type": "doc",
           "id": "servers/logs"
+        },
+        {
+          "type": "doc",
+          "id": "servers/file-manager"
         }
       ]
     },
@@ -120,11 +128,15 @@
         },
         {
           "type": "doc",
-          "id": "sites/queues"
+          "id": "sites/settings"
         },
         {
           "type": "doc",
-          "id": "sites/settings"
+          "id": "sites/isolation"
+        },
+        {
+          "type": "doc",
+          "id": "sites/load-balancer"
         }
       ]
     },

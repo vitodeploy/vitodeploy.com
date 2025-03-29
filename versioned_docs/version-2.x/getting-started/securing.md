@@ -7,6 +7,7 @@ This guide is only for VitoDeploy instances installed on a Virtual Private Serve
 - [Install SSL on Vito instance](#install-ssl-on-vito-instance)
 - [Attach a domain](#attach-a-domain)
 - [Get SSL](#get-ssl)
+- [Update environment variables](#update-environment-variables)
 
 ## Install SSL on Vito instance
 
@@ -80,3 +81,12 @@ YOUR_EMAIL: Your email address to be provided to letsencrypt
 :::info
 If you are using Cloudflare, Now you can enable the cloud proxy if you want. Keep in mind that you might need to enable Full SSL encryption option on Cloudflare
 :::
+
+### Update environment variables
+
+Now you need add/update the following variables in the `.env` file if you are using VPS installation or docker's environment variables if you are using docker:
+
+```sh
+APP_URL=https://YOUR_DOMAIN
+ASSET_URL=https://YOUR_DOMAIN
+```

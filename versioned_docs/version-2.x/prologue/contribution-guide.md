@@ -1,6 +1,7 @@
 # Contribution Guide
 
 - [Environment Setup](#environment-setup)
+- [Where to start?](#where-to-start)
 - [Development Discussion](#development-discussion)
 - [Which Branch?](#which-branch)
 - [Security Vulnerabilities](#security-vulnerabilities)
@@ -9,7 +10,19 @@
 
 ## Environment Setup
 
-Set up your local environment by following the [installation documentation](./installation#install-locally)
+Set up your local environment by following the [installation documentation](../getting-started/installation#install-locally)
+
+## Where to start?
+
+If you want to start right away, we recommend you to start from the open issues in the `Todo` state.
+
+You can find them [here](https://github.com/orgs/vitodeploy/projects/5/views/9)
+
+They're sorted by priority. So feel free to pick an unassigned one. Drop a comment so we can assign it to you.
+
+:::warning
+If you want to work on something which is not listed in the `ToDo` issues. Please read the below section!
+:::
 
 ## Development Discussion
 
@@ -45,7 +58,7 @@ The coding style is already hardcoded in configurations inside the project.
 
 For PHP codes you may run `./vendor/bin/pint` to fix your coding styles.
 
-And for the frontend codes you may run `npm run lint:fix` to fix your frontend coding styles.
+And for the frontend codes and bash scripts you may run `npm run lint:fix` to fix your frontend coding styles.
 
 These two commands should be run before opening a PR, Otherwise the checks on your PR will fail.
 

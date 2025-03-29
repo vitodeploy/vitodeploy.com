@@ -7,6 +7,7 @@
     - [Laravel](#laravel)
     - [WordPress](#wordpress)
     - [PHPMyAdmin](#phpmyadmin)
+    - [Load Balancer](#load-balancer)
 - [Site Type Features](#site-type-features)
 - [Composer](#composer)
 
@@ -22,6 +23,7 @@ types for provide more features out of the box for some specific PHP application
 - Laravel
 - WordPress
 - PHPMyAdmin
+- Load Balancer
 
 ### PHP
 
@@ -59,6 +61,12 @@ the [Services](../servers/services) section.
 ### PHPMyAdmin
 
 Vito supports PHPMyAdmin installation out of the box. It will install PHPMyAdmin and connect it your Mysql service.
+
+### Load Balancer
+
+You can use your server as a load balancer by adding a new site with the Load Balancer site type.
+
+Read more about [Load Balancer](./load-balancer).
 
 ## Site Type Features
 

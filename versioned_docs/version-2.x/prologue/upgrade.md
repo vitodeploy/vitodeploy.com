@@ -13,7 +13,7 @@ installations.
 
 ### Upgrade Docker Installation
 
-If you're using the latest tag, just do the [Update](./update#update-docker) steps.
+If you're using the latest tag, just do the [Update](../getting-started/update#update-docker) steps.
 
 If you're using the `1.x` tag, You need to change it to `2.x` or `latest` tag.
 

@@ -42,13 +42,13 @@ const base64String = `base64:${btoa(String.fromCharCode(...randomBytes))}`;
 alert(base64String); // Show the generated string in an alert
 }}
 style={{
-padding: '10px 20px',
-fontSize: '16px',
+padding: '8px 15px',
+fontSize: '14px',
 cursor: 'pointer',
-backgroundColor: '#0078D4',
+backgroundColor: '#6366f1',
 color: '#fff',
 border: 'none',
-borderRadius: '4px',
+borderRadius: '9px',
 }}
 > Get a random APP_KEY</button>
 :::
