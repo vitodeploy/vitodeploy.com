@@ -36,11 +36,11 @@ const config: Config = {
       'classic',
       {
         docs: {
-          includeCurrentVersion: false,
-          sidebarPath: './sidebars.js',
+          includeCurrentVersion: true,
+          sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/vitodeploy/vitodeploy.com/',
+          editUrl: 'https://github.com/vitodeploy/vitodeploy.com/tree/main',
         },
         blog: {
           showReadingTime: true,
