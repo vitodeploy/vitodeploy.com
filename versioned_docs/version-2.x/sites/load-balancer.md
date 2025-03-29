@@ -11,7 +11,7 @@ Vito uses Nginx to create load balancer to distribute incoming traffic across mu
 
 You can add multiple servers to the load balancer and Vito will automatically update the Nginx configuration file.
 
-::: warning
+:::warning
 **Before setting up a load balancer:**
 
 - You need at least 3 servers. One for the load balancer and Two for the backend servers.
@@ -19,7 +19,7 @@ You can add multiple servers to the load balancer and Vito will automatically up
 - Vito doesn't create private networks, So you need to create it manually on your server provider and assign local IP
   addresses to the servers.
 - After assigning local IP addresses, you need to set the local IPs in the server settings for each server.
-  :::
+:::
 
 ## How to set up Load Balancer
 
@@ -59,7 +59,7 @@ The balancing method is used to distribute the load between the servers.
 
 There is a dropdown to select the server you want to add to the load balancer.
 
-::: warning
+:::warning
 Make sure the server has a local IP address to be shown in the dropdown.
 :::
 

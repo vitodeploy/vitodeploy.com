@@ -45,6 +45,6 @@ You can add multiple SSLs to your server for a website and activate any of them 
 
 If you already have an SSL installed and activated, you can click the `Force SSL` button to redirect all HTTP requests.
 
-::: warning
+:::warning
 Make sure one of the SSLs is activated before enabling this option.
 :::
