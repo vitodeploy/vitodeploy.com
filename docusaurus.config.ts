@@ -154,7 +154,7 @@ const config: Config = {
       appId: 'OSJRVBTWTB',
 
       // Public API key: it is safe to commit it
-      apiKey: 'ed70c039271bac31d9f51d375c2e002e',
+      apiKey: 'd37bbbcb5d06e88c415a34892ac3d937',
 
       indexName: 'vitodeploy',
 
