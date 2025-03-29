@@ -1,3 +1,11 @@
+announcement:
+  label: Announcement
+  permalink: /announcement
+
 tutorial:
   label: Tutorial
   permalink: /tutorial
+
+video:
+  label: Video
+  permalink: /video

@@ -4,7 +4,17 @@ import colors from 'tailwindcss/colors';
 module.exports = {
 	corePlugins: { preflight: false, container: false },
 	darkMode: ["class", '[data-theme="dark"]'],
-	content: ['./src/**/*.html', './src/**/*.ts', './src/**/*.tsx'],
+	content: [
+		'./src/**/*.html', 
+		'./src/**/*.ts', 
+		'./src/**/*.tsx', 
+		'./versioned_docs/**/*.mdx', 
+		'./versioned_docs/**/*.md', 
+		'./blog/**/*.md', 
+		'./blog/**/*.mdx',
+		'./docs/**/*.mdx',
+		'./docs/**/*.md',
+	],
 	theme: {
     	extend: {
     		typography: {

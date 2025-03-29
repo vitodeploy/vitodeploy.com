@@ -7,9 +7,9 @@ import { ReactNode } from "react";
 export default function Header(): ReactNode {
     return (
         <header className='container relative flex flex-col items-center justify-center py-10'>
-            <h1 className='font-bold text-[60px] text-indigo-600 dark:text-white'>VitoDeploy</h1>
+            <h1 className='font-bold text-[60px] text-indigo-600 dark:text-white mb-2'>VitoDeploy</h1>
             <WordRotate
-                className='text-3xl font-semibold'
+                className='text-3xl font-semibold mb-2'
                 words={["Open-Source", "Free", "Self-Hosted"]}
             />
             <p className='text-3xl'>Server Management Tool</p>
@@ -18,7 +18,7 @@ export default function Header(): ReactNode {
                 <BorderBeam size={200} />
             </div>
             <div className="flex items-center mt-10 gap-2">
-                <Button size="lg" onClick={() => window.location.href = "/docs/intro"}>
+                <Button size="lg" onClick={() => window.location.href = "/docs/getting-started/introduction"}>
                     <BookOpenIcon className="!size-5" />
                     Documentation
                 </Button>
