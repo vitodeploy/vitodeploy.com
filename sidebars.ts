@@ -152,6 +152,10 @@ const sidebars: SidebarsConfig = {
         {
           "type": "doc",
           "id": "sites/load-balancer"
+        },
+        {
+          "type": "doc",
+          "id": "sites/redirects"
         }
       ]
     },
