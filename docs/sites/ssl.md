@@ -12,6 +12,10 @@
 Vito supports SSL installation for your sites. It can issue a Letsencrypt Certificate for your website, or you can
 install your own Certificate.
 
+:::warning
+Any actions related to SSLs will regenerate the Nginx vhost file and any manual changes to the Nginx vhost will be lost.
+:::
+
 ## Letsencrypt
 
 Let’s Encrypt is a free, automated, and open certificate authority (CA) that provides digital certificates to enable
