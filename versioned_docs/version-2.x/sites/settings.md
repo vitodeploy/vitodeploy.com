@@ -32,6 +32,10 @@ do so unless you know what you are doing.
 
 Vito will show you the current configuration of the site, and you can modify it as you wish.
 
+:::danger
+Nginx vhost file will get reset if you generate or modify SSLs, Aliases, or create/delete site redirects.
+:::
+
 ## Delete
 
 You can delete the website from your server.
