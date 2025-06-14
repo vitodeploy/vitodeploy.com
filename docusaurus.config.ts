@@ -92,7 +92,7 @@ const config: Config = {
           className: 'header-discord-link',
         },
         {
-          href: 'https://x.com/saeed_vz',
+          href: 'https://x.com/vitodeploy',
           position: 'right',
           className: 'header-x-link',
         },
@@ -129,7 +129,7 @@ const config: Config = {
             },
             {
               label: 'X',
-              href: 'https://x.com/saeed_vz',
+              href: 'https://x.com/vitodeploy',
             },
           ],
         },
