@@ -26,15 +26,12 @@ docker run -v vito_storage:/var/www/html/storage \
     -e NAME=admin_name \
     -e EMAIL=admin_email \
     -e PASSWORD=admin_password \
+    -e APP_URL=http://your-vito-url \
     -p 80:80 vitodeploy/vito:latest
 ```
 
 :::info
-`APP_KEY`
-is [Laravel's encryption key](https://github.com/laravel/laravel/blob/3622d746fde67ebaff3dd3fdde3676599434692f/config/app.php#L20-L25)
-and should be a 32-character string.
-
-
+`APP_KEY` is Laravel's encryption key and should be a 32-character string.
 
 <button
   onClick={() => {
@@ -51,6 +48,12 @@ and should be a 32-character string.
 Make sure you modify the env variables when running the command.
 :::
 
+:::warning
+In order to make sure the app works properly, Make sure you also set the `APP_URL` environment variable to the URL of your Vito instance.
+
+Some features like Vito Logs works only if you set the `APP_URL` correctly. Otherwise, it will show you an unauthorized error on the logs page.
+:::
+
 ### Docker Compose
 
 ```yaml
@@ -65,12 +68,19 @@ services:
       NAME: "vito"
       EMAIL: "vito@example.com"
       PASSWORD: "password"
+      APP_URL: "http://localhost:8000" # Change this to your Vito URL
     volumes:
       - "vito-storage:/var/www/html/storage"
 volumes:
   vito-storage:
     driver: local
 ```
+
+:::info
+`:latest` tag is the latest release of VitoDeploy from the `3.x` branch, which is stable and recommended for production use.
+
+However, if you would like to use the latest code on the `3.x` branch, you may change the image to `vitodeploy/vito:3.x`.
+:::
 
 ### Environment Variables
 
@@ -84,9 +94,11 @@ volumes:
 
 `PASSWORD`: Your account's password for login (You can change it after login)
 
+`APP_URL`: The URL of your Vito instance, It is required for some features like Vito Logs to work properly.
+
 ### Beta Releases on Docker
 
-If you want to test the beta version of Vito, You can use the `2.x` tag.
+If you want to test the beta version of Vito, You can use the `3.x` tag.
 
 ## Install on VPS
 
@@ -94,7 +106,7 @@ Vito can be installed on a **fresh** Ubuntu server with only one single command.
 
 ### Requirements
 
-- Ubuntu 22.04 LTS or Higher
+- Ubuntu 24.04 LTS or Higher
 - 1 GB Memory
 - 1 CPU
 - 80 and 443 ports should be open
@@ -112,7 +124,7 @@ You cannot use Vito to install applications into the same server as Vito. Otherw
 Login to the `root` user of your server via SSH and run the following command:
 
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/vitodeploy/vito/2.x/scripts/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/vitodeploy/vito/3.x/scripts/install.sh)
 ```
 
 :::warning
@@ -155,10 +167,12 @@ Now you can [attach a domain and secure it](./securing).
 
 ### Beta Releases on VPS
 
-To install beta releases you can pass `BETA=1` as an env variable.
+To switch to the latest code on the `3.x` branch, you need to switch the git branch to `3.x`:
 
 ```sh
-BETA=1 bash <(curl -Ls https://raw.githubusercontent.com/vitodeploy/vito/2.x/scripts/install.sh)
+cd /home/vito/vito
+git fetch origin
+git checkout 3.x
 ```
 
 ## Install Locally
@@ -227,6 +241,9 @@ Vito by default will run on localhost:8000. You can change the port on your `.en
 
 [Sail Documentation](https://laravel.com/docs/10.x/sail)
 
+:::warning
+Make sure you set these [environment variables](#environment-variables) properly according docker installation.
+:::
 
 ## Migrating
 

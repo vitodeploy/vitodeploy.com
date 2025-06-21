@@ -6,17 +6,19 @@
 - [Which Branch?](#which-branch)
 - [Security Vulnerabilities](#security-vulnerabilities)
 - [Coding Style](#coding-style)
+- [Code Quality](#code-quality)
 - [Code of Conduct](#code-of-conduct)
 
 ## Environment Setup
 
-Set up your local environment by following the [installation documentation](../getting-started/installation#install-locally)
+Set up your local environment by following
+the [installation documentation](../getting-started/installation.mdx#install-locally)
 
 ## Where to start?
 
 If you want to start right away, we recommend you to start from the open issues in the `Todo` state.
 
-You can find them [here](https://github.com/orgs/vitodeploy/projects/5/views/9)
+You can find them [here](https://github.com/orgs/vitodeploy/projects/5/views/12)
 
 They're sorted by priority. So feel free to pick an unassigned one. Drop a comment so we can assign it to you.
 
@@ -39,10 +41,10 @@ Please do not refactor any existing code without discussing it with the maintain
 
 ## Which Branch?
 
-All bug fixes should be sent to the latest version that supports bug fixes (currently `2.x`).
+All bug fixes should be sent to the latest version that supports bug fixes (currently `3.x`).
 
 Minor features that are fully backward compatible with the current release may be sent to the latest stable branch (
-currently `2.x`).
+currently `3.x`).
 
 Major new features or features with breaking changes should always be sent to the `main` branch, which contains the
 upcoming major release.
@@ -58,9 +60,26 @@ The coding style is already hardcoded in configurations inside the project.
 
 For PHP codes you may run `./vendor/bin/pint` to fix your coding styles.
 
-And for the frontend codes and bash scripts you may run `npm run lint:fix` to fix your frontend coding styles.
+And for the frontend codes and bash scripts you may run `npm run format` to fix your frontend coding styles.
 
-These two commands should be run before opening a PR, Otherwise the checks on your PR will fail.
+Code style is enforced by the CI pipeline, so please ensure your code passes the checks before submitting a pull
+request.
+
+## Code Quality
+
+We use [PHPStan](https://phpstan.org/) for static analysis of the PHP code and [ESLint](https://eslint.org/) for the
+frontend code.
+
+You can run the static analysis tools locally by running the following commands:
+
+```bash
+# For PHP code
+./vendor/bin/phpstan analyse
+# For JavaScript/TypeScript code
+npm run lint
+```
+
+Code quality is enforced by the CI pipeline, so please ensure your code passes the checks before submitting a pull
 
 ## Code of Conduct
 

@@ -7,6 +7,11 @@ If you've installed VitoDeploy on a VPS, You should see a `.env` file in the roo
 
 If you are using the Docker version, you need to update the environment variables of your container.
 
+## App URL
+
+It is crucial to set the `APP_URL` environment variable to your Vito instance URL to ensure that features like Vito Logs
+work properly.
+
 ## Email
 
 To enable Vito to send you emails, You need to configure your mail server. Modify the following on the `.env` file
@@ -23,12 +28,12 @@ MAIL_FROM_ADDRESS={YOUR-SMTP-MAIL-ADDRESS}
 And then run the following commands inside the root directory of the project to apply the changes
 
 ```sh
-php artisan config:clear
-php artisan config:cache
+php artisan optimize:clear
+php artisan optimize
 sudo supervisorctl restart worker:*
 ```
 
-For docker version you will need to restart the restart/re-create the container.
+For docker version you will need to restart/re-create the container.
 
 :::warning
 Currently Vito supports only SMTP as the mail driver

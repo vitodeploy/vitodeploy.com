@@ -19,15 +19,6 @@ cd /home/vito/vito
 bash scripts/update.sh
 ```
 
-:::info
-By default it will update to the latest stable release. If you want to also get the beta releases, You can pass `--beta`
-to the command.
-
-```sh
-bash scripts/update.sh --beta
-```
-:::
-
 ## Update Docker
 
 If you've installed VitoDeploy on a docker container, You just need to pull the latest version and recreate the

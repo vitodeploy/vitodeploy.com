@@ -1,44 +1,69 @@
-import HeroVideoDialog from "@site/src/components/magicui/hero-video-dialog";
-
 # Introduction
 
-VitoDeploy or for short Vito is a self-hosted platform that automates server provisioning and application deployment for
-PHP projects like
-Laravel and WordPress, etc. It connects to your server remotely via SSH, installs necessary tools (e.g., Nginx, PHP,
-MySQL), and
-streamlines tasks like pulling code from repositories, managing environment variables, configuring web servers, and
-issuing SSL certificates. With a user-friendly interface, it supports multi-site deployments, automated backups, and
-performance monitoring, making it a convenient solution for managing servers and deploying applications efficiently.
+Vito is a powerful, open-source server management tool designed to simplify the deployment and management of PHP applications. It provides a user-friendly interface for developers and system administrators to automate server provisioning, application deployment, and maintenance tasks.
 
-<div className="relative">
-    <HeroVideoDialog
-        className="block dark:hidden"
-        animationStyle="from-center"
-        videoSrc="https://www.youtube.com/embed/_xSzdM0ZRKU?si=Zgyd9mVL5j8OzsEt"
-        thumbnailSrc="/img/services-light.png"
-        thumbnailAlt="Hero Video"
-    />
-    <HeroVideoDialog
-        className="hidden dark:block"
-        animationStyle="from-center"
-        videoSrc="https://www.youtube.com/embed/_xSzdM0ZRKU?si=Zgyd9mVL5j8OzsEt"
-        thumbnailSrc="/img/services-dark.png"
-        thumbnailAlt="Hero Video"
-    />
-</div>
+Here are a list of features that Vito provides:
 
-## Features
+## Server Provisioning
 
-Here are some of the features that Vito provides you.
+Vito allows you to quickly set up and configure servers with the necessary software stack for your web application.
 
-- **Server Provisioning**: Automates the setup of servers with essential tools like Nginx, MySQL, PHP, and more.
-- **App Deployment**: Deploys PHP applications (e.g., Laravel, WordPress) using Git repositories and environment configurations.
-- **SSL Management**: Issues Let’s Encrypt SSL certificates for secure connections.
-- **Firewall Configuration**: Manages server security with configurable firewall settings.
-- **Multi-Site Support**: Allows deployment and management of multiple applications on a single server.
-- **Database Management**: Simplifies database creation, configuration, and access.
-- **Automated Backups**: Supports scheduled backups for databases with restoration options.
-- **User-Friendly Interface**: Offers a clean, intuitive dashboard for server and application management.
-- **Monitoring Tools**: Includes resource usage monitoring for servers.
-- **Customizable Scripts**: Allows custom scripts for advanced use cases.
-- **User Management**: Allows you to manage users and their permissions.
+You can create servers on the top cloud providers like AWS, DigitalOcean, and Linode, etc. with just a few clicks. Vito supports various server configurations, including different operating systems and software stacks.
+
+## Database
+
+You can easily install databases like MySQL, PostgreSQL, and MariaDB, and manage them through the Vito interface.
+
+Features available for the databases:
+
+- Create and manage databases
+- Create and manage users
+- Database backups
+
+## Application
+
+Vito simplifies the deployment of web applications specifically PHP by automating the process creating virtual hosts, configuring web servers, cloning repositories, and setting up environment variables.
+
+Features available for the websites:
+
+- Deployments
+- SSL
+- Supervisor Workers
+- Commands
+- Environment Variables
+
+## Firewall
+
+Vito allows you to manage your server's firewall rules easily. You can add, remove, and modify rules to control incoming and outgoing traffic.
+
+## Programming Languages
+
+You can install and manage multiple versions of PHP and Node.js on your server. Vito supports various versions of these languages, allowing you to run applications that require different versions.
+
+## Cron Jobs
+
+Vito provides a simple interface to manage cron jobs on your server. You can create, edit, and delete cron jobs without needing to manually edit the crontab file.
+
+## Supervisor Workers
+
+Vito allows you to manage background processes using Supervisor. You can create and manage Supervisor workers to run tasks in the background, ensuring that your web applications remain responsive.
+
+## Services
+
+Vito is a service oriented server management tool, which means you most of the features are available as services. You can install and manage services like Redis, Monitoring, Databases, and more.
+
+## Monitoring
+
+Vito provides monitoring capabilities to keep track of your server's performance and resource usage. You can monitor CPU, memory, disk usage to ensure your server is running smoothly.
+
+## Headless Console
+
+You can directly run commands on your server using the headless console feature. This allows you to execute commands without needing to SSH into the server, making it easier to manage your server from the Vito interface.
+
+## Plugins
+
+Vito supports plugins, allowing you to extend its functionality. You can install official and community-supported plugins to add new features or modify existing ones.
+
+## Export and Import
+
+Vito allows you to export and import your server configurations. This feature is useful for backing up your settings or migrating your Vito instance to another server.

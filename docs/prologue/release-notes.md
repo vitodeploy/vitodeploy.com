@@ -1,34 +1,37 @@
 # Release Notes
 
-- [Migrating to FilamentPHP](#migrating-to-filamentphp)
-- [API Support](#api-support)
-- [Server Provider Integration](#server-provider-integration)
-- [Tables and Filters](#tables-and-filters)
+- [Migrating to Inertia and React](#migrating-to-inertia-and-react)
+- [New dashboard UI](#new-dashboard-ui)
+- [Plugins](#plugins)
+- [Export and Import](#export-and-import)
+- [Redis for Caching, Sessions, and Queues](#redis-for-caching-sessions-and-queues)
 
-## Migrating to FilamentPHP
+## Migrating to Inertia and React
 
-We've migrated VitoDeploy from [HTMX](https://htmx.org/) to [FilamentPHP](https://filamentphp.com/). This has reduced a
-lot of Frontend files and unified the web application's structure. This will also help us to maintain the project easily
-and add new features without having to write frontend code.
+In this release, we have migrated the dashboard to use Inertia.js and React. This change allows for a more dynamic and
+responsive user interface, improving the overall user experience. The new setup also enables easier development of
+future features and enhancements.
 
-FilamentPHP uses Livewire under the hood which will enable us to also leverage the power
-of [Livewire](https://livewire.laravel.com/) in the future.
+## New dashboard UI
 
-## API Support
+The dashboard has been completely redesigned to provide a more intuitive and user-friendly experience. The new UI
+features a cleaner layout, improved navigation, and enhanced visual elements to help users manage their servers
+more effectively.
 
-VitoDeploy now has API support which will allow you to interact with the application programmatically. This will help
-you to automate tasks and integrate VitoDeploy with other services.
+## Plugins
 
-The API Documentation is accessible in the `/api-docs/index.html` path of your VitoDeploy instance.
+Plugins are now supported in Vito, allowing users to extend the functionality of VitoDeploy. Users can now develop and
+install official and community supported plugins to add new features or modify existing ones. This opens up a wide range
+of possibilities for customization and enhancement of the VitoDeploy experience.
 
-## Server Provider Integration
+## Export and Import
 
-We've updated server provider integrations to fetch the Regions and Plans dynamically during server creation.
+The export and import functionality has been added to VitoDeploy, allowing users to easily export and backup their
+server configurations and import them when needed. This feature is particularly useful for users who want to
+migrate their Vito instance from machine to machine or for those who want to keep a backup of their server settings.
 
-This will help you to choose the region and plan easily while creating a new server.
+## Redis for Caching, Sessions, and Queues
 
-## Tables and Filters
-
-Migrating to FilamentPHP has enabled us to add Search and Filters to all tables inside.
-
-Now you'll be able to easily looks for data in the tables and filter them based on your needs.
+Vito version 3.x uses Redis for caching, sessions, and queues. This change improves the performance and solves the
+Database lock issues with SQLite. Redis is a powerful in-memory data structure store that provides high performance and
+scalability for these tasks.

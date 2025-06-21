@@ -1,24 +1,35 @@
 # Upgrade Guide
 
 :::warning
-Before upgrade first make a backup of `/home/vito/storage` folder for VPS installations and the volumes for the docker
+Before upgrade first make a backup of `/home/vito/storage` folder and the `.env` file for VPS installations and the
+volumes for the docker
 installations.
 :::
 
-- [Upgrading to 2.x from 1.x](#upgrading-to-2x-from-1x)
-  - [Upgrade Docker Installation](#upgrade-docker-installation)
-  - [Upgrade VPS Installation](#upgrade-vps-installation)
+- [Upgrading to 3.x from 2.x](#upgrading-to-3x-from-2x)
+    - [Upgrade Docker Installation](#upgrade-docker-installation)
+    - [Upgrade VPS Installation](#upgrade-vps-installation)
+    - [Upgrade Local installation](#upgrade-local-installation)
 
-## Upgrading to 2.x from 1.x
+## Upgrading to 3.x from 2.x
 
 ### Upgrade Docker Installation
 
 If you're using the latest tag, just do the [Update](../getting-started/update#update-docker) steps.
 
-If you're using the `1.x` tag, You need to change it to `2.x` or `latest` tag.
+If you're using the `2.x` tag, You need to change it to `3.x` or `latest` tag.
 
 :::info
+`3.x` tag is the latest code on the `3.x` branch, which might not be stable yet, but it will be soon.
+
+`latest` tag is the latest release of VitoDeploy from the `3.x` branch, which is stable and recommended for production
+use.
+
 We recommend using the `latest`.
+:::
+
+:::warning
+It is required to have `APP_URL` environment variable set to your Vito URL, otherwise, some features like Vito Logs won't work properly.
 :::
 
 ### Upgrade VPS Installation
@@ -31,20 +42,81 @@ Go to the root of the project:
 cd /home/vito/vito
 ```
 
-Pull the latest changes:
+**Install PHP 8.4:**
+
+```sh
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+sudo apt install -y php8.4 php8.4-fpm php8.4-mbstring php8.4-mcrypt php8.4-gd php8.4-xml php8.4-curl php8.4-gettext php8.4-zip php8.4-bcmath php8.4-soap php8.4-redis php8.4-sqlite3 php8.4-intl
+sudo sed -i "s/www-data/vito/g" /etc/php/8.4/fpm/pool.d/www.conf
+sudo service php8.4-fpm enable
+sudo service php8.4-fpm start
+sudo apt install -y php8.4-ssh2
+sudo service php8.4-fpm restart
+sed -i "s/memory_limit = .*/memory_limit = 1G/" /etc/php/8.4/fpm/php.ini
+sed -i "s/upload_max_filesize = .*/upload_max_filesize = 1G/" /etc/php/8.4/fpm/php.ini
+sed -i "s/post_max_size = .*/post_max_size = 1G/" /etc/php/8.4/fpm/php.ini
+```
+
+**Install Redis:**
+
+Vito version 3.x uses Redis for caching, sessions, and queues. You need to install Redis server on your VPS.
+
+```sh
+sudo apt install redis-server -y
+sudo service redis enable
+sudo service redis start
+```
+
+**Adjust the Nginx configuration:**
+
+Vito v3 transfers more data on the request headers because of the Inertia.js, so you need to increase the `client_max_body_size`.
+
+Open `/etc/nginx/sites-available/vito` and add `client_max_body_size 100M;` line inside the `server` block.
+
+This increase is necessary to allow you to export and import larger Vito settings.
+
+```nginx
+server {
+    ...
+    client_max_body_size 100M;
+    ...
+}
+```
+
+Then restart Nginx:
+
+```sh
+sudo service nginx restart
+```
+
+**Pull the latest changes:**
 
 ```sh
 git pull
 ```
 
-Switch to the `2.x` branch:
+**Switch to the `3.x` branch:**
 
 ```sh
-git checkout 2.x
+git checkout 3.x
 ```
 
-Run the update script:
+**Run the update script:**
 
 ```sh
 bash scripts/update.sh
 ```
+
+## Upgrade Local installation
+
+If you're using Laravel Sail, you need to kill the current container and delete its images and then boot sail up again.
+
+[Read the installation documentation](../getting-started/installation.mdx#laravel-sail) for more information.
+
+If you're using other tools like Laravel Valet or etc., You need to make sure you have PHP 8.4 installed and then switch
+to the `3.x` branch.
+
+:::warning
+Make sure you set the `REDIS_HOST=redis` environment variable in your `.env` file.
+:::
