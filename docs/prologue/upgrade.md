@@ -42,6 +42,18 @@ Go to the root of the project:
 cd /home/vito/vito
 ```
 
+**Discard all the possible changes to the code base:**
+
+```sh
+git stash
+```
+
+**Fix any possible ownership change to the code base:**
+
+```sh
+sudo chown -R vito:vito /home/vito/vito
+```
+
 **Install PHP 8.4:**
 
 ```sh
@@ -53,9 +65,9 @@ sudo service php8.4-fpm enable
 sudo service php8.4-fpm start
 sudo apt install -y php8.4-ssh2
 sudo service php8.4-fpm restart
-sed -i "s/memory_limit = .*/memory_limit = 1G/" /etc/php/8.4/fpm/php.ini
-sed -i "s/upload_max_filesize = .*/upload_max_filesize = 1G/" /etc/php/8.4/fpm/php.ini
-sed -i "s/post_max_size = .*/post_max_size = 1G/" /etc/php/8.4/fpm/php.ini
+sudo sed -i "s/memory_limit = .*/memory_limit = 1G/" /etc/php/8.4/fpm/php.ini
+sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 1G/" /etc/php/8.4/fpm/php.ini
+sudo sed -i "s/post_max_size = .*/post_max_size = 1G/" /etc/php/8.4/fpm/php.ini
 ```
 
 **Install Redis:**
@@ -68,7 +80,25 @@ sudo service redis enable
 sudo service redis start
 ```
 
+**Install Node.js:**
+Vito v3 uses Inertia.js, which requires Node.js to be installed.
+
+```sh
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
 **Adjust the Nginx configuration:**
+
+Set php-fpm to use PHP 8.4 instead of PHP 8.2 by running the following command:
+
+```sh
+sudo sed -i "s/php8.2-fpm.sock/php8.4-fpm.sock/g" /etc/nginx/sites-available/vito
+```
+
+:::warning
+Make sure to confirm the change by opening the file `/etc/nginx/sites-available/vito`
+:::
 
 Vito v3 transfers more data on the request headers because of the Inertia.js, so you need to increase the `client_max_body_size`.
 
@@ -93,7 +123,7 @@ sudo service nginx restart
 **Pull the latest changes:**
 
 ```sh
-git pull
+git fetch
 ```
 
 **Switch to the `3.x` branch:**
