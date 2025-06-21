@@ -7,13 +7,16 @@ installations.
 :::
 
 - [Upgrading to 3.x from 2.x](#upgrading-to-3x-from-2x)
-    - [Upgrade Docker Installation](#upgrade-docker-installation)
-    - [Upgrade VPS Installation](#upgrade-vps-installation)
-    - [Upgrade Local installation](#upgrade-local-installation)
+- [Upgrade Docker Installation](#upgrade-docker-installation)
+- [Upgrade VPS Installation](#upgrade-vps-installation)
+  - [Automatic Upgrade](#automatic-upgrade)
+  - [Manual Upgrade](#manual-upgrade)
+  - [Upgrade failed?](#upgrade-failed)
+- [Upgrade Local installation](#upgrade-local-installation)
 
 ## Upgrading to 3.x from 2.x
 
-### Upgrade Docker Installation
+## Upgrade Docker Installation
 
 If you're using the latest tag, just do the [Update](../getting-started/update#update-docker) steps.
 
@@ -32,7 +35,19 @@ We recommend using the `latest`.
 It is required to have `APP_URL` environment variable set to your Vito URL, otherwise, some features like Vito Logs won't work properly.
 :::
 
-### Upgrade VPS Installation
+## Upgrade VPS Installation
+
+You can upgrade your Vito instance from 2.x to 3.x in Automatic or Manual mode.
+
+### Automatic Upgrade
+
+Run the following command as `vito` user:
+
+```sh
+bash <(curl -Ls https://raw.githubusercontent.com/vitodeploy/vito/3.x/scripts/upgrade-2x-to-3x.sh)
+```
+
+### Manual Upgrade
 
 SSH to your Vito instance with user `vito` and continue the steps:
 
@@ -138,6 +153,15 @@ git checkout 3.x
 ```sh
 bash scripts/update.sh
 ```
+
+### Upgrade failed?
+
+If the upgrade (automatic or manual) failed, follow these steps to fix it:
+
+1. [Install a new Vito instance](../getting-started/installation.mdx#install-on-vps)
+2. Copy the `.env` file from the old instance backup to the new instance.
+3. Copy the `storage` folder from the old instance backup to the new instance.
+4. Run `bash scripts/update.sh` on the new instance to apply the changes.
 
 ## Upgrade Local installation
 
