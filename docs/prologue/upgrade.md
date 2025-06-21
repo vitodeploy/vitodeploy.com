@@ -81,6 +81,7 @@ sudo service redis start
 ```
 
 **Install Node.js:**
+
 Vito v3 uses Inertia.js, which requires Node.js to be installed.
 
 ```sh
