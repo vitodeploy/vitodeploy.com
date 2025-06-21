@@ -112,6 +112,23 @@ Set php-fpm to use PHP 8.4 instead of PHP 8.2 by running the following command:
 sudo sed -i "s/php8.2-fpm.sock/php8.4-fpm.sock/g" /etc/nginx/sites-available/vito
 ```
 
+Add the following to the `/etc/nginx/sites-available/vito` as well:
+
+```nginx
+    location ~ \.php$ {
+        ...
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        ...
+    }
+```
+
+You can run this command instead
+
+```sh
+sudo sed -i '/location ~ \\\.php\$ {/a \    fastcgi_buffers 16 16k;\n    fastcgi_buffer_size 32k;' /etc/nginx/sites-available/vito
+```
+
 :::warning
 Make sure to confirm the change by opening the file `/etc/nginx/sites-available/vito`
 :::
