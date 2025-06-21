@@ -19,6 +19,10 @@ cd /home/vito/vito
 bash scripts/update.sh
 ```
 
+:::info
+To get the `alpha` or `beta` releases of VitoDeploy you can simply pass `--alpha` or `--beta` flags to the update script.
+:::
+
 ## Update Docker
 
 If you've installed VitoDeploy on a docker container, You just need to pull the latest version and recreate the
@@ -31,3 +35,7 @@ docker pull vitodeploy/vito:latest
 ```
 
 And then recreate the container!
+
+:::info
+To get the `alpha` or `beta` releases of VitoDeploy you can use the version tags like `vitodeploy/vito:3.0.0-alpha-1` or use the `3.x` tag to get the latest code on the `3.x` branch.
+:::

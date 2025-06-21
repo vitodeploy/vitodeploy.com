@@ -4,12 +4,10 @@
   - [Docker Command](#docker-command)
   - [Docker Compose](#docker-compose)
   - [Environment Variables](#environment-variables)
-  - [Beta Releases](#beta-releases-on-docker)
 - [Install on VPS](#install-on-vps)
   - [Requirements](#requirements)
   - [Installation Process](#installation-process)
   - [Ready](#ready)
-  - [Beta Releases](#beta-releases-on-vps)
 - [Install Locally](#install-locally)
   - [Laravel Sail](#laravel-sail)
 - [Migrating](#migrating)
@@ -96,10 +94,6 @@ However, if you would like to use the latest code on the `3.x` branch, you may c
 
 `APP_URL`: The URL of your Vito instance, It is required for some features like Vito Logs to work properly.
 
-### Beta Releases on Docker
-
-If you want to test the beta version of Vito, You can use the `3.x` tag.
-
 ## Install on VPS
 
 Vito can be installed on a **fresh** Ubuntu server with only one single command.
@@ -164,16 +158,6 @@ Make sure that your server is accessible via port 80 and 443.
 :::
 
 Now you can [attach a domain and secure it](./securing).
-
-### Beta Releases on VPS
-
-To switch to the latest code on the `3.x` branch, you need to switch the git branch to `3.x`:
-
-```sh
-cd /home/vito/vito
-git fetch origin
-git checkout 3.x
-```
 
 ## Install Locally
 
