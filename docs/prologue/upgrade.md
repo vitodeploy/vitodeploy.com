@@ -153,6 +153,28 @@ Then restart Nginx:
 sudo service nginx restart
 ```
 
+**Update supervisor configuration**
+
+Vito now uses [Laravel Horizon](https://laravel.com/docs/12.x/horizon) for managing queues, so you need to update the supervisor configuration.
+
+You need to update `/etc/supervisor/conf.d/worker.conf` file to use Horizon instead of the worker.
+
+```sh
+sudo sed -i 's/command=php \/home\/vito\/vito\/artisan queue:work --sleep=3 --backoff=0 --queue=default,ssh,ssh-long --timeout=3600 --tries=1/command=php \/home\/vito\/vito\/artisan horizon/' /etc/supervisor/conf.d/worker.conf
+```
+
+Or do it manually by setting `command` to:
+
+```sh
+command=php /home/vito/vito/artisan horizon
+```
+
+Then restart the supervisor:
+
+```sh
+sudo service supervisor restart
+```
+
 **Pull the latest changes:**
 
 ```sh

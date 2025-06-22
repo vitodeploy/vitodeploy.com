@@ -3,6 +3,7 @@
 - [Migrating to Inertia and React](#migrating-to-inertia-and-react)
 - [New dashboard UI](#new-dashboard-ui)
 - [Plugins](#plugins)
+- [Background jobs performance improvements](#background-jobs-performance-improvements)
 - [Export and Import](#export-and-import)
 - [Redis for Caching, Sessions, and Queues](#redis-for-caching-sessions-and-queues)
 
@@ -23,6 +24,12 @@ more effectively.
 Plugins are now supported in Vito, allowing users to extend the functionality of VitoDeploy. Users can now develop and
 install official and community supported plugins to add new features or modify existing ones. This opens up a wide range
 of possibilities for customization and enhancement of the VitoDeploy experience.
+
+## Background jobs performance improvements
+
+We've migrated the queue system from Laravel's default database queue to Horizon with Redis. Vito's queues were
+previously running with only one worker, which caused delays in processing background jobs. Now, with the new setup,
+VitoDeploy can handle multiple background jobs simultaneously, significantly improving the performance.
 
 ## Export and Import
 
