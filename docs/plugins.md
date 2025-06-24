@@ -118,6 +118,7 @@ You can register the features of your plugin in the service provider's `boot` me
 Example:
 
 ```php
+<?php
 
 namespace VitoDeploy\YourPluginName;
 
@@ -149,11 +150,11 @@ Use `App\Plugins\RegisterSiteType` to register a new site type in your plugin's 
 \App\Plugins\RegisterSiteType::make('symfony')
     ->label('Symfony')
     ->handler(SymfonyHandler::class)
-    ->form(DynamicForm::make([
-        DynamicField::make('php_version')
+    ->form(\App\DTOs\DynamicForm::make([
+        \App\DTOs\DynamicField::make('php_version')
             ->component()
             ->label('PHP Version'),
-        DynamicField::make('web_directory')
+        \App\DTOs\DynamicField::make('web_directory')
             ->text()
             ->label('Web Directory')
             ->placeholder('For / leave empty')
@@ -190,12 +191,12 @@ Vito allows you to register a feature to a site with actions or register actions
 // register actions for the feature
 \App\Plugins\RegisterSiteFeatureAction::make('laravel', 'laravel-octane', 'enable')
     ->label('Enable')
-    ->form(DynamicForm::make([
-        DynamicField::make('alert')
+    ->form(\App\DTOs\DynamicForm::make([
+        \App\DTOs\DynamicField::make('alert')
             ->alert()
             ->label('Alert')
             ->description('Make sure you have already set the `OCTANE_SERVER` in your `.env` file'),
-        DynamicField::make('port')
+        \App\DTOs\DynamicField::make('port')
             ->text()
             ->label('Octane Port')
             ->default(8000)
@@ -284,8 +285,8 @@ You can register your own server provider using `App\Plugins\RegisterServerProvi
     ->label('Hetzner')
     ->handler(Hetzner::class)
     ->form(
-        DynamicForm::make([
-            DynamicField::make('token')
+        \App\DTOs\DynamicForm::make([
+            \App\DTOs\DynamicField::make('token')
                 ->text()
                 ->label('API Token'),
         ])
@@ -314,8 +315,8 @@ provider.
     ->label('Local')
     ->handler(Local::class)
     ->form(
-        DynamicForm::make([
-            DynamicField::make('path')
+        \App\DTOs\DynamicForm::make([
+            \App\DTOs\DynamicField::make('path')
                 ->text()
                 ->label('Path'),
         ])
@@ -343,8 +344,8 @@ provider.
     ->label('GitHub')
     ->handler(GitHub::class)
     ->form(
-        DynamicForm::make([
-            DynamicField::make('token')
+        \App\DTOs\DynamicForm::make([
+            \App\DTOs\DynamicField::make('token')
                 ->text()
                 ->label('Personal Access Token'),
         ])
@@ -371,8 +372,8 @@ provider.
     ->label('Slack')
     ->handler(Slack::class)
     ->form(
-        DynamicForm::make([
-            DynamicField::make('webhook_url')
+        \App\DTOs\DynamicForm::make([
+            \App\DTOs\DynamicField::make('webhook_url')
                 ->text()
                 ->label('Webhook URL'),
         ])
