@@ -73,6 +73,10 @@ const sidebars: SidebarsConfig = {
             "items": [
                 {
                     "type": "doc",
+                    "id": "servers/create"
+                },
+                {
+                    "type": "doc",
                     "id": "servers/database"
                 },
                 {
