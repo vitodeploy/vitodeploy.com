@@ -1,15 +1,9 @@
-import type { ReactNode } from 'react';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Features from './features';
 import Header from './header';
 import { Testimonial } from '../components/testimonial';
-import { JSX } from 'react';
 
-export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-  const headerFeatures = ['PHP App', 'Database', 'Load Balancer'];
-
+export default function Home() {
   return (
     <Layout title={`Self-Hosted Server Management Tool`} description="Free, Open-Source, and Self-Hosted Server Management Tool">
       <main className="relative">

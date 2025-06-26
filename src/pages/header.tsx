@@ -2,11 +2,18 @@ import { BorderBeam } from '@site/src/components/magicui/border-beam';
 import { WordRotate } from '@site/src/components/magicui/word-rotate';
 import { Button } from '@site/src/components/ui/button';
 import { BookOpenIcon, PlayIcon } from 'lucide-react';
-import { JSX } from 'react';
 import { cn } from '@site/src/lib/utils';
+import {useEffect, useState} from "react";
 
-export default function Header(): JSX.Element {
-  const version = localStorage.getItem('docs-preferred-version-default');
+export default function Header() {
+  const [version, setVersion] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedVersion = localStorage.getItem('docs-preferred-version-default');
+      setVersion(storedVersion);
+    }
+  }, []);
 
   return (
     <header className="container relative flex flex-col items-center justify-center">

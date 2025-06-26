@@ -1,7 +1,7 @@
 # Create site
 
 - [Introduction](#introduction)
-- [Create Site](#create-site)
+- [Create a new site](#create-a-new-site)
   - [Select a site type](#select-a-site-type)
   - [Domain](#domain)
   - [Aliases](#aliases)
@@ -17,7 +17,7 @@ Vito allows you to see all the sites in a project (main menu) or sites in a spec
 
 Also, you can easily navigate to projects, servers and sites from the top navigation bar.
 
-## Create Site
+## Create a new site
 
 You can create a new site using the sites section on top navigation bar or navigating to the sites section in the
 server's own menu.
