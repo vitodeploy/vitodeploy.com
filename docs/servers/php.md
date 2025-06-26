@@ -2,16 +2,16 @@
 
 - [Introduction](#introduction)
 - [Supported PHP Versions](#supported-php-versions)
-- [Default PHP Cli](#default-php-cli)
-- [Edit php.ini](#edit-phpini)
-- [Restart](#restart)
 - [Install and Uninstall](#install-and-uninstall)
 - [Install PHP Extensions](#install-php-extensions)
+- [Default PHP Cli](#default-php-cli)
+- [Edit php.ini](#edit-phpini)
+- [FPM service](#fpm-service)
 
 ## Introduction
 
 Vito supports multiple PHP versions, and you can install and uninstall them during the server creation or after the
-server creation in the `PHP` menu in the server page or in the [Services](./services) page.
+server creation in the `PHP` menu in the server page or in the [Services](./services.md) page.
 
 ## Supported PHP Versions
 
@@ -25,21 +25,6 @@ server creation in the `PHP` menu in the server page or in the [Services](./serv
 - PHP 8.2
 - PHP 8.3
 - PHP 8.4
-
-## Default PHP Cli
-
-Although you can have only one default PHP Cli which can be called by `php` command on the server, But you can switch
-the default cli version in the `PHP` page.
-
-## Edit php.ini
-
-Vito enables you to edit the `php.ini` file of each PHP version. You can edit both the `php.ini` file of the CLI and the
-FPM.
-
-## Restart
-
-You have this option always to restart each PHP FPM service in the PHP page or in the `PHP` menu
-or [Services](./services) page.
 
 ## Install and Uninstall
 
@@ -65,3 +50,22 @@ Available extensions to install:
 - gmp
 - intl
 - opcache
+
+:::info
+You can also [develop a plugin](../plugins.md#register-services) to add a new PHP extension to Vito.
+:::
+
+## Default PHP Cli
+
+Although you can have only one default PHP Cli which can be called by `php` command on the server, But you can switch
+the default cli version in the `PHP` page.
+
+## Edit php.ini
+
+Vito enables you to edit the `php.ini` file of each PHP version. You can edit both the `php.ini` file of the CLI and the
+FPM.
+
+## FPM service
+
+Under the `PHP` or `Services` page, you can `start`, `stop`, `restart`, `enable`, or `disable` the FPM service for each
+PHP version.

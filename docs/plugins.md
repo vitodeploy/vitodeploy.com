@@ -233,6 +233,35 @@ However, you can register your own services using `App\Plugins\RegisterService` 
     ->label('Nginx')
     ->handler(Nginx::class)
     ->register();
+\App\Plugins\RegisterServiceType::make('php')
+    ->type('php')
+    ->label('PHP')
+    ->handler(PHP::class)
+    ->versions([
+        '8.4',
+        '8.3',
+        '8.2',
+        '8.1',
+        '8.0',
+        '7.4',
+        '7.3',
+        '7.2',
+        '7.1',
+        '7.0',
+        '5.6',
+    ])
+    ->data([
+        'extensions' => [
+            'imagick',
+            'exif',
+            'gmagick',
+            'gmp',
+            'intl',
+            'sqlite3',
+            'opcache',
+        ],
+    ])
+    ->register();
 ```
 
 **Service Types:**
