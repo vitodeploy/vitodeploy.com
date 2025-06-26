@@ -17,11 +17,15 @@ more.
 A more detailed information about your server is visible and modifiable here.
 
 - ID (Can be used in API)
+- Name (Can be updated)
+- Status
+- IP (Can be updated)
+- SSH Port
+- Local IP (Can be updated)
 - Created At
 - Last Updated Check
 - Available Updates
 - Provider
-- Tags
 - Public Key
 
 ## Update Server Information

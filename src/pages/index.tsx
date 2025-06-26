@@ -4,8 +4,9 @@ import Layout from '@theme/Layout';
 import Features from './features';
 import Header from './header';
 import { Testimonial } from '../components/testimonial';
+import {JSX} from "react";
 
-export default function Home(): ReactNode {
+export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   const headerFeatures = [
     "PHP App",

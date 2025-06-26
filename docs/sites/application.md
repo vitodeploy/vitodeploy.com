@@ -3,7 +3,7 @@
 - [Introduction](#introduction)
 - [Branch](#branch)
 - [Deployment Script](#deployment-script)
-- [.env](#env)
+- [Environment variables](#environment-variables)
 - [Deploy](#deploy)
 - [Auto Deployment](#auto-deployment)
 
@@ -17,7 +17,7 @@ You can change the branch of your cloned repository
 
 ## Deployment Script
 
-This is a script which will be executed on your application server each time you press the `Deploy` button.
+This is a script which will be executed on your application server and in the site's path each time you press the `Deploy` button.
 
 :::info
 Your website's path is `/home/vito/YOUR-DOMAIN`
@@ -45,13 +45,33 @@ here is an example:
 echo "Deploying $DOMAIN to $SITE_PATH"
 ```
 
-## .env
+Example deployment script for a Laravel application:
 
-This is the `.env` file of your PHP app (In this case Laravel) which you've installed on your server.
+```bash
+cd $SITE_PATH
 
-:::warning
-Vito doesn't read the `.env` file in the beginning and you need to initiate the file from this page.
-:::
+php artisan down
+
+git pull origin $BRANCH
+
+composer install --no-interaction --prefer-dist --optimize-autoloader
+php artisan migrate --force
+
+php artisan optimize:clear
+php artisan optimize
+
+sudo service supervisor restart
+
+php artisan up
+
+echo "✅ Deployment completed successfully!"
+```
+
+## Environment variables
+
+You can update `.env` file of your application using `Update .env` button.
+
+By default, Vito will read the `.env` file from your site's root directory. However, you can change the path to the `.env` file when updating it via Vito.
 
 ## Deploy
 

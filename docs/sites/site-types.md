@@ -8,7 +8,6 @@
     - [WordPress](#wordpress)
     - [PHPMyAdmin](#phpmyadmin)
     - [Load Balancer](#load-balancer)
-- [Site Type Features](#site-type-features)
 - [Composer](#composer)
 
 ## Introduction
@@ -66,17 +65,7 @@ Vito supports PHPMyAdmin installation out of the box. It will install PHPMyAdmin
 
 You can use your server as a load balancer by adding a new site with the Load Balancer site type.
 
-Read more about [Load Balancer](./load-balancer).
-
-## Site Type Features
-
-| Site Type  | Deployments | Queues | SSL | Composer | .env |
-|------------|-------------|--------|-----|----------|------|
-| PHP        | ✅           | ✅      | ✅   | ✅        | ✅    |
-| Blank PHP  | ✅           | ✅      | ✅   | ❌        | ✅    |
-| Laravel    | ✅           | ✅      | ✅   | ✅        | ✅    |
-| WordPress  | ❌           | ❌      | ✅   | ❌        | ❌    |
-| PHPMyAdmin | ❌           | ❌      | ✅   | ❌        | ❌    |
+Read more about [Load Balancer](./load-balancer.md).
 
 ## Composer
 

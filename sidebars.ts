@@ -122,10 +122,6 @@ const sidebars: SidebarsConfig = {
                 {
                     "type": "doc",
                     "id": "servers/logs"
-                },
-                {
-                    "type": "doc",
-                    "id": "servers/file-manager"
                 }
             ]
         },
@@ -133,6 +129,10 @@ const sidebars: SidebarsConfig = {
             "type": "category",
             "label": "Sites",
             "items": [
+                {
+                    "type": "doc",
+                    "id": "sites/create"
+                },
                 {
                     "type": "doc",
                     "id": "sites/site-types"
@@ -200,9 +200,22 @@ const sidebars: SidebarsConfig = {
                 {
                     "type": "doc",
                     "id": "settings/storage-providers"
+                },
+                {
+                    "type": "doc",
+                    "id": "settings/api-keys"
+                },
+                {
+                    "type": "doc",
+                    "id": "settings/vito-settings"
                 }
             ]
-        }
+        },
+        {
+            "type": "doc",
+            "label": "Diagnoses",
+            "id": "diagnoses"
+        },
     ],
 };
 

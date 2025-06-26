@@ -21,6 +21,11 @@ Vito gives you the ability to manage some of the installed services on your serv
 - Supervisor
 - UFW
 - [Monitoring](./monitoring)
+- Node.js
+
+:::info
+To add more services, you can develop a plugin for Vito. You can find more information about plugins in the [Plugins](../plugins.md#register-services) section.
+:::
 
 ## Supported Operations
 
