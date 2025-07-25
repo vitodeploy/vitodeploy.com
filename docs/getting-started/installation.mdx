@@ -33,13 +33,16 @@ docker run -v vito_storage:/var/www/html/storage \
 
 <button
   onClick={() => {
-  const randomBytes = new Uint8Array(32);
-  crypto.getRandomValues(randomBytes);
-  const base64String = `base64:${btoa(String.fromCharCode(...randomBytes))}`;
-  alert(base64String); // Show the generated string in an alert
+    const randomBytes = new Uint8Array(32);
+    crypto.getRandomValues(randomBytes);
+    const base64String = `base64:${btoa(String.fromCharCode(...randomBytes))}`;
+    alert(base64String); // Show the generated string in an alert
   }}
-  className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition duration-200 cursor-pointer"
-> Get a random APP_KEY</button>
+  className="cursor-pointer rounded-md bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-600"
+>
+  {' '}
+  Get a random APP_KEY
+</button>
 :::
 
 :::warning
@@ -55,20 +58,20 @@ Some features like Vito Logs works only if you set the `APP_URL` correctly. Othe
 ### Docker Compose
 
 ```yaml
-version: "3"
+version: '3'
 services:
   vito:
     image: vitodeploy/vito:latest
     ports:
-      - "8000:80"
+      - '8000:80'
     environment:
-      APP_KEY: "your-32-character-app-key"
-      NAME: "vito"
-      EMAIL: "vito@example.com"
-      PASSWORD: "password"
-      APP_URL: "http://localhost:8000" # Change this to your Vito URL
+      APP_KEY: 'your-32-character-app-key'
+      NAME: 'vito'
+      EMAIL: 'vito@example.com'
+      PASSWORD: 'password'
+      APP_URL: 'http://localhost:8000' # Change this to your Vito URL
     volumes:
-      - "vito-storage:/var/www/html/storage"
+      - 'vito-storage:/var/www/html/storage'
 volumes:
   vito-storage:
     driver: local
@@ -80,11 +83,15 @@ volumes:
 However, if you would like to use the latest code on the `3.x` branch, you may change the image to `vitodeploy/vito:3.x`.
 :::
 
+### ARM based images
+
+For arm based architectures, you may add `-arm64` to the image name. For example, `vitodeploy/vito:3.x-arm64`
+
 ### Environment Variables
 
 `APP_KEY`: A 32-character string app key used for encryption within the app.
 
-`APP_URL`: The URL of your Vito instance, by default is http://localhost
+`APP_URL`: The URL of your Vito instance, by default is <http://localhost>
 
 `NAME`: Your account's name
 
