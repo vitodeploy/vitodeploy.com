@@ -34,17 +34,17 @@ docker run -v vito_storage:/var/www/html/storage \
 is [Laravel's encryption key](https://github.com/laravel/laravel/blob/3622d746fde67ebaff3dd3fdde3676599434692f/config/app.php#L20-L25)
 and should be a 32-character string.
 
-
-
 <button
   onClick={() => {
-  const randomBytes = new Uint8Array(32);
-  crypto.getRandomValues(randomBytes);
-  const base64String = `base64:${btoa(String.fromCharCode(...randomBytes))}`;
-  alert(base64String); // Show the generated string in an alert
+    const randomBytes = new Uint8Array(32);
+    crypto.getRandomValues(randomBytes);
+    const base64String = `base64:${btoa(String.fromCharCode(...randomBytes))}`;
+    alert(base64String); // Show the generated string in an alert
   }}
-  className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition duration-200 cursor-pointer"
-> Get a random APP_KEY</button>
+  className="cursor-pointer rounded-md bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-600"
+>
+  Get a random APP_KEY
+</button>
 :::
 
 :::warning
@@ -54,19 +54,19 @@ Make sure you modify the env variables when running the command.
 ### Docker Compose
 
 ```yaml
-version: "3"
+version: '3'
 services:
   vito:
     image: vitodeploy/vito:latest
     ports:
-      - "8000:80"
+      - '8000:80'
     environment:
-      APP_KEY: "your-32-character-app-key"
-      NAME: "vito"
-      EMAIL: "vito@example.com"
-      PASSWORD: "password"
+      APP_KEY: 'your-32-character-app-key'
+      NAME: 'vito'
+      EMAIL: 'vito@example.com'
+      PASSWORD: 'password'
     volumes:
-      - "vito-storage:/var/www/html/storage"
+      - 'vito-storage:/var/www/html/storage'
 volumes:
   vito-storage:
     driver: local
@@ -76,7 +76,7 @@ volumes:
 
 `APP_KEY`: A 32-character string app key used for encryption within the app.
 
-`APP_URL`: The URL of your Vito instance, by default is http://localhost
+`APP_URL`: The URL of your Vito instance, by default is `http://localhost`
 
 `NAME`: Your account's name
 
@@ -226,7 +226,6 @@ Create a new user
 Vito by default will run on localhost:8000. You can change the port on your `.env` file.
 
 [Sail Documentation](https://laravel.com/docs/10.x/sail)
-
 
 ## Migrating
 
