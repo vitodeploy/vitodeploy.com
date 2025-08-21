@@ -98,14 +98,14 @@ Here is how the `composer.json` should look like:
     }
   },
   "scripts": {
-  "post-package-install": [
-    "php artisan your:installation-command",
-    "php artisan vendor:publish --tag=your-plugin-config"
-  ],
-  "pre-package-uninstall": [
-    "php artisan your:uninstallation-command"
-  ],
-}
+    "post-package-install": [
+      "php artisan your:installation-command",
+      "php artisan vendor:publish --tag=your-plugin-config"
+    ],
+    "pre-package-uninstall": [
+      "php artisan your:uninstallation-command"
+    ],
+  },
   "minimum-stability": "stable",
   "prefer-stable": true
 }
