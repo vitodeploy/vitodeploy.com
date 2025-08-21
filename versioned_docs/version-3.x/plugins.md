@@ -13,6 +13,7 @@
   - [Register storage providers](#register-storage-providers)
   - [Register source controls](#register-source-controls)
   - [Register notification channels](#register-notification-channels)
+  - [Events](#events)
 - [Publishing a Plugin](#publishing-a-plugin)
 
 ## Introduction
@@ -97,8 +98,35 @@ Here is how the `composer.json` should look like:
       ]
     }
   },
+  "scripts": {
+    "post-package-install": [
+    "php artisan your:installation-command",
+    "php artisan vendor:publish --tag=your-plugin-config"
+  ],
+  "pre-package-uninstall": [
+    "php artisan your:uninstallation-command"
+  ],
+}
   "minimum-stability": "stable",
   "prefer-stable": true
+}
+```
+
+#### Installation / Uninstallation tasks
+
+You can define installation and uninstallation scripts in your plugin's `composer.json` file, those tasks will be executed when the plugin is installed or uninstalled.
+
+Very useful for setting up and tearing down your plugin's environment, for instance setting up database values, publishing assets, fetching configuration files, etc.
+
+```json
+"scripts": {
+  "post-package-install": [
+    "php artisan your:installation-command",
+    "php artisan vendor:publish --tag=your-plugin-config"
+  ],
+  "pre-package-uninstall": [
+    "php artisan your:uninstallation-command"
+  ],
 }
 ```
 
@@ -417,6 +445,37 @@ The handler must implement the `App\NotificationChannels\NotificationChannel` in
 You can find plenty of examples in
 the [Notification Channels](https://github.com/vitodeploy/vito/tree/3.x/app/NotificationChannels)
 :::
+
+
+### Events
+
+Vito fires events during `Service` installation and uninstallation this way you can tweak/extend the installation process, for example by modifying configuration files or setting up database tables/records.
+
+You can listen to these events in your plugin's service provider:
+
+```php
+use App\Events\ServiceInstalled;
+use App\Events\ServiceUninstalled;
+
+class YourPluginServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        Event::listen('service.installed', function (Service $service) {
+            // Do something when the service is installed
+            Log::info("Service installed: {$service->id}");
+        });
+        Event::listen('service.uninstalled', function (Service $service) {
+            // Do something when the service is uninstalled
+            Log::info("Service uninstalled: {$service->id}");
+        });
+    }
+}
+```
+
+### Store Service Data
+
+You can leverage the Service's `type_data` property to store any additional data you need, don't forget to honor other's properties when mutating it.
 
 ## Publishing a Plugin
 
