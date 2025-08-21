@@ -104,7 +104,7 @@ Here is how the `composer.json` should look like:
     ],
     "pre-package-uninstall": [
       "php artisan your:uninstallation-command"
-    ],
+    ]
   },
   "minimum-stability": "stable",
   "prefer-stable": true
