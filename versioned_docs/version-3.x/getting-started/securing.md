@@ -7,6 +7,7 @@ This guide is only for VitoDeploy instances installed on a Virtual Private Serve
 - [Install SSL on Vito instance](#install-ssl-on-vito-instance)
 - [Attach a domain](#attach-a-domain)
 - [Get SSL](#get-ssl)
+- [Vito behind proxy](#vito-behind-proxy)
 - [Update environment variables](#update-environment-variables)
 
 ## Install SSL on Vito instance
@@ -31,7 +32,7 @@ sudo nano /etc/nginx/sites-available/vito
 
 Edit it like the following and add your domain to it:
 
-```
+```nginx
 server {
     ...
     server_name _ YOUR_DOMAIN_GOES_HERE;
@@ -53,7 +54,7 @@ sudo service nginx status
 
 It should have something like this:
 
-```
+```text
 ● nginx.service - A high performance web server and a reverse proxy server
      Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
      Active: active (running) since Wed 2024-04-10 11:11:32 UTC; 3 days ago
@@ -81,6 +82,16 @@ YOUR_EMAIL: Your email address to be provided to letsencrypt
 :::info
 If you are using Cloudflare, Now you can enable the cloud proxy if you want. Keep in mind that you might need to enable Full SSL encryption option on Cloudflare
 :::
+
+### Vito behind proxy
+
+You can put vito behind a reverse proxy like Nginx. In order to do so, you will need to add the following configuration to your reverse proxy as well:
+
+```nginx
+proxy_buffer_size   128k;
+proxy_buffers   4 256k;
+proxy_busy_buffers_size   256k;
+```
 
 ### Update environment variables
 
