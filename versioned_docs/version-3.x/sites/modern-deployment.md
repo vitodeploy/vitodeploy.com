@@ -54,6 +54,14 @@ When enabling modern deployment, you need to provide the following information:
 During Beta, Enabling modern deployment is only recommended for fresh websites than a live production website.
 :::
 
+:::warning
+If you have queue workers or cronjobs or commands set up for your site, You need to update the command of your workers/cronjobs/commands if they are pointing to the old root path of your domain. You need to change the root path to point to the `current` symlink. For example, if your domain is `domain.com`, and your workers/cronjobs/commands has the old root path `/home/vito/domain.com`, you need to change it to `/home/vito/domain.com/current`.
+:::
+
+:::danger
+Modern deployment is not designed for Octane like setups. So if you're using Octane, Avoid enabling modern deployment.
+:::
+
 ## Zero Downtime Deployment
 
 All deployments after enabling modern deployment will be zero downtime. In order to deploy, You will need to provide 2 scripts:
