@@ -62,6 +62,10 @@ If you have queue workers or cronjobs or commands set up for your site, You need
 Modern deployment is not designed for Octane like setups. So if you're using Octane, Avoid enabling modern deployment.
 :::
 
+In case if your website becomes unaccessible after enabling modern deployment, You can try setting the Build Script and Pre Flight script and then trigger a deployment with having Modern Deployment enabled.
+
+If that didn't help, You can disable the modern deployment and your website should be back to the previous state.
+
 ## Zero Downtime Deployment
 
 All deployments after enabling modern deployment will be zero downtime. In order to deploy, You will need to provide 2 scripts:
