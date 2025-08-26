@@ -81,6 +81,10 @@ npm run lint
 
 Code quality is enforced by the CI pipeline, so please ensure your code passes the checks before submitting a pull
 
+## Pre Commit
+
+To ensure all the actions will pass, you can locally run `composer pre-commit` command which will format your code and run tests and check phpstan before you commit your changes.
+
 ## Code of Conduct
 
 Violations of the code of conduct should be reported to Saeed Vaziry at sa.vaziry@gmail.com.
