@@ -145,6 +145,10 @@
         {
           "type": "doc",
           "id": "sites/redirects"
+        },
+        {
+          "type": "doc",
+          "id": "sites/modern-deployment"
         }
       ]
     },
