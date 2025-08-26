@@ -19,6 +19,14 @@ cd /home/vito/vito
 bash scripts/update.sh
 ```
 
+If the above command didn't update your VitoDeploy to the latest version, You can try the following commands:
+
+```sh
+git stash
+git clean -f
+bash scripts/update.sh
+```
+
 :::info
 To get the `alpha` or `beta` releases of VitoDeploy you can simply pass `--alpha` or `--beta` flags to the update script.
 :::
