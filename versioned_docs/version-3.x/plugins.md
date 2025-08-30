@@ -55,6 +55,10 @@ php artisan plugin:uninstall vitodeploy/laravel-octane-plugin
 php artisan plugin:list
 ```
 
+:::info
+If you are running Vito on docker, you will need to restart the container after installing or uninstalling a plugin.
+:::
+
 ## Plugin Development
 
 ### Creating a Plugin
@@ -445,7 +449,6 @@ The handler must implement the `App\NotificationChannels\NotificationChannel` in
 You can find plenty of examples in
 the [Notification Channels](https://github.com/vitodeploy/vito/tree/3.x/app/NotificationChannels)
 :::
-
 
 ### Events
 
