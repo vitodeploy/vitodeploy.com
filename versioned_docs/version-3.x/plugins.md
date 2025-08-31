@@ -139,6 +139,10 @@ Take a look at one example plugin to see how it
 works: [VitoDeploy Laravel Octane Plugin](https://github.com/vitodeploy/laravel-octane-plugin)
 :::
 
+#### Local Setup
+
+In order to develop plugins locally, you can put them directly into the `storage/plugins/your-vendor-name/plugin-name` and then run `php artisan plugins:load` so Vito can discover your plugin.
+
 ### Plugin Service Provider
 
 Every plugin must have a service provider that extends `Illuminate\Support\ServiceProvider`.
