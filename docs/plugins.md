@@ -54,6 +54,10 @@ php artisan plugin:uninstall vitodeploy/laravel-octane-plugin
 php artisan plugin:list
 ```
 
+:::warning
+If you are using Vito with Docker, You will need to restart the container after installing or uninstalling a plugin.
+:::
+
 ## Plugin Development
 
 ### Creating a Plugin
@@ -92,9 +96,7 @@ Here is how the `composer.json` should look like:
   },
   "extra": {
     "laravel": {
-      "providers": [
-        "Vendor\\Name\\PluginServiceProvider"
-      ]
+      "providers": ["Vendor\\Name\\PluginServiceProvider"]
     }
   },
   "minimum-stability": "stable",
@@ -424,3 +426,4 @@ Vito has a community plugins section on the web interface that users can install
 there, You need to publish your plugin as a public repository on GitHub and then add `vitodeploy-plugin` topic to it.
 
 Example: https://github.com/vitodeploy/laravel-octane-plugin
+
