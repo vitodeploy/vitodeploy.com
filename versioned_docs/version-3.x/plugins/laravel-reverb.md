@@ -94,5 +94,5 @@ To uninstall the plugin, navigate to the `Settings -> Plugins` and you can find 
 You can also manually uninstall the plugin using the following command in your Vito instance's terminal:
 
 ```bash
-php artisan plugins:uninstall https://github.com/vitodeploy/laravel-reverb-plugin
+php artisan plugins:uninstall vitodeploy/laravel-reverb-plugin
 ```
