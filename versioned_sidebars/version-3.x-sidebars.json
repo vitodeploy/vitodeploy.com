@@ -158,9 +158,19 @@
       "id": "scripts"
     },
     {
-      "type": "doc",
+      "type": "category",
       "label": "Plugins",
-      "id": "plugins"
+      "items": [
+        {
+          "type": "doc",
+          "label": "Plugins",
+          "id": "plugins"
+        },
+        {
+          "type": "doc",
+          "id": "plugins/laravel-reverb"
+        }
+      ]
     },
     {
       "type": "category",
