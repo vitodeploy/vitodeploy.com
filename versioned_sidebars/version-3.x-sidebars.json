@@ -168,6 +168,10 @@
         },
         {
           "type": "doc",
+          "id": "plugins/laravel-octane"
+        },
+        {
+          "type": "doc",
           "id": "plugins/laravel-reverb"
         }
       ]
