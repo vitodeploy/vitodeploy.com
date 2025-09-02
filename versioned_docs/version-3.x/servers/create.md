@@ -57,6 +57,12 @@ The rest of the fields are:
 
 After completing the form, you can select the services you want to install on your server. You can also install the services later after the installation is done.
 
+After selecting the services, You can save the selected services as server templates to use them later when creating a new server.
+
+This comes handy when you are rapidly creating multiple servers with the same services.
+
+You can also update or delete each server template from the server create form.
+
 ### Create the server
 
 After filling in the form, you can click on the `Create Server` button to create your server.
@@ -84,4 +90,3 @@ You can ask for community support in the [VitoDeploy Discord Server](https://dis
 
 Or you can open an issue on the [VitoDeploy GitHub Repository](https://github.com/vitodeploy/vito)
 :::
-
