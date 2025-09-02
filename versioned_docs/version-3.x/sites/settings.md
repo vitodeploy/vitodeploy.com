@@ -31,8 +31,12 @@ You can change the source control of your cloned repository in the Settings page
 
 You can add/remove site aliases. It will update the aliases on your site's nginx vhost configuration.
 
-:::warning
-Note that if you've made any changes to the VHost manually, It will override it.
+:::info
+This will only override the #[port] block in your vhost configuration. The rest will remain unchanged.
+:::
+
+:::info
+Updating the aliases will reload the Nginx service. If you need a restart, you need to go to [services](../servers/services.md) and restart nginx manually.
 :::
 
 ## Update VHost
