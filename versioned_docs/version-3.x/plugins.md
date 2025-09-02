@@ -246,6 +246,10 @@ Vito allows you to register a feature to a site with actions or register actions
     ->register();
 ```
 
+:::info
+You can define forms when you're registering a site feature or inside the site feature action. It is recommended to use the action form as you will have access to the site object.
+:::
+
 Every feature must implement the `App\SiteFeatures\FeatureInterface` interface.
 
 Every action must extend the `App\SiteFeatures\Action` class or implement the `App\SiteFeatures\ActionInterface`
@@ -484,9 +488,22 @@ class YourPluginServiceProvider extends ServiceProvider
 
 You can leverage the Service's `type_data` property to store any additional data you need, don't forget to honor other's properties when mutating it.
 
+### Dynamic Fields
+
+Dynamic fields are a set of input fields designed to collect inputs from the action forms. They can be used in site creation, site feature actions, and every other part that Vito enables you to extend.
+
+Here are the list of supported fields:
+
+- Label
+- Text field
+- Checkbox
+- Select field
+- Alert (with types: info, warning, error, success)
+- Link
+
+For more details, check `App\DTOs\DynamicField::class`
+
 ## Publishing a Plugin
 
 Vito has a community plugins section on the web interface that users can install plugins from. To list your plugin
 there, You need to publish your plugin as a public repository on GitHub and then add `vitodeploy-plugin` topic to it.
-
-Example: https://github.com/vitodeploy/laravel-octane-plugin
