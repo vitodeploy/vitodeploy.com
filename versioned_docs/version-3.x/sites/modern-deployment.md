@@ -1,5 +1,15 @@
 # Modern Deployment
 
+- [Introduction](#introduction)
+- [How Modern Deployment Works](#how-modern-deployment-works)
+- [Supported site types](#supported-site-types)
+- [Enabling Modern Deployment](#enabling-modern-deployment)
+- [Zero Downtime Deployment](#zero-downtime-deployment)
+- [Rollbacks](#rollbacks)
+- [Removing releases](#removing-releases)
+- [Modern Deployment Configuration](#modern-deployment-configuration)
+- [Disabling Modern Deployment](#disabling-modern-deployment)
+
 :::warning
 Modern Deployment is in Beta. Please use it with caution and report any issues you find.
 :::
@@ -71,6 +81,10 @@ If that didn't help, You can disable the modern deployment and your website shou
 All deployments after enabling modern deployment will be zero downtime. In order to deploy, You will need to provide 2 scripts:
 
 **Build Script:** This script will be run after cloning the repo into the new release directory. You can use this script to install dependencies, compile assets, like `composer install && npm install && npm run build`.
+
+:::info
+If your `npm run build` requires the `.env` to be present, you need to run it in the Pre Flight script instead of Build script because the shared resources are linked after the Build script.
+:::
 
 **Pre Flight Script:** This script will be run after build script and after linking the shared resources but before pointing the `current` symlink to the new release. You can use this script to run database migrations, clear caches, etc. like `php artisan migrate --force && php artisan config:cache`.
 
