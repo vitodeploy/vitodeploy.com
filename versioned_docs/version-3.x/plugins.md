@@ -3,6 +3,10 @@
 - [Introduction](#introduction)
 - [What can Plugins Do?](#what-can-plugins-do)
 - [Installing and Managing Plugins](#installing-and-managing-plugins)
+  - [Install](#install)
+  - [Enable](#enable)
+  - [Disable](#disable)
+  - [Uninstall](#uninstall)
 - [Plugin Development](#plugin-development)
   - [Creating a Plugin](#creating-a-plugin)
   - [Local Setup](#local-setup)
@@ -17,6 +21,12 @@
   - [Register source controls](#register-source-controls)
   - [Register notification channels](#register-notification-channels)
   - [Events](#events)
+  - [Store Service Data](#store-service-data)
+  - [Dynamic Fields](#dynamic-fields)
+  - [Hooks](#hooks)
+  - [Register Commands](#register-commands)
+  - [Register Views](#register-views)
+  - [App bindings](#app-bindings)
 - [Publishing a Plugin](#publishing-a-plugin)
 - [Versioning](#versioning)
 - [Updating Plugins](#updating-plugins)
@@ -41,11 +51,24 @@ Plugins can change or extend the following features:
 
 ## Installing and Managing Plugins
 
-You can install and manage plugins through the Vito web interface. Just navigate to the **Settings > Plugins** section,
-where you can see the list of installed plugins and manage them.
-
 Vito offers official and community plugins. Official plugins are developed and maintained by the Vito team, while
 community plugins are developed by the community.
+
+### Install
+
+You can install and manage plugins through the Vito web interface. Just navigate to the **Settings > Plugins** section, and find `Official` and `Community` tabs to browse and install plugins.
+
+### Enable
+
+After installing a plugin, In order to use the plugin, you need to enable it. You can find the installed plugins in the `Installed` tab in the `Settings > Plugins` section. Click on the three dots on the right side of the plugin and then click on `Enable`.
+
+### Disable
+
+Disabling a plugin will stop it from being booted by Vito. However the plugin's code will still live in your Vito instance and you can enable it again.
+
+### Uninstall
+
+If you don't need a plugin anymore, you can uninstall it. Uninstalling a plugin will remove its code from your Vito instance.
 
 ## Plugin Development
 
@@ -446,6 +469,78 @@ Here are the list of supported fields:
 - Link
 
 For more details, check `App\DTOs\DynamicField::class`
+
+### Hooks
+
+Vito exposes hooks for `install`, `uninstall`, `enable` and `disable` of plugins. This means, if you implement these methods in your `Plugin.php`, they will be called when the respective action is performed.
+
+Example:
+
+```php
+<?php
+
+class Plugin extends AbstractPlugin
+{
+    protected string $name = 'Name';
+
+    protected string $description = 'Description';
+
+    public function boot(): void
+    {
+        //
+    }
+
+    public function enable(): void
+    {
+        //
+    }
+
+    public function disable(): void
+    {
+        //
+    }
+
+    public function install(): void
+    {
+        //
+    }
+
+    public function uninstall(): void
+    {
+        //
+    }
+}
+```
+
+### Register Commands
+
+If your plugin wants to register any console commands, you need to register them via the RegisterCommand helper, as per below;
+
+```php
+RegisterCommand::make(FetchCommand::class)->register();
+```
+
+### Register Views
+
+If your plugin needs to register any views to use within it's implementations, you will need to register these views with a unique name via the RegisterViews helper;
+
+```php
+RegisterViews::make('vitodeploy-reverb')
+            ->path(__DIR__.'/views')
+            ->register();
+```
+
+### App bindings
+
+In Laravel you can use `$this->app->bind()` to bind interfaces to implementations. But since Vito plugins don't have Service Providers, you can use the `App` helper of Laravel in the `boot` method of your `Plugin.php` file.
+
+For example, You can replace the `CreateServer` action with your own implementation like below:
+
+```php
+App::bind(\App\Actions\Servers\CreateServer::class, \App\Vito\Plugins\YourUsername\YourPlugin\Actions\CreateServer::class);
+```
+
+With this approach, you can override any class in Vito with your own implementation.
 
 ## Publishing a Plugin
 
