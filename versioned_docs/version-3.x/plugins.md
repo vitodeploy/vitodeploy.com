@@ -18,6 +18,8 @@
   - [Register notification channels](#register-notification-channels)
   - [Events](#events)
 - [Publishing a Plugin](#publishing-a-plugin)
+- [Versioning](#versioning)
+- [Updating Plugins](#updating-plugins)
 
 ## Introduction
 
