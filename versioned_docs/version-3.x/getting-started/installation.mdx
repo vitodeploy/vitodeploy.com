@@ -21,6 +21,7 @@ Vito provides a single docker image that you can install it easily!
 
 ```sh
 docker run -v vito_storage:/var/www/html/storage \
+    -v vito_plugins:/var/www/html/app/Vito/Plugins \
     -e APP_KEY=your_32_character_app_key  \
     -e NAME=admin_name \
     -e EMAIL=admin_email \
@@ -72,8 +73,11 @@ services:
       APP_URL: 'http://localhost:8000' # Change this to your Vito URL
     volumes:
       - 'vito-storage:/var/www/html/storage'
+      - 'vito-plugins:/var/www/html/app/Vito/Plugins'
 volumes:
   vito-storage:
+    driver: local
+  vito-plugins:
     driver: local
 ```
 
