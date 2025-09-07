@@ -27,7 +27,6 @@
   - [Hooks](#hooks)
   - [Register Commands](#register-commands)
   - [Register Views](#register-views)
-  - [App bindings](#app-bindings)
 - [Publishing a Plugin](#publishing-a-plugin)
 - [Versioning](#versioning)
 - [Updating Plugins](#updating-plugins)
@@ -563,18 +562,6 @@ RegisterViews::make('vitodeploy-reverb')
             ->path(__DIR__.'/views')
             ->register();
 ```
-
-### App bindings
-
-In Laravel you can use `$this->app->bind()` to bind interfaces to implementations. But since Vito plugins don't have Service Providers, you can use the `App` helper of Laravel in the `boot` method of your `Plugin.php` file.
-
-For example, You can replace the `CreateServer` action with your own implementation like below:
-
-```php
-App::bind(\App\Actions\Servers\CreateServer::class, \App\Vito\Plugins\YourUsername\YourPlugin\Actions\CreateServer::class);
-```
-
-With this approach, you can override any class in Vito with your own implementation.
 
 ## Publishing a Plugin
 
