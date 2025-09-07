@@ -37,7 +37,7 @@ To install the plugin, navigate to the `Settings -> Plugins` and select `Laravel
 
 ## Enable as a site feature
 
-After you successfuly setup a Laravel site, You can navigate to the `Features` side menu item, and Enable the `Laravel Octane` feature.
+After you successfully setup a Laravel site, You can navigate to the `Features` side menu item, and Enable the `Laravel Octane` feature.
 
 When enabling, you will need to provide the following information:
 
