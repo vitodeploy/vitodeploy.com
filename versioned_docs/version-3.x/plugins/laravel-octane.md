@@ -35,15 +35,9 @@ Vito will use your Laravel project to run a worker command to start the Laravel 
 
 To install the plugin, navigate to the `Settings -> Plugins` and select `Laravel Octane` plugins in the `Official` tab.
 
-You can also manually install the plugin using the following command in your Vito instance's terminal:
-
-```bash
-php artisan plugins:install https://github.com/vitodeploy/laravel-octane-plugin
-```
-
 ## Enable as a site feature
 
-After you successfuly setup a Laravel site, You can navigate to the `Features` side menu item, and Enable the `Laravel Octane` feature.
+After you successfully setup a Laravel site, You can navigate to the `Features` side menu item, and Enable the `Laravel Octane` feature.
 
 When enabling, you will need to provide the following information:
 
@@ -64,9 +58,3 @@ Make sure you read [Laravel's official documentation](https://laravel.com/docs/1
 ## Uninstall
 
 To uninstall the plugin, navigate to the `Settings -> Plugins` and you can find the `Laravel Octane` plugins in the `Installed` tab and you can uninstall it.
-
-You can also manually uninstall the plugin using the following command in your Vito instance's terminal:
-
-```bash
-php artisan plugins:uninstall vitodeploy/laravel-octane-plugin
-```

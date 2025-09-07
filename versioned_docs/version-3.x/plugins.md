@@ -3,9 +3,16 @@
 - [Introduction](#introduction)
 - [What can Plugins Do?](#what-can-plugins-do)
 - [Installing and Managing Plugins](#installing-and-managing-plugins)
+  - [Install](#install)
+  - [Enable](#enable)
+  - [Disable](#disable)
+  - [Uninstall](#uninstall)
 - [Plugin Development](#plugin-development)
   - [Creating a Plugin](#creating-a-plugin)
-  - [Plugin Service Provider](#plugin-service-provider)
+  - [Local Setup](#local-setup)
+  - [Plugin.php](#pluginphp)
+  - [Discover Plugins](#discover-plugins)
+  - [Error Handling](#error-handling)
   - [Register site types](#register-site-types)
   - [Register site features and actions](#register-site-features-and-actions)
   - [Register services](#register-services)
@@ -14,7 +21,15 @@
   - [Register source controls](#register-source-controls)
   - [Register notification channels](#register-notification-channels)
   - [Events](#events)
+  - [Store Service Data](#store-service-data)
+  - [Dynamic Fields](#dynamic-fields)
+  - [Hooks](#hooks)
+  - [Register Commands](#register-commands)
+  - [Register Views](#register-views)
+  - [App bindings](#app-bindings)
 - [Publishing a Plugin](#publishing-a-plugin)
+- [Versioning](#versioning)
+- [Updating Plugins](#updating-plugins)
 
 ## Introduction
 
@@ -36,151 +51,107 @@ Plugins can change or extend the following features:
 
 ## Installing and Managing Plugins
 
-You can install and manage plugins through the Vito web interface. Just navigate to the **Settings > Plugins** section,
-where you can see the list of installed plugins and manage them.
-
 Vito offers official and community plugins. Official plugins are developed and maintained by the Vito team, while
 community plugins are developed by the community.
 
-You can also install and manage plugins through the command line:
+### Install
 
-```bash
-# install a plugin
-php artisan plugin:install https://github.com/vitodeploy/laravel-octane-plugin
+You can install and manage plugins through the Vito web interface. Just navigate to the **Settings > Plugins** section, and find `Official` and `Community` tabs to browse and install plugins.
 
-# uninstall a plugin
-php artisan plugin:uninstall vitodeploy/laravel-octane-plugin
+### Enable
 
-# see the list of installed plugins
-php artisan plugin:list
-```
+After installing a plugin, In order to use the plugin, you need to enable it. You can find the installed plugins in the `Installed` tab in the `Settings > Plugins` section. Click on the three dots on the right side of the plugin and then click on `Enable`.
 
-:::info
-If you are running Vito on docker, you will need to restart the container after installing or uninstalling a plugin.
-:::
+### Disable
+
+Disabling a plugin will stop it from being booted by Vito. However the plugin's code will still live in your Vito instance and you can enable it again.
+
+### Uninstall
+
+If you don't need a plugin anymore, you can uninstall it. Uninstalling a plugin will remove its code from your Vito instance.
 
 ## Plugin Development
 
 ### Creating a Plugin
 
-Plugins are basically Laravel packages that can be installed in Vito.
+Plugins are basically code extensions that are installed via Vito's plugin management system.
 
-You will first need to have a basic understanding
-of [Laravel package development](https://laravel.com/docs/12.x/packages).
+Plugins will live inside `app/Vito/Plugins` directory and will be a part of the Vito application.
 
 You can use Vito's [plugin template](https://github.com/vitodeploy/plugin-template) to create a new plugin.
 
-Here is how the `composer.json` should look like:
-
-```json
-{
-  "name": "vendor/name",
-  "description": "PLACEHOLDER plugin for VitoDeploy",
-  "type": "library",
-  "license": "MIT",
-  "version": "1.0.0",
-  "authors": [],
-  "scripts": {
-    "test": "vendor/bin/phpunit"
-  },
-  "require": {
-    "php": "^8.4",
-    "illuminate/support": "^12.0"
-  },
-  "require-dev": {
-    "laravel/pint": "^1.10"
-  },
-  "autoload": {
-    "psr-4": {
-      "Vendor\\Name\\": "src"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Vendor\\Name\\PluginServiceProvider"
-      ]
-    }
-  },
-  "scripts": {
-    "post-package-install": [
-    "php artisan your:installation-command",
-    "php artisan vendor:publish --tag=your-plugin-config"
-  ],
-  "pre-package-uninstall": [
-    "php artisan your:uninstallation-command"
-  ],
-}
-  "minimum-stability": "stable",
-  "prefer-stable": true
-}
-```
-
-#### Installation / Uninstallation tasks
-
-You can define installation and uninstallation scripts in your plugin's `composer.json` file, those tasks will be executed when the plugin is installed or uninstalled.
-
-Very useful for setting up and tearing down your plugin's environment, for instance setting up database values, publishing assets, fetching configuration files, etc.
-
-```json
-"scripts": {
-  "post-package-install": [
-    "php artisan your:installation-command",
-    "php artisan vendor:publish --tag=your-plugin-config"
-  ],
-  "pre-package-uninstall": [
-    "php artisan your:uninstallation-command"
-  ],
-}
-```
-
 :::info
-Take a look at one example plugin to see how it
-works: [VitoDeploy Laravel Octane Plugin](https://github.com/vitodeploy/laravel-octane-plugin)
+Take a look at one example plugin to see how it works: [VitoDeploy Laravel Octane Plugin](https://github.com/vitodeploy/laravel-octane-plugin)
 :::
 
-#### Local Setup
+### Local Setup
 
-In order to develop plugins locally, you can put them directly into the `storage/plugins/your-vendor-name/plugin-name` and then run `php artisan plugins:load` so Vito can discover your plugin.
+In order to develop plugins locally, you can put them directly into the `app/Vito/Plugins/YourGithubUsername/YourRepoName` and Vito will discover your plugin.
 
-### Plugin Service Provider
+:::warning
+If your repo for the plugin is `my-username/my-vito-plugin`, the directory must be `app/Vito/Plugins/MyUsername/MyVitoPlugin` and the namespace of your plugin must be `App\Vito\Plugins\MyUsername\MyVitoPlugin`.
+:::
 
-Every plugin must have a service provider that extends `Illuminate\Support\ServiceProvider`.
+### Plugin.php
 
-The service provider must be registered in the `extra.laravel.providers` section of the `composer.json` file.
+Every plugin must have a `Plugin.php` file in its root directory which extends the `App\Plugins\AbstractPlugin` class.
 
-You can register the features of your plugin in the service provider's `boot` method after the application has booted.
+The `Plugin.php` must implement the `boot` method where you can register your plugin's features.
 
 Example:
 
 ```php
 <?php
 
-namespace VitoDeploy\YourPluginName;
+namespace App\Vito\Plugins\RichardAnderson\LaravelOctanePlugin;
 
-use Illuminate\Support\ServiceProvider;
+use App\Plugins\AbstractPlugin;
+use App\Plugins\RegisterSiteFeature;
+use App\Plugins\RegisterSiteFeatureAction;
+use App\Vito\Plugins\RichardAnderson\LaravelOctanePlugin\Actions\Disable;
+use App\Vito\Plugins\RichardAnderson\LaravelOctanePlugin\Actions\Enable;
 
-class YourPluginNameServiceProvider extends ServiceProvider
+class Plugin extends AbstractPlugin
 {
-    public function register(): void
-    {
-        //
-    }
+    protected string $name = 'Laravel Octane Plugin';
+
+    protected string $description = 'Laravel Octane plugin for VitoDeploy';
 
     public function boot(): void
     {
-        $this->app->booted(function () {
-            // register features here
-        });
+        RegisterSiteFeature::make('laravel', 'laravel-octane')
+            ->label('Laravel Octane')
+            ->description('Enable Laravel Octane for this site')
+            ->register();
+        RegisterSiteFeatureAction::make('laravel', 'laravel-octane', 'enable')
+            ->label('Enable')
+            ->handler(Enable::class)
+            ->register();
+        RegisterSiteFeatureAction::make('laravel', 'laravel-octane', 'disable')
+            ->label('Disable')
+            ->handler(Disable::class)
+            ->register();
     }
 }
 ```
+
+### Discover Plugins
+
+After you create your plugin, you will need to navigate to the `Settings > Plugins` section in the Vito web interface and then `Discover` tab.
+
+Your new plugin should be listed there and you can install it from there.
+
+### Error Handling
+
+Vito records every error that happens in the plugins when they're being booted and in case of an error, it will disable the plugin and show the error message in the `Settings > Plugins` section.
+
+You can also see the stack trace of the error by viewing the error logs of a plugin to debug it.
 
 ### Register site types
 
 By registering a site type, you can add a new type of site that can be created in Vito.
 
-Use `App\Plugins\RegisterSiteType` to register a new site type in your plugin's service provider.
+Use `App\Plugins\RegisterSiteType` to register a new site type using the `boot` method of your `Plugin.php` file.
 
 ```php
 \App\Plugins\RegisterSiteType::make('symfony')
@@ -213,8 +184,7 @@ Every site can have multiple features and every feature can have multiple action
 
 For example, Laravel website has a feature called `Laravel Octane` which has actions like `Enable` and `Disable`.
 
-You can register a new site feature for an already registered site type by using `App\Plugins\RegisterSiteFeature` in
-your plugin's service provider.
+You can register a new site feature for an already registered site type by using `App\Plugins\RegisterSiteFeature` in the `boot` method of your `Plugin.php` file.
 
 Vito allows you to register a feature to a site with actions or register actions to an already existing feature.
 
@@ -265,7 +235,7 @@ the [Laravel Octane Plugin](https://github.com/vitodeploy/laravel-octane-plugin)
 Vito is a service-oriented server management system. By default, it comes with some built-in services like Nginx, MySQL,
 Redis, etc.
 
-However, you can register your own services using `App\Plugins\RegisterService` in your plugin's service provider.
+However, you can register your own services using `App\Plugins\RegisterService` in the `boot` method of your `Plugin.php` file.
 
 ```php
 \App\Plugins\RegisterServiceType::make('nginx')
@@ -347,7 +317,7 @@ You can find plenty of examples in the [Services](https://github.com/vitodeploy/
 
 Vito already covers the most popular server providers like DigitalOcean, AWS, Vultr, Hetzner etc.
 
-You can register your own server provider using `App\Plugins\RegisterServerProvider` in your plugin's service provider.
+You can register your own server provider using the `boot` method in your `Plugin.php` file.
 
 ```php
 \App\Plugins\RegisterServerProvider::make('hetzner')
@@ -376,8 +346,7 @@ the [Server Providers](https://github.com/vitodeploy/vito/tree/3.x/app/ServerPro
 
 Vito supports multiple storage providers like S3 compatible, FTP, etc.
 
-You can register your own storage provider using `App\Plugins\RegisterStorageProvider` in your plugin's service
-provider.
+You can register your own storage provider using `App\Plugins\RegisterStorageProvider` in the `boot` method of your `Plugin.php` file.
 
 ```php
 \App\Plugins\RegisterStorageProvider::make('local')
@@ -405,8 +374,7 @@ the [Storage Providers](https://github.com/vitodeploy/vito/tree/3.x/app/StorageP
 
 Vito supports multiple source control providers like GitHub, GitLab, etc.
 
-You can register your own source control provider using `App\Plugins\RegisterSourceControl` in your plugin's service
-provider.
+You can register your own source control provider using `App\Plugins\RegisterSourceControl` in the `boot` method of your `Plugin.php` file.
 
 ```php
 \App\Plugins\RegisterSourceControl::make('github')
@@ -433,8 +401,7 @@ You can find plenty of examples in the [Source Controls](https://github.com/vito
 
 Vito supports multiple notification channels like Email, Slack, etc.
 
-You can register your own notification channel using `App\Plugins\RegisterNotificationChannel` in your plugin's service
-provider.
+You can register your own notification channel using `App\Plugins\RegisterNotificationChannel` in the `boot` method of your `Plugin.php` file.
 
 ```php
 \App\Plugins\RegisterNotificationChannel::make('slack')
@@ -462,13 +429,13 @@ the [Notification Channels](https://github.com/vitodeploy/vito/tree/3.x/app/Noti
 
 Vito fires events during `Service` installation and uninstallation this way you can tweak/extend the installation process, for example by modifying configuration files or setting up database tables/records.
 
-You can listen to these events in your plugin's service provider:
+You can listen to these events in the `boot` method of your `Plugin.php` file:
 
 ```php
 use App\Events\ServiceInstalled;
 use App\Events\ServiceUninstalled;
 
-class YourPluginServiceProvider extends ServiceProvider
+class Plugin extends AbstractPlugin
 {
     public function boot()
     {
@@ -503,7 +470,87 @@ Here are the list of supported fields:
 
 For more details, check `App\DTOs\DynamicField::class`
 
+### Hooks
+
+Vito exposes hooks for `install`, `uninstall`, `enable` and `disable` of plugins. This means, if you implement these methods in your `Plugin.php`, they will be called when the respective action is performed.
+
+Example:
+
+```php
+<?php
+
+class Plugin extends AbstractPlugin
+{
+    protected string $name = 'Name';
+
+    protected string $description = 'Description';
+
+    public function boot(): void
+    {
+        //
+    }
+
+    public function enable(): void
+    {
+        //
+    }
+
+    public function disable(): void
+    {
+        //
+    }
+
+    public function install(): void
+    {
+        //
+    }
+
+    public function uninstall(): void
+    {
+        //
+    }
+}
+```
+
+### Register Commands
+
+If your plugin wants to register any console commands, you need to register them via the RegisterCommand helper, as per below;
+
+```php
+RegisterCommand::make(FetchCommand::class)->register();
+```
+
+### Register Views
+
+If your plugin needs to register any views to use within it's implementations, you will need to register these views with a unique name via the RegisterViews helper;
+
+```php
+RegisterViews::make('vitodeploy-reverb')
+            ->path(__DIR__.'/views')
+            ->register();
+```
+
+### App bindings
+
+In Laravel you can use `$this->app->bind()` to bind interfaces to implementations. But since Vito plugins don't have Service Providers, you can use the `App` helper of Laravel in the `boot` method of your `Plugin.php` file.
+
+For example, You can replace the `CreateServer` action with your own implementation like below:
+
+```php
+App::bind(\App\Actions\Servers\CreateServer::class, \App\Vito\Plugins\YourUsername\YourPlugin\Actions\CreateServer::class);
+```
+
+With this approach, you can override any class in Vito with your own implementation.
+
 ## Publishing a Plugin
 
 Vito has a community plugins section on the web interface that users can install plugins from. To list your plugin
 there, You need to publish your plugin as a public repository on GitHub and then add `vitodeploy-plugin` topic to it.
+
+## Versioning
+
+Plugins are using Github tags and releases for versioning.
+
+## Updating Plugins
+
+In order to check for available updates for your installed plugins, navigate to the `Settings > Plugins` section in the Vito web interface and then click on the `Check for updates` button. If there was an available update, you will be able to click on Update on every plugin's dropdown to update it.

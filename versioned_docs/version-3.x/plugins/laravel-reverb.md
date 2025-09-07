@@ -43,12 +43,6 @@ If your app already using those paths, You will need to use the Site Type method
 
 To install the plugin, navigate to the `Settings -> Plugins` and select `Laravel Reverb` plugins in the `Official` tab.
 
-You can also manually install the plugin using the following command in your Vito instance's terminal:
-
-```bash
-php artisan plugins:install https://github.com/vitodeploy/laravel-reverb-plugin
-```
-
 ## Enable as a site feature
 
 After you successfuly setup a Laravel site, You can navigate to the `Features` side menu item, and Enable the `Laravel Reverb` feature.
@@ -90,9 +84,3 @@ This simple Laravel project demonstrates how to use Laravel Reverb with VitoDepl
 ## Uninstall
 
 To uninstall the plugin, navigate to the `Settings -> Plugins` and you can find the `Laravel Reverb` plugins in the `Installed` tab and you can uninstall it.
-
-You can also manually uninstall the plugin using the following command in your Vito instance's terminal:
-
-```bash
-php artisan plugins:uninstall vitodeploy/laravel-reverb-plugin
-```
