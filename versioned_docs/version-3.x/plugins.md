@@ -15,6 +15,7 @@
   - [Error Handling](#error-handling)
   - [Register site types](#register-site-types)
   - [Register site features and actions](#register-site-features-and-actions)
+  - [Register server features and actions](#register-server-features-and-actions)
   - [Register services](#register-services)
   - [Register server providers](#register-server-providers)
   - [Register storage providers](#register-storage-providers)
@@ -26,7 +27,6 @@
   - [Hooks](#hooks)
   - [Register Commands](#register-commands)
   - [Register Views](#register-views)
-  - [App bindings](#app-bindings)
 - [Publishing a Plugin](#publishing-a-plugin)
 - [Versioning](#versioning)
 - [Updating Plugins](#updating-plugins)
@@ -229,6 +229,39 @@ interface.
 You can find an example of a site feature in
 the [Laravel Octane Plugin](https://github.com/vitodeploy/laravel-octane-plugin)
 :::
+
+### Register server features and actions
+
+Servers can also have features and feature actions.
+
+You can register a new server feature using `App\Plugins\RegisterServerFeature` in the `boot` method of your `Plugin.php` file.
+
+Vito allows you to register a feature to a server with actions or register actions to an already existing feature.
+
+```php
+// register feature
+\App\Plugins\RegisterServerFeature::make('opcache')
+    ->label('OPCache')
+    ->description('Enable OPCache for PHP')
+    ->register();
+// register actions for the feature
+\App\Plugins\RegisterServerFeatureAction::make('opcache', 'enable')
+    ->label('Enable')
+    ->form(\App\DTOs\DynamicForm::make([
+      ...
+    ]))
+    ->handler(Enable::class)
+    ->register();
+\App\Plugins\RegisterServerFeatureAction::make('opcache', 'disable')
+    ->label('Disable')
+    ->handler(Disable::class)
+    ->register();
+```
+
+Every feature must implement the `App\ServerFeatures\FeatureInterface` interface.
+
+Every action must extend the `App\ServerFeatures\Action` class or implement the `App\ServerFeatures\ActionInterface`
+interface.
 
 ### Register services
 
@@ -529,18 +562,6 @@ RegisterViews::make('vitodeploy-reverb')
             ->path(__DIR__.'/views')
             ->register();
 ```
-
-### App bindings
-
-In Laravel you can use `$this->app->bind()` to bind interfaces to implementations. But since Vito plugins don't have Service Providers, you can use the `App` helper of Laravel in the `boot` method of your `Plugin.php` file.
-
-For example, You can replace the `CreateServer` action with your own implementation like below:
-
-```php
-App::bind(\App\Actions\Servers\CreateServer::class, \App\Vito\Plugins\YourUsername\YourPlugin\Actions\CreateServer::class);
-```
-
-With this approach, you can override any class in Vito with your own implementation.
 
 ## Publishing a Plugin
 
