@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Laravel Octane",
+    "author": "VitoDeploy",
+    "description": "This plugin enables Laravel Octane site feature",
+    "url": "https://github.com/vitodeploy/laravel-octane-plugin"
+  },
+  {
+    "name": "Laravel Reverb",
+    "author": "VitoDeploy",
+    "description": "This plugin enables Laravel Reverb site feature and site type",
+    "url": "https://github.com/vitodeploy/laravel-reverb-plugin"
+  }
+]
