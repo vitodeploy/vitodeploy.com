@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "Copy SSL",
+    "author": "AiAe",
+    "description": "This plugin allows you to copy over certificates from existing site",
+    "url": "https://github.com/AiAe/vito-copy-ssl"
+  },
+  {
+    "name": "Extra PHP Extensions",
+    "author": "Arzola",
+    "description": "A Vito plugin that automatically fetches and manages available extra PHP extensions.",
+    "url": "https://github.com/arzola/extra-php-extensions"
+  },
+  {
+    "name": "Autobackup",
+    "author": "marco-amendola",
+    "description": "Settings to create backup automatically in VitoDeploy",
+    "url": "https://github.com/marco-amendola/vitodeploy-autobackup"
+  }
+]
