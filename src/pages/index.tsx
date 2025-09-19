@@ -2,6 +2,7 @@ import Layout from '@theme/Layout';
 import Features from './features';
 import Header from './header';
 import { Testimonial } from '../components/testimonial';
+import Contributors from '../components/contributors';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <div className="container mx-auto space-y-10 py-10">
           <Header />
           <Features />
+          <Contributors />
           <Testimonial />
         </div>
       </main>
