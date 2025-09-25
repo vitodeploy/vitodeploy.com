@@ -11,7 +11,6 @@
   - [Ready](#ready)
 - [Install Locally](#install-locally)
   - [Laravel Sail](#laravel-sail)
-- [Migrating](#migrating)
 
 ## Install via Docker
 
@@ -240,8 +239,3 @@ Vito by default will run on localhost:8000. You can change the port on your `.en
 Make sure you set these [environment variables](#environment-variables) properly according docker installation.
 :::
 
-## Migrating
-
-To migrate from a previous installation and import an existing VitoDeploy configuration you can simply overwrite the
-`storage` folder with the contents of the old one. For this to work you will also need to use the same Laravel `APP_KEY`
-in your .env file. You can subsequently generate a new one using `php artisan key:generate`.
