@@ -271,10 +271,17 @@ Redis, etc.
 However, you can register your own services using `App\Plugins\RegisterService` in the `boot` method of your `Plugin.php` file.
 
 ```php
-\App\Plugins\RegisterServiceType::make('nginx')
-    ->type('webserver')
+RegisterServiceType::make(Nginx::id())
+    ->type(Nginx::type())
     ->label('Nginx')
     ->handler(Nginx::class)
+    ->configPaths([
+        [
+            'name' => 'nginx.conf',
+            'path' => '/etc/nginx/nginx.conf',
+            'sudo' => true,
+        ],
+    ])
     ->register();
 \App\Plugins\RegisterServiceType::make('php')
     ->type('php')
@@ -336,6 +343,10 @@ that service type.
 
 For example, If you develop a web server service, you will need to implement the `App\Services\Webserver\Webserver`
 interface or extend the `App\Services\Webserver\AbstractWebserver` class.
+
+**Service Config Files**
+
+You can register your service's config files using the `configPaths` method. Vito will allow you to modify these files in the Services page.
 
 :::info
 For a non-listed service types, you can implement the `App\Services\ServiceInterface` interface or extend the
