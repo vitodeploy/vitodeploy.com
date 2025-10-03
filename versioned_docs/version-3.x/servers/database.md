@@ -90,6 +90,20 @@ To create a database user, you can go to the `Database Users` section in the ser
 You can allow a database user to be accessed from outside the server by checking the `Allow remote access`. Then you
 will need to provide the IP address or hostname of the remote machine that will access the database.
 
+Users can have the following permissions:
+
+**MySQL/MariaDB:**
+
+- READ: SELECT, SHOW VIEW
+- WRITE: SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX, LOCK TABLES, REFERENCES, SHOW VIEW, TRIGGER, CREATE VIEW, EXECUTE (excludes DROP and TRUNCATE)
+- ADMIN: ALL PRIVILEGES
+
+**PostgreSQL:**
+
+- READ: CONNECT, USAGE, SELECT on database, schemas, tables, and sequences
+- WRITE: CONNECT, USAGE, CREATE, SELECT, INSERT, UPDATE, DELETE, REFERENCES, TRIGGER, EXECUTE (excludes DROP and TRUNCATE)
+- ADMIN: ALL PRIVILEGES on database, tables, and sequences
+
 ## Link user to database
 
 Creating a database and a user is not enough to use the database, You need to link the user to the database.
