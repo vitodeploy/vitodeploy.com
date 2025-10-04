@@ -62,6 +62,10 @@
         },
         {
           "type": "doc",
+          "id": "servers/backups"
+        },
+        {
+          "type": "doc",
           "id": "servers/database"
         },
         {

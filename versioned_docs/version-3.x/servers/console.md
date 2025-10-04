@@ -1,4 +1,4 @@
-# Headless Console
+# Headless Console/Terminal
 
 - [Introduction](#introduction)
 - [Supported Users](#supported-users)
@@ -9,7 +9,7 @@
 Sometimes you need to run commands on your server to do some tasks like installing packages, updating the system, etc
 and you don't want to SSH to the server due to some reasons like security, etc.
 
-Headless Console is a feature that allows you to run commands on your server remotely via SSH connection.
+Headless Console/Terminal is a feature that allows you to run commands on your server remotely via SSH connection.
 
 ## Supported Users
 
@@ -19,6 +19,8 @@ You can run commands on your server remotely via Headless Console with these use
 - vito
 
 ## Run commands
+
+Navigate to your server page and on top right corner you will see a terminal icon, click on it or press `Ctrl + Shift + K` to open the terminal.
 
 Headless Console/Terminal will run the commands on your server via SSH connection from the home directory of the chosen
 user.
