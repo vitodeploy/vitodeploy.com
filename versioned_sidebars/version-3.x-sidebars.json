@@ -177,6 +177,10 @@
         {
           "type": "doc",
           "id": "plugins/laravel-reverb"
+        },
+        {
+          "type": "doc",
+          "id": "plugins/tiny-file-manager"
         }
       ]
     },
