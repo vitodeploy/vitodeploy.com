@@ -21,6 +21,7 @@
   - [Register storage providers](#register-storage-providers)
   - [Register source controls](#register-source-controls)
   - [Register notification channels](#register-notification-channels)
+  - [Register Workflow Actions](#register-workflow-actions)
   - [Events](#events)
   - [Store Service Data](#store-service-data)
   - [Dynamic Fields](#dynamic-fields)
@@ -468,6 +469,12 @@ The handler must implement the `App\NotificationChannels\NotificationChannel` in
 You can find plenty of examples in
 the [Notification Channels](https://github.com/vitodeploy/vito/tree/3.x/app/NotificationChannels)
 :::
+
+### Register Workflow Actions
+
+[Workflows](./workflows/index.md) can be extended by adding new actions. You can register your own workflow action using `App\Plugins\RegisterWorkflowAction` in the `boot` method of your `Plugin.php` file.
+
+You can find handful examples of workflow actions in the [Workflow Actions](https://github.com/vitodeploy/vito/tree/3.x/app/WorkflowActions)
 
 ### Events
 

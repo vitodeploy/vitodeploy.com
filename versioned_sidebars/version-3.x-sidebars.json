@@ -162,6 +162,11 @@
       "id": "scripts"
     },
     {
+      "type": "doc",
+      "label": "Workflows & Automations",
+      "id": "workflows/index"
+    },
+    {
       "type": "category",
       "label": "Plugins",
       "items": [
