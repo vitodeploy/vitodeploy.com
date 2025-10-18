@@ -132,6 +132,10 @@
         },
         {
           "type": "doc",
+          "id": "sites/commands"
+        },
+        {
+          "type": "doc",
           "id": "sites/ssl"
         },
         {
@@ -164,7 +168,12 @@
     {
       "type": "doc",
       "label": "Workflows & Automations",
-      "id": "workflows/index"
+      "id": "workflows"
+    },
+    {
+      "type": "doc",
+      "label": "Domains",
+      "id": "domains"
     },
     {
       "type": "category",
@@ -216,6 +225,10 @@
         {
           "type": "doc",
           "id": "settings/storage-providers"
+        },
+        {
+          "type": "doc",
+          "id": "settings/dns-providers"
         },
         {
           "type": "doc",

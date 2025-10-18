@@ -121,24 +121,4 @@ system.
 
 ## Backup
 
-Vito supports database auto backups. It runs backups for your databases and stores them in the external storages that
-you provide.
-
-To create a backup you need to connect a [storage provider](../settings/storage-providers.md) and then create the backup
-in the `Backups` section in the
-`Databases` menu.
-
-After creating a backup, you can restore the backup files into the same or other databases.
-
-Backups have a retention policy, which means that Vito will automatically delete the old backups based on the retention
-policy you set.
-
-To set the retention policy, you can set the `Backups to keep` field when creating a backup. You can edit this later as
-well.
-
-:::info
-Vito will not allow you to create a backup if there are no storage providers connected.
-:::
-
-You can also define an interval for the backups to be created automatically. This can be done when creating a backup or
-by editing the backup later.
+Backups are explained [Here](./backups.md#database-backups)

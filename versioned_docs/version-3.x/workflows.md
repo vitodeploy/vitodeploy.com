@@ -26,7 +26,7 @@ Vito provides a variety of built-in actions that you can use to create your work
 - HTTP Call: Make an HTTP request to a specified URL.
 
 :::tip
-You can write your own custom action using Vito's plugin system. See the [Plugins documentation](../plugins) for more information.
+You can write your own custom action using Vito's plugin system. See the [Plugins documentation](./plugins) for more information.
 :::
 
 ## Action Inputs and Outputs
