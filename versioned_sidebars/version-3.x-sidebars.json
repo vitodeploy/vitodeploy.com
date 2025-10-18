@@ -132,6 +132,10 @@
         },
         {
           "type": "doc",
+          "id": "sites/commands"
+        },
+        {
+          "type": "doc",
           "id": "sites/ssl"
         },
         {
