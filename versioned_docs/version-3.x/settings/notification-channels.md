@@ -52,3 +52,7 @@ If you create a notification channel globally, it will be available for all proj
 
 The reason of this feature is when you add a new user to VitoDeploy, you can control which notification channel they can
 access.
+
+:::info
+In any scope, only you will have access to see or use that channel and other users of the project will not be able to see or use it.
+:::

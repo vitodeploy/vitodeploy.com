@@ -79,3 +79,7 @@ If you create a storage provider globally, it will be available for all projects
 
 The reason of this feature is when you add a new user to VitoDeploy, you can control which storage provider they can
 access.
+
+:::info
+In any scope, only you will have access to see or use that provider and other users of the project will not be able to see or use it.
+:::
