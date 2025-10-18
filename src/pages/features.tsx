@@ -12,6 +12,10 @@ import {
   Package2Icon,
   ServerIcon,
   TerminalIcon,
+  WorkflowIcon,
+  MousePointerClickIcon,
+  PlugIcon,
+  CommandIcon,
 } from 'lucide-react';
 import { ReactNode } from 'react';
 
@@ -39,7 +43,11 @@ export default function Features(): ReactNode {
           description="Easy database management, Supports Mysql and MariaDB and PostgreSQL"
           icon={<DatabaseIcon size={32} />}
         />
-        <FeatureCard title="Site" description="Deploy your PHP applications such as Laravel, Wordpress and more" icon={<GlobeIcon size={32} />} />
+        <FeatureCard
+          title="Site"
+          description="Deploy your PHP applications such as Laravel, Wordpress and more"
+          icon={<MousePointerClickIcon size={32} />}
+        />
         <FeatureCard title="Firewall" description="Manage your server's firewall" icon={<FlameIcon size={32} />} />
         <FeatureCard title="SSL" description="Supports Custom and Letsencrypt SSL" icon={<LockIcon size={32} />} />
         <FeatureCard title="Worker" description="Run workers in the background" icon={<CpuIcon size={32} />} />
@@ -61,6 +69,10 @@ export default function Features(): ReactNode {
           description="Manage different projects and invite users to manage the servers"
           icon={<Package2Icon size={32} />}
         />
+        <FeatureCard title="Workflows" description="Automate everything with workflows to save time and effort" icon={<WorkflowIcon size={32} />} />
+        <FeatureCard title="Domains" description="Manage Domains and DNS records" icon={<GlobeIcon size={32} />} />
+        <FeatureCard title="Plugins" description="Extend Vito's features by using plugins" icon={<PlugIcon size={32} />} />
+        <FeatureCard title="API" description="Powerful API to integrate with Vito" icon={<CommandIcon size={32} />} />
       </div>
     </div>
   );
