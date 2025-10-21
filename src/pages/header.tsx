@@ -1,7 +1,7 @@
 import { BorderBeam } from '@site/src/components/magicui/border-beam';
 import { WordRotate } from '@site/src/components/magicui/word-rotate';
 import { Button } from '@site/src/components/ui/button';
-import { BookOpenIcon, PlayIcon } from 'lucide-react';
+import { BookOpenIcon, CloudIcon } from 'lucide-react';
 import { cn } from '@site/src/lib/utils';
 import {useEffect, useState} from "react";
 
@@ -37,11 +37,11 @@ export default function Header() {
       <div className="mt-10 flex items-center gap-2">
         <Button size="lg" onClick={() => (window.location.href = '/docs/getting-started/introduction')}>
           <BookOpenIcon className="!size-5" />
-          Documentation
+          Self-Hosted
         </Button>
-        <Button size="lg" variant="secondary" onClick={() => window.open('https://demo.vitodeploy.com', '_blank')}>
-          <PlayIcon className="!size-5" />
-          Live Demo
+        <Button size="lg" variant="secondary" disabled>
+          <CloudIcon className="!size-5" />
+          Cloud (Coming Soon)
         </Button>
       </div>
     </header>

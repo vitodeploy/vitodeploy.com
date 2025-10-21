@@ -77,6 +77,7 @@ const config: Config = {
         // },
         {to: '/docs/getting-started/introduction', label: 'Docs', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
+        {to: 'https://demo.vitodeploy.com', label: 'Live Demo', position: 'left'},
         {
           type: 'docsVersionDropdown',
           position: 'right',
