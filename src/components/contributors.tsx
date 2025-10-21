@@ -7,8 +7,56 @@ interface Contributor {
   avatar_url: string;
 }
 
+interface CacheData {
+  contributors: Contributor[];
+  timestamp: number;
+}
+
+const CACHE_KEY = 'vitodeploy_contributors';
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
+
 const Contributors: React.FC = () => {
   const [contributors, setContributors] = useState<Contributor[]>([]);
+
+  // Cache helper functions
+  const getCachedData = (): CacheData | null => {
+    try {
+      // Check if we're in browser environment
+      if (typeof window === 'undefined' || !window.localStorage) {
+        return null;
+      }
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (!cached) return null;
+      const parsed = JSON.parse(cached);
+      // Validate the structure
+      if (!parsed || !Array.isArray(parsed.contributors) || typeof parsed.timestamp !== 'number') {
+        return null;
+      }
+      return parsed;
+    } catch {
+      return null;
+    }
+  };
+
+  const setCachedData = (data: Contributor[]) => {
+    try {
+      // Check if we're in browser environment
+      if (typeof window === 'undefined' || !window.localStorage) {
+        return;
+      }
+      const cacheData: CacheData = {
+        contributors: data,
+        timestamp: Date.now(),
+      };
+      localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+    } catch {
+      // Ignore localStorage errors
+    }
+  };
+
+  const isCacheValid = (cacheData: CacheData): boolean => {
+    return Date.now() - cacheData.timestamp < CACHE_DURATION;
+  };
 
   const fromRepo = async (repo: string) => {
     try {
@@ -20,7 +68,16 @@ const Contributors: React.FC = () => {
   };
 
   const getContributors = async () => {
-    const users = await Promise.all([fromRepo('vito'), fromRepo('docs'), fromRepo('client'), fromRepo('.github')]);
+    // Check cache first
+    const cachedData = getCachedData();
+
+    // Check cache and use if valid
+    if (cachedData && isCacheValid(cachedData)) {
+      setContributors(cachedData.contributors);
+      return;
+    }
+
+    const users = await Promise.all([fromRepo('vito')]);
 
     // merge contributors
     const merged = users
@@ -47,7 +104,9 @@ const Contributors: React.FC = () => {
         ];
       }, []);
 
+    console.log('Merged contributors:', merged.length, 'contributors');
     setContributors(merged);
+    setCachedData(merged);
   };
 
   useEffect(() => {
