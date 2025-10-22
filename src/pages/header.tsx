@@ -39,9 +39,9 @@ export default function Header() {
           <BookOpenIcon className="!size-5" />
           Self-Hosted
         </Button>
-        <Button size="lg" variant="secondary" disabled>
+        <Button size="lg" variant="secondary" onClick={() => window.open('https://waitlist.vitodeploy.com')}>
           <CloudIcon className="!size-5" />
-          Cloud (Coming Soon)
+          Cloud (Join the Waitlist)
         </Button>
       </div>
     </header>
