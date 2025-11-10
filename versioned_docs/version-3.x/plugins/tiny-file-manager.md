@@ -34,7 +34,7 @@ Tiny File Manager is a single PHP file that you can place in your website's root
 
 ## Installation
 
-To install the plugin, navigate to the `Settings -> Plugins` and select `Tiny File Manager` plugins in the `Official` tab.
+To install the plugin, navigate to the `Admin -> Plugins` and select `Tiny File Manager` plugins in the `Official` tab.
 
 ## Enable as a site type
 
@@ -44,4 +44,4 @@ You can select the `Tiny File Manager` site type, and provide the required infor
 
 ## Uninstall
 
-To uninstall the plugin, navigate to the `Settings -> Plugins` and you can find the `Tiny File Manager` plugins in the `Installed` tab and you can uninstall it.
+To uninstall the plugin, navigate to the `Admin -> Plugins` and you can find the `Tiny File Manager` plugins in the `Installed` tab and you can uninstall it.

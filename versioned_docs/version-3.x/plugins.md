@@ -57,11 +57,11 @@ community plugins are developed by the community.
 
 ### Install
 
-You can install and manage plugins through the Vito web interface. Just navigate to the **Settings > Plugins** section, and find `Official` and `Community` tabs to browse and install plugins.
+You can install and manage plugins through the Vito web interface. Just navigate to the **Admin > Plugins** section, and find `Official` and `Community` tabs to browse and install plugins.
 
 ### Enable
 
-After installing a plugin, In order to use the plugin, you need to enable it. You can find the installed plugins in the `Installed` tab in the `Settings > Plugins` section. Click on the three dots on the right side of the plugin and then click on `Enable`.
+After installing a plugin, In order to use the plugin, you need to enable it. You can find the installed plugins in the `Installed` tab in the `Admin > Plugins` section. Click on the three dots on the right side of the plugin and then click on `Enable`.
 
 ### Disable
 
@@ -138,13 +138,13 @@ class Plugin extends AbstractPlugin
 
 ### Discover Plugins
 
-After you create your plugin, you will need to navigate to the `Settings > Plugins` section in the Vito web interface and then `Discover` tab.
+After you create your plugin, you will need to navigate to the `Admin > Plugins` section in the Vito web interface and then `Discover` tab.
 
 Your new plugin should be listed there and you can install it from there.
 
 ### Error Handling
 
-Vito records every error that happens in the plugins when they're being booted and in case of an error, it will disable the plugin and show the error message in the `Settings > Plugins` section.
+Vito records every error that happens in the plugins when they're being booted and in case of an error, it will disable the plugin and show the error message in the `Admin > Plugins` section.
 
 You can also see the stack trace of the error by viewing the error logs of a plugin to debug it.
 
@@ -592,4 +592,4 @@ Plugins are using Github tags and releases for versioning.
 
 ## Updating Plugins
 
-In order to check for available updates for your installed plugins, navigate to the `Settings > Plugins` section in the Vito web interface and then click on the `Check for updates` button. If there was an available update, you will be able to click on Update on every plugin's dropdown to update it.
+In order to check for available updates for your installed plugins, navigate to the `Admin > Plugins` section in the Vito web interface and then click on the `Check for updates` button. If there was an available update, you will be able to click on Update on every plugin's dropdown to update it.

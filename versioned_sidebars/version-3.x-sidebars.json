@@ -244,6 +244,11 @@
       "type": "doc",
       "label": "Diagnoses",
       "id": "diagnoses"
+    },
+    {
+      "type": "doc",
+      "label": "Admin",
+      "id": "admin"
     }
   ]
 }

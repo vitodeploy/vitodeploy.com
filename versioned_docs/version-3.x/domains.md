@@ -1,5 +1,11 @@
 # Domains
 
+- [Introduction](#introduction)
+- [Add domain](#add-domain)
+- [Scope](#scope)
+- [Manage Records](#manage-records)
+- [Remove Domain](#remove-domain)
+
 ## Introduction
 
 One of the most frequent actions you need to do when deploying a new website on a new server is to point your domain to that server. For that you need to login to your domain registrar or DNS provider and change the NS records of that domain to point to your server's IP address.
