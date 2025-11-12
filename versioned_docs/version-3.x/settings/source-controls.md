@@ -60,6 +60,12 @@ To connect, Navigate to your Bitbucket workspace and then `Oauth Consumers` and 
 
 It is important to provide a callback URL (use your Vito instance's URL) and make sure you check the `This is a private consumer` checkbox.
 
+Then check the following permissions:
+
+- Account: Read
+- Webhooks: Read and Write
+- Repositories: Read and Write
+
 Then create the consumer and use the `Key` and `Secret` to connect to it in Vito.
 
 ## Scope
