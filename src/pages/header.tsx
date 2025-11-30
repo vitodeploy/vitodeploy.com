@@ -1,9 +1,9 @@
 import { BorderBeam } from '@site/src/components/magicui/border-beam';
 import { WordRotate } from '@site/src/components/magicui/word-rotate';
 import { Button } from '@site/src/components/ui/button';
-import { BookOpenIcon, CloudIcon } from 'lucide-react';
+import { BookOpenIcon, HeartIcon, CloudIcon } from 'lucide-react';
 import { cn } from '@site/src/lib/utils';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from 'react';
 
 export default function Header() {
   const [version, setVersion] = useState<string | null>(null);
@@ -34,15 +34,26 @@ export default function Header() {
         />
         <BorderBeam size={200} />
       </div>
-      <div className="mt-10 flex items-center gap-2">
-        <Button size="lg" onClick={() => (window.location.href = '/docs/getting-started/introduction')}>
-          <BookOpenIcon className="!size-5" />
-          Self-Hosted
-        </Button>
-        <Button size="lg" variant="secondary" onClick={() => window.open('https://waitlist.vitodeploy.com')}>
-          <CloudIcon className="!size-5" />
-          Cloud (Join the Waitlist)
-        </Button>
+      <div className="mt-10 flex flex-col items-center gap-4">
+        <div className="flex items-center gap-2">
+          <Button size="lg" onClick={() => (window.location.href = '/docs/getting-started/introduction')}>
+            <BookOpenIcon className="!size-5" />
+            Documentation
+          </Button>
+          <Button size="lg" variant="secondary" onClick={() => window.open('https://github.com/sponsors/saeedvaziry')}>
+            <HeartIcon className="!size-5 text-pink-600" />
+            Become Sponsor
+          </Button>
+        </div>
+        <a
+          href="https://waitlist.vitodeploy.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <CloudIcon className="size-4" />
+          Join the Cloud Waitlist
+        </a>
       </div>
     </header>
   );
