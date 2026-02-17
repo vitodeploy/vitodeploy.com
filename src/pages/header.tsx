@@ -46,7 +46,7 @@ export default function Header() {
           </Button>
         </div>
         <a
-          href="https://waitlist.vitodeploy.com"
+          href="https://vitodeploy.waitlio.com"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
