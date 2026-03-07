@@ -83,7 +83,7 @@ Here is how the `composer.json` should look like:
     "test": "vendor/bin/phpunit"
   },
   "require": {
-    "php": "^8.4",
+    "php": "^8.5",
     "illuminate/support": "^12.0"
   },
   "require-dev": {

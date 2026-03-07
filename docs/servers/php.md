@@ -25,6 +25,7 @@ server creation in the `PHP` menu in the server page or in the [Services](./serv
 - PHP 8.2
 - PHP 8.3
 - PHP 8.4
+- PHP 8.5
 
 ## Install and Uninstall
 
