@@ -71,7 +71,7 @@ php artisan ssh-key:generate {--force}
 
 The keys are located at `storage` directory.
 
-> **Warning**
->
-> Make sure you always have a backup of existing keys before running this command.
+:::warning
+Make sure you always have a backup of existing keys before running this command.
+:::
 

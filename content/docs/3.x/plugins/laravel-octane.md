@@ -43,17 +43,17 @@ When enabling, you will need to provide the following information:
 
 **Port**: The port that your Laravel Octane instance will run on. Make sure this port is not used by any other service on your server.
 
-> **Info**
->
-> The port won't be exposed to internet, it will be used internally by the web server to proxy requests to your Laravel Octane instance.
+:::info
+The port won't be exposed to internet, it will be used internally by the web server to proxy requests to your Laravel Octane instance.
+:::
 
-> **Warning**
->
-> Make sure you have already set the `OCTANE_SERVER` in your `.env` file
+:::warning
+Make sure you have already set the `OCTANE_SERVER` in your `.env` file
+:::
 
-> **Info**
->
-> Make sure you read [Laravel's official documentation](https://laravel.com/docs/12.x/octane).
+:::info
+Make sure you read [Laravel's official documentation](https://laravel.com/docs/12.x/octane).
+:::
 
 ## Uninstall
 

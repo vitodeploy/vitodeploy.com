@@ -1,10 +1,10 @@
 # Upgrade Guide
 
-> **Warning**
->
-> Before upgrade first make a backup of `/home/vito/storage` folder and the `.env` file for VPS installations and the
-> volumes for the docker
-> installations.
+:::warning
+Before upgrade first make a backup of `/home/vito/storage` folder and the `.env` file for VPS installations and the
+volumes for the docker
+installations.
+:::
 
 - [Upgrading to 3.x from 2.x](#upgrading-to-3x-from-2x)
 - [Upgrade Docker Installation](#upgrade-docker-installation)
@@ -22,18 +22,18 @@ If you're using the latest tag, just do the [Update](../getting-started/update#u
 
 If you're using the `2.x` tag, You need to change it to `3.x` or `latest` tag.
 
-> **Info**
->
-> `3.x` tag is the latest code on the `3.x` branch, which might not be stable yet, but it will be soon.
->
-> `latest` tag is the latest release of VitoDeploy from the `3.x` branch, which is stable and recommended for production
-> use.
->
-> We recommend using the `latest`.
+:::info
+`3.x` tag is the latest code on the `3.x` branch, which might not be stable yet, but it will be soon.
 
-> **Warning**
->
-> It is required to have `APP_URL` environment variable set to your Vito URL, otherwise, some features like Vito Logs won't work properly.
+`latest` tag is the latest release of VitoDeploy from the `3.x` branch, which is stable and recommended for production
+use.
+
+We recommend using the `latest`.
+:::
+
+:::warning
+It is required to have `APP_URL` environment variable set to your Vito URL, otherwise, some features like Vito Logs won't work properly.
+:::
 
 ## Upgrade VPS Installation
 
@@ -129,9 +129,9 @@ You can run this command instead
 sudo sed -i '/location ~ \\\.php\$ {/a \    fastcgi_buffers 16 16k;\n    fastcgi_buffer_size 32k;' /etc/nginx/sites-available/vito
 ```
 
-> **Warning**
->
-> Make sure to confirm the change by opening the file `/etc/nginx/sites-available/vito`
+:::warning
+Make sure to confirm the change by opening the file `/etc/nginx/sites-available/vito`
+:::
 
 Vito v3 transfers more data on the request headers because of the Inertia.js, so you need to increase the `client_max_body_size`.
 
@@ -211,6 +211,6 @@ If you're using Laravel Sail, you need to kill the current container and delete 
 If you're using other tools like Laravel Valet or etc., You need to make sure you have PHP 8.4 installed and then switch
 to the `3.x` branch.
 
-> **Warning**
->
-> Make sure you set the `REDIS_HOST=redis` environment variable in your `.env` file.
+:::warning
+Make sure you set the `REDIS_HOST=redis` environment variable in your `.env` file.
+:::

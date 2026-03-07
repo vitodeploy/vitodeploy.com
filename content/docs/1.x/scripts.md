@@ -27,9 +27,9 @@ the script on it.
 
 You can also select the system user that you want to execute the script with.
 
-> **Warning**
->
-> Be careful when executing scripts with root user, as it can cause damage to your server.
+:::warning
+Be careful when executing scripts with root user, as it can cause damage to your server.
+:::
 
 ## Script Logs
 

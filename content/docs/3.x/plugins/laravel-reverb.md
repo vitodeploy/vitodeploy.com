@@ -51,21 +51,21 @@ When enabling, you will need to provide the following information:
 
 **Port**: The port that your Laravel Reverb instance will run on. Make sure this port is not used by any other service on your server.
 
-> **Info**
->
-> The port won't be exposed to internet, it will be used internally by the web server to proxy requests to your Laravel Reverb instance.
+:::info
+The port won't be exposed to internet, it will be used internally by the web server to proxy requests to your Laravel Reverb instance.
+:::
 
 **Command**: The command to start your Laravel Reverb instance. The default command is `php artisan reverb:start --host=0.0.0.0 --port=REVERB_PORT`. You can change it if you have a custom command to start your Laravel Reverb instance.
 
-> **Warning**
->
-> The port on the command should match the port you provided above.
->
-> The host must be `0.0.0.0`
+:::warning
+The port on the command should match the port you provided above.
 
-> **Info**
->
-> Make sure you read [Laravel's official documentation](https://laravel.com/docs/12.x/reverb) for the correct command.
+The host must be `0.0.0.0`
+:::
+
+:::info
+Make sure you read [Laravel's official documentation](https://laravel.com/docs/12.x/reverb) for the correct command.
+:::
 
 ## Enable as a site type
 

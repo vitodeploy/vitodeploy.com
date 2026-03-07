@@ -24,17 +24,17 @@ This is the command that will be executed on each cron execution. Depending on t
 
 If the user is `vito` then the command will be executed on `/home/vito`. We recommend to use the absolute path for your commands in the cronjobs.
 
-> **Info**
->
-> For example, To run Laravel's scheduler you can use the following command:
->
-> ```
-> php /home/vito/your-domain/artisan schedule:run >> /dev/null 2>&1
-> ```
+:::info
+For example, To run Laravel's scheduler you can use the following command:
 
-> **Warning**
->
-> Do not add any frequency (`* * * * *`) to the command because VitoDeploy will add it when deploying the cronjob.
+```
+php /home/vito/your-domain/artisan schedule:run >> /dev/null 2>&1
+```
+:::
+
+:::warning
+Do not add any frequency (`* * * * *`) to the command because VitoDeploy will add it when deploying the cronjob.
+:::
 
 ### User
 

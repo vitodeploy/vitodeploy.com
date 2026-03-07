@@ -26,9 +26,9 @@ You can select the `Tiny File Manager` site type and provide the following requi
 - Admin Password: The password to access the file manager.
 - Path to Manage: The directory path on the server that you want to manage with the file manager.
 
-> **Warning**
->
-> Your server must have PHP installed to run Tiny File Manager.
+:::warning
+Your server must have PHP installed to run Tiny File Manager.
+:::
 
 ## Access the File Manager
 

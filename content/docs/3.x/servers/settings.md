@@ -36,9 +36,9 @@ You can see and edit the following information about your server:
 - SSH IP
 - SSH Port
 
-> **Info**
->
-> If you change the IP or Port, Vito will try to reconnect to the server via new IP and Port.
+:::info
+If you change the IP or Port, Vito will try to reconnect to the server via new IP and Port.
+:::
 
 ## Update/Upgrade Server
 
@@ -52,16 +52,16 @@ Then to update/upgrade, You can simply click on the `Update` button.
 This will change your server's status to `UPDATING` and no actions will be allowed to do to your server via VitoDeploy
 until the update is done.
 
-> **Info**
->
-> If you still see some available updates after the update is done, It is about the packages that are kept back during the
-> update.
-> [Read more here](https://ubuntu.com/server/docs/about-apt-upgrade-and-phased-updates)
+:::info
+If you still see some available updates after the update is done, It is about the packages that are kept back during the
+update.
+[Read more here](https://ubuntu.com/server/docs/about-apt-upgrade-and-phased-updates)
+:::
 
-> **Info**
->
-> If you have set up the [notification channels](../settings/notification-channels), Vito will send you a notification if
-> the update fails
+:::info
+If you have set up the [notification channels](../settings/notification-channels), Vito will send you a notification if
+the update fails
+:::
 
 ## Restart
 
@@ -74,8 +74,8 @@ You have the option of deleting a server.
 Deleting a server will erase it from your Vito Instance's database and if the server was created on a supported server
 providers (Not custom), It will try to delete the server on the provider via their APIs.
 
-> **Danger**
->
-> It is possible that Vito cannot reach to the Server Provider to delete the instance. If that happens you will get an
-> email (If you have configured the [Email](../getting-started/configuration.md#email)) saying that Vito couldn't delete the
-> server on the provider.
+:::danger
+It is possible that Vito cannot reach to the Server Provider to delete the instance. If that happens you will get an
+email (If you have configured the [Email](../getting-started/configuration.md#email)) saying that Vito couldn't delete the
+server on the provider.
+:::

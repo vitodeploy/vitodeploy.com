@@ -25,9 +25,9 @@ To enable Vito to monitor your servers you need to install the VitoAgent service
 
 [VitoAgent](https://github.com/vitodeploy/agent) is a program written in Golang that collects the resource usages and sends them to your Vito instance.
 
-> **Warning**
->
-> Since VitoAgent sends these information through internet, It won't be possible to use monitoring if you are using Vito on your local computer!
+:::warning
+Since VitoAgent sends these information through internet, It won't be possible to use monitoring if you are using Vito on your local computer!
+:::
 
 ## Install Vito Agent
 
@@ -39,9 +39,9 @@ You can uninstall VitoAgent anytime through the `Services` page.
 
 After you installed VitoAgent, The `Metrics` item will be visible on the sidebar and you can navigate there and wait for the data coming from your server.
 
-> **Info**
->
-> VitoAgent sends information to Vito instance once per minute.
+:::info
+VitoAgent sends information to Vito instance once per minute.
+:::
 
 ## Data Retention
 

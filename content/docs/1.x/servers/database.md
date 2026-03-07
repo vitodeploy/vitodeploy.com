@@ -18,6 +18,6 @@ After creating a user, You can link the user to any databases which you've alrea
 
 If you lost your Database User's password, You can press the `View` button to see the password.
 
-> **Info**
->
-> Vito encrypts the password when saving them into the Vito Instance's database.
+:::info
+Vito encrypts the password when saving them into the Vito Instance's database.
+:::

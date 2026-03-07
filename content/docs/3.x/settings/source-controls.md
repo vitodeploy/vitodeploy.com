@@ -30,9 +30,9 @@ information is required:
 Generate a personal access token on GitHub settings of your account and give it full repository control and git hook
 admin.
 
-> **Info**
->
-> If you're using Github's fine grained personl tokens, Make sure you have Read & Write on `Administration`, `Contents` and `Webhooks` scopes.
+:::info
+If you're using Github's fine grained personl tokens, Make sure you have Read & Write on `Administration`, `Contents` and `Webhooks` scopes.
+:::
 
 ### Gitlab
 
@@ -40,9 +40,9 @@ Generate a personal access token on your Gitlab profile and give it `write_repos
 
 ### Bitbucket (Deprecated)
 
-> **Warning**
->
-> The Bitbucket source control provider is deprecated due to deprecation of App Passwords by Bitbucket. Use [Bitbucket V2](#bitbucket-v2) instead.
+:::warning
+The Bitbucket source control provider is deprecated due to deprecation of App Passwords by Bitbucket. Use [Bitbucket V2](#bitbucket-v2) instead.
+:::
 
 Create an App Password on your Bitbucket account and give it repository and webhook admin permissions.
 
@@ -79,6 +79,6 @@ If you create a source control globally, it will be available for all projects.
 The reason of this feature is when you add a new user to VitoDeploy, you can control which source controls they can
 access.
 
-> **Info**
->
-> In any scope, only you will have access to see or use that source control and other users of the project will not be able to see or use it.
+:::info
+In any scope, only you will have access to see or use that source control and other users of the project will not be able to see or use it.
+:::

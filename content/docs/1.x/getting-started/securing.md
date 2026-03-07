@@ -10,9 +10,9 @@ To secure it you need to attach a domain to it and get an SSL certificate for it
 
 Create an A record on your domain's DNS manager and point it to your Vito server's IP address.
 
-> **Warning**
->
-> If you are using Cloudflare make sure you have the cloud proxy off at this stage!
+:::warning
+If you are using Cloudflare make sure you have the cloud proxy off at this stage!
+:::
 
 Open `/etc/nginx/sites-available/vito` with an editor on your terminal like `nano`:
 
@@ -69,6 +69,6 @@ YOUR_DOMAIN: Your domain address like example.com
 
 YOUR_EMAIL: Your email address to be provided to letsencrypt
 
-> **Info**
->
-> If you are using Cloudflare, Now you can enable the cloud proxy if you want. Keep in mind that you might need to enable Full SSL encryption option on Cloudflare
+:::info
+If you are using Cloudflare, Now you can enable the cloud proxy if you want. Keep in mind that you might need to enable Full SSL encryption option on Cloudflare
+:::

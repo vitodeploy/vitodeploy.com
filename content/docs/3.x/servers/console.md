@@ -28,7 +28,7 @@ user.
 After you hit the `Run` button it will open a SSH connection to your server and an open stream to your Vito instance to
 print out the output of the command in real time.
 
-> **Warning**
->
-> The Console/Terminal is stateless! which means every command will run from the home directory of the chosen user and
-> running something like `cd` and then another command will not go through the new directory.
+:::warning
+The Console/Terminal is stateless! which means every command will run from the home directory of the chosen user and
+running something like `cd` and then another command will not go through the new directory.
+:::

@@ -19,9 +19,9 @@ You can change the branch of your cloned repository
 
 This is a script which will be executed on your application server and in the site's path each time you press the `Deploy` button.
 
-> **Info**
->
-> Your website's path is `/home/vito/YOUR-DOMAIN`
+:::info
+Your website's path is `/home/vito/YOUR-DOMAIN`
+:::
 
 Vito also exports some variables when running your deployment script, and you can use them during the deployment.
 
@@ -84,12 +84,12 @@ You can enable auto deployment for your application by setting up git hooks.
 
 Vito will handle the git hooks setup for you and you just need to click a button to enable it.
 
-> **Warning**
->
-> You need to have a deployment script to enable auto deployment.
+:::warning
+You need to have a deployment script to enable auto deployment.
+:::
 
-> **Warning**
->
-> Since source control providers need to send a request to your server, you need to have vito accessible in the Internet.
-> This feature
-> cannot work when you use Vito locally.
+:::warning
+Since source control providers need to send a request to your server, you need to have vito accessible in the Internet.
+This feature
+cannot work when you use Vito locally.
+:::

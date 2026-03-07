@@ -22,9 +22,9 @@ You can find them [here](https://github.com/orgs/vitodeploy/projects/5/views/12)
 
 They're sorted by priority. So feel free to pick an unassigned one. Drop a comment so we can assign it to you.
 
-> **Warning**
->
-> If you want to work on something which is not listed in the `ToDo` issues. Please read the below section!
+:::warning
+If you want to work on something which is not listed in the `ToDo` issues. Please read the below section!
+:::
 
 ## Development Discussion
 
@@ -35,9 +35,9 @@ please be willing to implement at least some of the code that would be needed to
 Informal discussion regarding bugs, new features, and implementation of existing features takes place in the #ideas
 channel of our [Discord](https://discord.gg/uZeeHZZnm5) server.
 
-> **Warning**
->
-> Please do not refactor any existing code without discussing it with the maintainers first.
+:::warning
+Please do not refactor any existing code without discussing it with the maintainers first.
+:::
 
 ## Which Branch?
 

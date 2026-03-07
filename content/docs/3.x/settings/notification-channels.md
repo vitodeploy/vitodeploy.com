@@ -32,9 +32,9 @@ To add a Discord channel you will need to enter Discord's webhook URL.
 
 To add an Email channel you just need to enter the email address that you want to send the notifications to it.
 
-> **Warning**
->
-> You need to [configure](../getting-started/configuration.md#email) Vito to use an email driver first.
+:::warning
+You need to [configure](../getting-started/configuration.md#email) Vito to use an email driver first.
+:::
 
 ### Telegram
 
@@ -53,6 +53,6 @@ If you create a notification channel globally, it will be available for all proj
 The reason of this feature is when you add a new user to VitoDeploy, you can control which notification channel they can
 access.
 
-> **Info**
->
-> In any scope, only you will have access to see or use that channel and other users of the project will not be able to see or use it.
+:::info
+In any scope, only you will have access to see or use that channel and other users of the project will not be able to see or use it.
+:::

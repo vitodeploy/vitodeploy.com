@@ -26,17 +26,17 @@ The file manager has a file browser which you can navigate through your server's
 
 You can upload files by clicking the `Upload` button on the top right corner of the file manager.
 
-> **Info**
->
-> Vito will first upload the file to your Vito instance and then from there it will upload the file to your server.
+:::info
+Vito will first upload the file to your Vito instance and then from there it will upload the file to your server.
+:::
 
 ## Download Files
 
 You can download files by clicking the `Download` icon on the right side of each file.
 
-> **Info**
->
-> Vito will first download the file to your Vito instance and then from there it will download the file to your local machine.
+:::info
+Vito will first download the file to your Vito instance and then from there it will download the file to your local machine.
+:::
 
 ## Create New File
 

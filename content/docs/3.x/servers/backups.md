@@ -23,9 +23,9 @@ Navigate to the `Backups` section in the server's menu and click on the `Create 
 
 Vito will backup the selected databases into the connected storage provider on the given interval.
 
-> **Info**
->
-> Older backups will be deleted automatically based on the number of backups you want to keep.
+:::info
+Older backups will be deleted automatically based on the number of backups you want to keep.
+:::
 
 ## Restore Database Backup
 
@@ -35,9 +35,9 @@ In the files section, select the backup file you want to restore and then click 
 
 Select the target database and then click on the `Restore` button.
 
-> **Tip**
->
-> You can restore a database backup to another database.
+:::tip
+You can restore a database backup to another database.
+:::
 
 ## File/Directory Backups
 
@@ -45,9 +45,9 @@ Navigate to the `Backups` section in the server's menu and click on the `Create 
 
 Vito will compress the given path with `tar` and then upload it to the connected storage provider on the given interval.
 
-> **Info**
->
-> Older backups will be deleted automatically based on the number of backups you want to keep.
+:::info
+Older backups will be deleted automatically based on the number of backups you want to keep.
+:::
 
 ## Restore File/Directory Backup
 
@@ -57,8 +57,8 @@ In the files section, select the backup file you want to restore and then click 
 
 Select the target path on your server and then click on the `Restore` button.
 
-> **Warning**
->
-> Target path is the final path the file/directory will be restored to. For example if you have backed up `/home/vito/your-site.com`, and you want to restore it to `/home/vito/other-site.com`, you need to enter `/home/vito/other-site.com` as target path.
->
-> If there was `index.php` inside `your-site.com`, it will be now in `/home/vito/other-site.com/index.php`.
+:::warning
+Target path is the final path the file/directory will be restored to. For example if you have backed up `/home/vito/your-site.com`, and you want to restore it to `/home/vito/other-site.com`, you need to enter `/home/vito/other-site.com` as target path.
+
+If there was `index.php` inside `your-site.com`, it will be now in `/home/vito/other-site.com/index.php`.
+:::

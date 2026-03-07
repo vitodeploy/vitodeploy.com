@@ -45,10 +45,10 @@ or [Services](./services) page.
 
 Vito gives you the option to easily install and uninstall different PHP versions.
 
-> **Warning**
->
-> You cannot uninstall a PHP version if you have a site running with that PHP version. You need to
-> first [change](../sites/settings#change-php-version) the PHP version of the website first.
+:::warning
+You cannot uninstall a PHP version if you have a site running with that PHP version. You need to
+first [change](../sites/settings#change-php-version) the PHP version of the website first.
+:::
 
 ## Install PHP Extensions
 

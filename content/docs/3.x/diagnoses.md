@@ -17,9 +17,9 @@ for help in the [VitoDeploy Discord Server](https://discord.com/invite/uZeeHZZnm
 You can view the logs of your Vito instance in the `/logs`. This section shows you the logs of your Vito instance,
 including the logs of the web server, PHP, and other services.
 
-> **Info**
->
-> Logs are visible on to Admin users only.
+:::info
+Logs are visible on to Admin users only.
+:::
 
 ## Horizon
 
@@ -27,6 +27,6 @@ Vito uses Laravel Horizon to manage the background jobs. You can view the status
 
 section. This section shows you the status of the jobs, including the failed jobs and the running jobs.
 
-> **Info**
->
-> Horizon is visible on to Admin users only.
+:::info
+Horizon is visible on to Admin users only.
+:::

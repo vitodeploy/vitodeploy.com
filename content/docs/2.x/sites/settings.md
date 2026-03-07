@@ -21,9 +21,9 @@ page.
 
 You can add/remove site aliases. It will update the aliases on your site's nginx vhost configuration.
 
-> **Warning**
->
-> Note that if you've made any changes to the VHost manually, It will override it.
+:::warning
+Note that if you've made any changes to the VHost manually, It will override it.
+:::
 
 ## Update VHost
 
@@ -32,9 +32,9 @@ do so unless you know what you are doing.
 
 Vito will show you the current configuration of the site, and you can modify it as you wish.
 
-> **Danger**
->
-> Nginx vhost file will get reset if you generate or modify SSLs, Aliases, or create/delete site redirects.
+:::danger
+Nginx vhost file will get reset if you generate or modify SSLs, Aliases, or create/delete site redirects.
+:::
 
 ## Delete
 

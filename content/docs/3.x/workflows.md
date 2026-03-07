@@ -25,9 +25,9 @@ Vito provides a variety of built-in actions that you can use to create your work
 - Notify: Send a notification to a specified channel (e.g., Slack, Email).
 - HTTP Call: Make an HTTP request to a specified URL.
 
-> **Tip**
->
-> You can write your own custom action using Vito's plugin system. See the [Plugins documentation](./plugins) for more information.
+:::tip
+You can write your own custom action using Vito's plugin system. See the [Plugins documentation](./plugins) for more information.
+:::
 
 ## Action Inputs and Outputs
 
@@ -45,9 +45,9 @@ You can link the success flow to another action to continue the workflow if the 
 
 Every workflow must have a starting action. You can mark any action as the starting action by clicking on the action and then clicking on the Flag icon.
 
-> **Warning**
->
-> Workflows do not support loops. If any link creates a loop, you won't be able to save the workflow.
+:::warning
+Workflows do not support loops. If any link creates a loop, you won't be able to save the workflow.
+:::
 
 ## Running Workflows
 

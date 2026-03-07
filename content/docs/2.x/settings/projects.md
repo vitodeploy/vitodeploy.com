@@ -18,9 +18,9 @@ projects is one-to-many
 To create a project you just need a unique name! Go to the Projects page and create a new one. It will appear in the
 left sidebar, Under Projects dropdown.
 
-> **Info**
->
-> Only admins can create projects.
+:::info
+Only admins can create projects.
+:::
 
 ## Project User Management
 
@@ -30,11 +30,11 @@ Admins can manage the users of the project. They can add or remove users from th
 
 Deleting a project is as easy as hitting the delete button and confirming that you want to delete it.
 
-> **Danger**
->
-> If you delete a project it will delete all of its servers! If you are using
-> a [cloud provider](./server-providers) to create the servers, By deleting the project, It will also delete it
-> from the provider.
+:::danger
+If you delete a project it will delete all of its servers! If you are using
+a [cloud provider](./server-providers) to create the servers, By deleting the project, It will also delete it
+from the provider.
+:::
 
 ## Switching Projects
 

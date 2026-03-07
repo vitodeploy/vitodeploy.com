@@ -1,8 +1,8 @@
 # Tiny File Manager Plugin
 
-> **Warning**
->
-> File managers are not recommended to use on Production servers. Use at your own Risk.
+:::warning
+File managers are not recommended to use on Production servers. Use at your own Risk.
+:::
 
 - [Introduction](#introduction)
 - [Supported Web Servers](#supported-web-servers)

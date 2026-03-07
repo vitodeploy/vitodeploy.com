@@ -16,9 +16,9 @@ You can simply edit your projects name in the Projects page.
 
 Deleting a project is as easy as hitting the delete button and confirming that you want to delete it.
 
-> **Danger**
->
-> If you delete a project it will delete all of it's servers! If you are using a [cloud provider](/settings/server-providers.md) to create the servers, By deleting the project, It will also delete it from the provider.
+:::danger
+If you delete a project it will delete all of it's servers! If you are using a [cloud provider](/settings/server-providers.md) to create the servers, By deleting the project, It will also delete it from the provider.
+:::
 
 ## Switching Projects
 

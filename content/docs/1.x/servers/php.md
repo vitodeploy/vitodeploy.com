@@ -22,9 +22,9 @@ You have this option always to restart each PHP FPM service in the PHP page or i
 
 Vito gives you this option of uninstalling a specific PHP version.
 
-> **Danger**
->
-> If you have a site running with the PHP that you want to uninstall, You need to first change the PHP version of the website first.
+:::danger
+If you have a site running with the PHP that you want to uninstall, You need to first change the PHP version of the website first.
+:::
 
 ## Install PHP Extensions
 

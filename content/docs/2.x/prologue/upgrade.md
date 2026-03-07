@@ -1,9 +1,9 @@
 # Upgrade Guide
 
-> **Warning**
->
-> Before upgrade first make a backup of `/home/vito/storage` folder for VPS installations and the volumes for the docker
-> installations.
+:::warning
+Before upgrade first make a backup of `/home/vito/storage` folder for VPS installations and the volumes for the docker
+installations.
+:::
 
 - [Upgrading to 2.x from 1.x](#upgrading-to-2x-from-1x)
   - [Upgrade Docker Installation](#upgrade-docker-installation)
@@ -17,9 +17,9 @@ If you're using the latest tag, just do the [Update](../getting-started/update#u
 
 If you're using the `1.x` tag, You need to change it to `2.x` or `latest` tag.
 
-> **Info**
->
-> We recommend using the `latest`.
+:::info
+We recommend using the `latest`.
+:::
 
 ### Upgrade VPS Installation
 

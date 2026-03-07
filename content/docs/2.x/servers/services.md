@@ -42,7 +42,7 @@ Vito enables you to uninstall services that you don't want.
 For example, you want to change your database from Mysql to PostgreSQL. You will need to uninstall Mysql first and then
 install PostgreSQL.
 
-> **Warning**
->
-> You cannot uninstall a service that is being used by other resources. For example, you cannot uninstall Nginx if you
-> already have sites running on the server.
+:::warning
+You cannot uninstall a service that is being used by other resources. For example, you cannot uninstall Nginx if you
+already have sites running on the server.
+:::

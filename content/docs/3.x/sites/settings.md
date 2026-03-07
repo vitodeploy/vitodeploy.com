@@ -31,13 +31,13 @@ You can change the source control of your cloned repository in the Settings page
 
 You can add/remove site aliases. It will update the aliases on your site's nginx vhost configuration.
 
-> **Info**
->
-> This will only override the #[port] block in your vhost configuration. The rest will remain unchanged.
+:::info
+This will only override the #[port] block in your vhost configuration. The rest will remain unchanged.
+:::
 
-> **Info**
->
-> Updating the aliases will reload the Nginx service. If you need a restart, you need to go to [services](../servers/services.md) and restart nginx manually.
+:::info
+Updating the aliases will reload the Nginx service. If you need a restart, you need to go to [services](../servers/services.md) and restart nginx manually.
+:::
 
 ## Update VHost
 
@@ -48,9 +48,9 @@ Vito will show you the current configuration of the site, and you can modify it 
 
 Vito now uses custom blocks in the VHost configuration, to enable you to add custom configurations without your configuration being overridden by Vito.
 
-> **Tip**
->
-> You can use the custom blocks when you write a plugin for Vito.
+:::tip
+You can use the custom blocks when you write a plugin for Vito.
+:::
 
 Here is an example of Nginx vhost configuration:
 
@@ -124,9 +124,9 @@ server {
 #[/footer]
 ```
 
-> **Warning**
->
-> Most of the vhost file's blocks will get reset if you generate or modify SSLs, Aliases, or create/delete site redirects.
+:::warning
+Most of the vhost file's blocks will get reset if you generate or modify SSLs, Aliases, or create/delete site redirects.
+:::
 
 ## Delete
 

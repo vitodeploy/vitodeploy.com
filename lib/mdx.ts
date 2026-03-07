@@ -1,8 +1,14 @@
 import { compileMDX } from "next-mdx-remote/rsc"
 import remarkGfm from "remark-gfm"
+import remarkDirective from "remark-directive"
+import { remarkCallout } from "./remark-callout"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypePrettyCode from "rehype-pretty-code"
+import rehypePrettyCode, { type Options } from "rehype-pretty-code"
+import {
+  transformerNotationHighlight,
+  transformerNotationWordHighlight,
+} from "@shikijs/transformers"
 import { type ReactNode } from "react"
 import { mdxComponents } from "@/components/mdx-components"
 
@@ -49,7 +55,7 @@ export async function renderMDX(source: string): Promise<ReactNode> {
     components: mdxComponents,
     options: {
       mdxOptions: {
-        remarkPlugins: [remarkGfm],
+        remarkPlugins: [remarkGfm, remarkDirective, remarkCallout],
         rehypePlugins: [
           rehypeSlug,
           [
@@ -65,11 +71,21 @@ export async function renderMDX(source: string): Promise<ReactNode> {
             rehypePrettyCode as never,
             {
               theme: {
-                dark: "github-dark",
-                light: "github-light",
+                dark: "vesper",
+                light: "github-light-default",
               },
               keepBackground: false,
-            },
+              transformers: [
+                transformerNotationHighlight(),
+                transformerNotationWordHighlight(),
+              ],
+              onVisitLine(node: { properties: { className?: string[] } }) {
+                // Prevent lines from collapsing
+                if (node.properties.className === undefined) {
+                  node.properties.className = []
+                }
+              },
+            } satisfies Options,
           ],
         ],
       },

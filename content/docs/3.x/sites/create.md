@@ -28,11 +28,11 @@ To create a new site, you need to provide the following information:
 
 Select a site type that your application is based on. Read more about [site types](./site-types.md).
 
-> **Info**
->
-> You can develop a plugin to add more site types to VitoDeploy.
->
-> [Plugins Documentation](../plugins.md#register-site-types)
+:::info
+You can develop a plugin to add more site types to VitoDeploy.
+
+[Plugins Documentation](../plugins.md#register-site-types)
+:::
 
 ### Domain
 

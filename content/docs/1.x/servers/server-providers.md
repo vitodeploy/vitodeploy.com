@@ -8,6 +8,6 @@ Vito supports the following server providers. This means that Vito has API integ
 - Vultr
 - Hetzner
 
-> **Info**
->
-> Vito also works with any custom server provider! You just need to have an SSH access to the root user of your server.
+:::info
+Vito also works with any custom server provider! You just need to have an SSH access to the root user of your server.
+:::

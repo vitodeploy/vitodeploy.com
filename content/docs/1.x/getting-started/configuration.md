@@ -27,6 +27,6 @@ sudo supervisorctl restart worker:*
 
 For docker version you will need to restart the restart/re-create the container.
 
-> **Warning**
->
-> Currently Vito supports only SMTP as the mail driver
+:::warning
+Currently Vito supports only SMTP as the mail driver
+:::

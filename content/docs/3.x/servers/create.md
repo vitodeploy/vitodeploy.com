@@ -20,19 +20,19 @@ VitoDeploy makes server creation easy and fast. Server provisioning has gone lig
 
 Vito now provisions bare servers and focuses on the essential tools to install and configure your server.
 
-> **Info**
->
-> You will need to install services like Nginx, MySQL, Redis, etc. on your server after the server installation is done.
+:::info
+You will need to install services like Nginx, MySQL, Redis, etc. on your server after the server installation is done.
+:::
 
 ### Select a server provider
 
 Vito allows you to create servers on the top cloud providers by default or a custom server by having root access to it.
 
-> **Info**
->
-> To add more server providers, You can develop a plugin for it.
->
-> [Plugins Documentation](../plugins.md)
+:::info
+To add more server providers, You can develop a plugin for it.
+
+[Plugins Documentation](../plugins.md)
+:::
 
 If you select the custom server provider, you will need to add your Vito instance's SSH public key to your server to allow Vito to connect to it.
 
@@ -85,8 +85,8 @@ You can check the logs of the installation to see what went wrong.
 
 If you don't see any logs, you can check the Vito logs (left bottom of the dashboard) to see if there is any error related to Vito itself.
 
-> **Info**
->
-> You can ask for community support in the [VitoDeploy Discord Server](https://discord.com/invite/uZeeHZZnm5) if you need help with the installation.
->
-> Or you can open an issue on the [VitoDeploy GitHub Repository](https://github.com/vitodeploy/vito)
+:::info
+You can ask for community support in the [VitoDeploy Discord Server](https://discord.com/invite/uZeeHZZnm5) if you need help with the installation.
+
+Or you can open an issue on the [VitoDeploy GitHub Repository](https://github.com/vitodeploy/vito)
+:::

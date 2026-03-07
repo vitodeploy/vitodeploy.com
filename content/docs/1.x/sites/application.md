@@ -10,9 +10,9 @@ You can change the branch of your cloned repository
 
 This is a script which will be executed on your application server each time you press the `Deploy` button.
 
-> **Info**
->
-> Your website's path is `/home/vito/YOUR-DOMAIN`
+:::info
+Your website's path is `/home/vito/YOUR-DOMAIN`
+:::
 
 Vito also exports some variables when running your deployment script, and you can use them during the deployment.
 
@@ -40,9 +40,9 @@ echo "Deploying $DOMAIN to $SITE_PATH"
 
 This is the `.env` file of your PHP app (In this case Laravel) which you've installed on your server.
 
-> **Warning**
->
-> Vito doesn't read the `.env` file in the beginning and you need to initiate the file from this page.
+:::warning
+Vito doesn't read the `.env` file in the beginning and you need to initiate the file from this page.
+:::
 
 ## Deploy
 
@@ -55,11 +55,11 @@ You can enable auto deployment for your application by setting up git hooks.
 
 Vito will handle the git hooks setup for you and you just need to click a button to enable it.
 
-> **Warning**
->
-> You need to have a deployment script to enable auto deployment.
+:::warning
+You need to have a deployment script to enable auto deployment.
+:::
 
-> **Warning**
->
-> Since source control providers need to send a request to your server, you need to have vito on a VPS. This feature
-> cannot work when you use Vito locally.
+:::warning
+Since source control providers need to send a request to your server, you need to have vito on a VPS. This feature
+cannot work when you use Vito locally.
+:::

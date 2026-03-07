@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { MessageCircleIcon } from "lucide-react"
+import { QuoteIcon } from "lucide-react"
 import Image from "next/image"
 import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons"
 
@@ -79,6 +79,10 @@ const reviews = [
   },
 ]
 
+// Split reviews into two rows for the marquee
+const firstRow = reviews.slice(0, 5)
+const secondRow = reviews.slice(5)
+
 function ReviewCard({ name, username, body, img, url }: (typeof reviews)[0]) {
   return (
     <a
@@ -86,35 +90,78 @@ function ReviewCard({ name, username, body, img, url }: (typeof reviews)[0]) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "block rounded-lg border p-4 transition-colors",
-        "bg-card hover:border-foreground/20"
+        "group relative block w-[320px] shrink-0 rounded-xl border p-5 transition-all duration-300",
+        "bg-card/80 backdrop-blur-sm",
+        "hover:border-indigo-300/50 hover:shadow-lg hover:shadow-indigo-500/5",
+        "dark:hover:border-indigo-500/30 dark:hover:shadow-indigo-500/10"
       )}
     >
-      <div className="flex items-center gap-3">
+      {/* Subtle gradient accent on hover */}
+      <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-indigo-500/0 to-violet-500/0 opacity-0 transition-opacity duration-300 group-hover:opacity-[0.03] dark:group-hover:opacity-[0.06]" />
+
+      <div className="relative flex items-start gap-3">
         <Image
           src={img}
           alt={name}
-          width={36}
-          height={36}
-          className="rounded-full"
+          width={40}
+          height={40}
+          className="shrink-0 rounded-full ring-2 ring-indigo-100 dark:ring-indigo-500/20"
         />
-        <div>
+        <div className="min-w-0 flex-1">
           <div className="text-sm font-medium">{name}</div>
           <div className="text-xs text-muted-foreground">{username}</div>
         </div>
+        <QuoteIcon className="size-4 shrink-0 text-indigo-300 dark:text-indigo-500/40" />
       </div>
-      <p className="mt-3 text-sm text-muted-foreground">{body}</p>
+      <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">
+        {body}
+      </p>
     </a>
+  )
+}
+
+function MarqueeRow({
+  items,
+  reverse = false,
+}: {
+  items: typeof reviews
+  reverse?: boolean
+}) {
+  // Duplicate items for seamless loop
+  const duplicated = [...items, ...items]
+
+  return (
+    <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+      <div
+        className={cn(
+          "flex gap-4",
+          reverse ? "animate-marquee-reverse" : "animate-marquee"
+        )}
+        style={{ "--marquee-duration": "35s" } as React.CSSProperties}
+      >
+        {duplicated.map((review, i) => (
+          <ReviewCard key={`${review.username}-${i}`} {...review} />
+        ))}
+      </div>
+    </div>
   )
 }
 
 export function Testimonials() {
   return (
-    <section className="border-t py-20">
+    <section className="relative border-t py-20">
+      {/* Subtle background glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute top-1/2 left-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[120px] dark:bg-indigo-500/8" />
+      </div>
+
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight">
-            Loved by the community
+            Loved by the{" "}
+            <span className="bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400">
+              community
+            </span>
           </h2>
           <p className="mt-4 text-muted-foreground">
             Discover what developers have to say about their VitoDeploy
@@ -144,14 +191,12 @@ export function Testimonials() {
             </Button>
           </div>
         </div>
+      </div>
 
-        <div className="mx-auto mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3">
-          {reviews.map((review) => (
-            <div key={review.username} className="mb-4 break-inside-avoid">
-              <ReviewCard {...review} />
-            </div>
-          ))}
-        </div>
+      {/* Marquee rows - full width */}
+      <div className="mt-12 flex flex-col gap-4">
+        <MarqueeRow items={firstRow} />
+        <MarqueeRow items={secondRow} reverse />
       </div>
     </section>
   )

@@ -1,55 +1,57 @@
 import type { MDXComponents } from "mdx/types"
 import Link from "next/link"
 import Image from "next/image"
+import React from "react"
 import { cn } from "@/lib/utils"
-import {
-  AlertTriangleIcon,
-  InfoIcon,
-  LightbulbIcon,
-  AlertCircleIcon,
-} from "lucide-react"
+import { CodeBlock } from "./code-block"
+
+type CalloutType = "info" | "tip" | "warning" | "danger"
+
+const calloutConfig: Record<
+  CalloutType,
+  { border: string; bg: string; text: string }
+> = {
+  info: {
+    border: "border-blue-400/40 dark:border-blue-500/30",
+    bg: "bg-blue-50 dark:bg-blue-950/40",
+    text: "text-blue-900 dark:text-blue-200",
+  },
+  tip: {
+    border: "border-emerald-400/40 dark:border-emerald-500/30",
+    bg: "bg-emerald-50 dark:bg-emerald-950/40",
+    text: "text-emerald-900 dark:text-emerald-200",
+  },
+  warning: {
+    border: "border-amber-400/40 dark:border-amber-500/30",
+    bg: "bg-amber-50 dark:bg-amber-950/40",
+    text: "text-amber-900 dark:text-amber-200",
+  },
+  danger: {
+    border: "border-red-400/40 dark:border-red-500/30",
+    bg: "bg-red-50 dark:bg-red-950/40",
+    text: "text-red-900 dark:text-red-200",
+  },
+}
 
 function Callout({
   type = "info",
   children,
 }: {
-  type?: "info" | "tip" | "warning" | "danger"
+  type?: CalloutType
   children: React.ReactNode
 }) {
-  const styles = {
-    info: {
-      container: "border-blue-500/30 bg-blue-500/5 dark:bg-blue-500/10",
-      icon: <InfoIcon className="size-5 text-blue-500" />,
-      title: "Info",
-    },
-    tip: {
-      container: "border-green-500/30 bg-green-500/5 dark:bg-green-500/10",
-      icon: <LightbulbIcon className="size-5 text-green-500" />,
-      title: "Tip",
-    },
-    warning: {
-      container: "border-yellow-500/30 bg-yellow-500/5 dark:bg-yellow-500/10",
-      icon: <AlertTriangleIcon className="size-5 text-yellow-500" />,
-      title: "Warning",
-    },
-    danger: {
-      container: "border-red-500/30 bg-red-500/5 dark:bg-red-500/10",
-      icon: <AlertCircleIcon className="size-5 text-red-500" />,
-      title: "Danger",
-    },
-  }
-
-  const style = styles[type]
+  const style = calloutConfig[type]
 
   return (
-    <div className={cn("my-6 rounded-lg border p-4", style.container)}>
-      <div className="flex items-center gap-2 font-medium">
-        {style.icon}
-        <span>{style.title}</span>
-      </div>
-      <div className="mt-2 text-sm text-muted-foreground [&>p]:mb-0">
-        {children}
-      </div>
+    <div
+      className={cn(
+        "my-5 rounded-lg border px-4 py-3 text-sm leading-relaxed [&>p]:mt-0 [&>p:not(:last-child)]:mb-2",
+        style.border,
+        style.bg,
+        style.text
+      )}
+    >
+      {children}
     </div>
   )
 }
@@ -169,22 +171,37 @@ export const mdxComponents: MDXComponents = {
       {children}
     </td>
   ),
-  code: ({ children, ...props }) => (
-    <code
-      className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
-      {...props}
-    >
-      {children}
-    </code>
-  ),
-  pre: ({ children, ...props }) => (
-    <pre
-      className="my-4 overflow-x-auto rounded-lg border bg-muted/50 p-4"
-      {...props}
-    >
-      {children}
-    </pre>
-  ),
+  code: ({ children, ...props }) => {
+    // Block code (inside <pre>) has data-language from rehype-pretty-code
+    // Inline code does not — style only inline code here
+    const isBlockCode =
+      "data-language" in props || "data-theme" in props || "style" in props
+    if (isBlockCode) {
+      return (
+        <code className="font-mono" {...props}>
+          {children}
+        </code>
+      )
+    }
+    return (
+      <code
+        className="relative rounded-md border border-border/60 bg-muted/70 px-[0.4rem] py-[0.15rem] font-mono text-[0.8125rem] text-foreground"
+        {...props}
+      >
+        {children}
+      </code>
+    )
+  },
+  pre: ({ children, ...props }) => {
+    const language = (props as Record<string, unknown>)["data-language"] as
+      | string
+      | undefined
+    return (
+      <CodeBlock language={language} {...props}>
+        {children}
+      </CodeBlock>
+    )
+  },
   img: ({ src, alt, ...props }) => {
     if (!src) return null
     if (src.startsWith("http")) {

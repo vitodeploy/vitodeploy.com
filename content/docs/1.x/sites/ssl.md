@@ -1,8 +1,8 @@
 # SSL
 
-> **Warning**
->
-> SSLs are experimental and we're still working on them. We recommend you to use E2E SSL Encryptions of Cloud providers such as Cloudflare.
+:::warning
+SSLs are experimental and we're still working on them. We recommend you to use E2E SSL Encryptions of Cloud providers such as Cloudflare.
+:::
 
 ## Letsencrypt
 
@@ -12,9 +12,9 @@ You can generate free SSLs from Letsencrypt by using Vito.
 
 You can also install your own Certificate. Vito will ask for your Certificate and Keys and will install them on your server and Nginx.
 
-> **Info**
->
-> Vito encrypts the input and stores in your Vito Instance's database.
+:::info
+Vito encrypts the input and stores in your Vito Instance's database.
+:::
 
 ## SSL for Subdomains/Aliases
 

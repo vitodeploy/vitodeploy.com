@@ -30,10 +30,10 @@ server creation in the `PHP` menu in the server page or in the [Services](./serv
 
 Vito gives you the option to easily install and uninstall different PHP versions.
 
-> **Warning**
->
-> You cannot uninstall a PHP version if you have a site running with that PHP version. You need to
-> first [change](../sites/settings#change-php-version) the PHP version of the website first.
+:::warning
+You cannot uninstall a PHP version if you have a site running with that PHP version. You need to
+first [change](../sites/settings#change-php-version) the PHP version of the website first.
+:::
 
 ## Install PHP Extensions
 
@@ -51,9 +51,9 @@ Available extensions to install:
 - intl
 - opcache
 
-> **Info**
->
-> You can also [develop a plugin](../plugins.md#register-services) to add a new PHP extension to Vito.
+:::info
+You can also [develop a plugin](../plugins.md#register-services) to add a new PHP extension to Vito.
+:::
 
 ## Default PHP Cli
 

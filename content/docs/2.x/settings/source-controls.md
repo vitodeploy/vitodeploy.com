@@ -29,9 +29,9 @@ information is required:
 Generate a personal access token on GitHub settings of your account and give it full repository control and git hook
 admin.
 
-> **Info**
->
-> If you're using Github's fine grained personl tokens, Make sure you have Read & Write on `Administration`, `Contents` and `Webhooks` scopes.
+:::info
+If you're using Github's fine grained personl tokens, Make sure you have Read & Write on `Administration`, `Contents` and `Webhooks` scopes.
+:::
 
 ### Gitlab
 

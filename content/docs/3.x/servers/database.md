@@ -40,10 +40,10 @@ To install a database, you can select the database type and version during the s
 
 Vito also allows you to install databases after the server creation in the [Services](./services.md#install) section.
 
-> **Info**
->
-> Every server can have only one database type installed. For example, you can not install both Mysql and Postgresql on
-> the same server.
+:::info
+Every server can have only one database type installed. For example, you can not install both Mysql and Postgresql on
+the same server.
+:::
 
 ## Uninstall database
 
@@ -51,10 +51,10 @@ To uninstall a database, you can go to the [Services](./services.md#uninstall) s
 want to
 remove.
 
-> **Warning**
->
-> Vito won't allow the database service to be uninstalled if there are any databases or users or backups created for that.
-> You will need to delete them first.
+:::warning
+Vito won't allow the database service to be uninstalled if there are any databases or users or backups created for that.
+You will need to delete them first.
+:::
 
 ## Create database
 
@@ -79,9 +79,9 @@ system.
 
 To sync the databases, you can go to the `Databases` section in the server's menu and click on the `Sync` button.
 
-> **Info**
->
-> Syncing databases will also sync the charsets and collations of the databases again.
+:::info
+Syncing databases will also sync the charsets and collations of the databases again.
+:::
 
 ## Create database user
 

@@ -24,13 +24,13 @@ By default, Vito allows only the following ports after the server creation:
 - 80 (HTTP)
 - 443 (HTTPS)
 
-> **Warning**
->
-> These rules are applied in the server level, Your server provider might have additional rules or restrictions and make sure your server provider's rules are compatible with Vito's rules.
+:::warning
+These rules are applied in the server level, Your server provider might have additional rules or restrictions and make sure your server provider's rules are compatible with Vito's rules.
+:::
 
-> **Danger**
->
-> Do not remove the SSH rule, This will cause Vito to lose connection to your server.
+:::danger
+Do not remove the SSH rule, This will cause Vito to lose connection to your server.
+:::
 
 ## Create new Rule
 

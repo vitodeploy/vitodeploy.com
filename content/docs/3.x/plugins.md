@@ -81,17 +81,17 @@ Plugins will live inside `app/Vito/Plugins` directory and will be a part of the 
 
 You can use Vito's [plugin template](https://github.com/vitodeploy/plugin-template) to create a new plugin.
 
-> **Info**
->
-> Take a look at one example plugin to see how it works: [VitoDeploy Laravel Octane Plugin](https://github.com/vitodeploy/laravel-octane-plugin)
+:::info
+Take a look at one example plugin to see how it works: [VitoDeploy Laravel Octane Plugin](https://github.com/vitodeploy/laravel-octane-plugin)
+:::
 
 ### Local Setup
 
 In order to develop plugins locally, you can put them directly into the `app/Vito/Plugins/YourGithubUsername/YourRepoName` and Vito will discover your plugin.
 
-> **Warning**
->
-> If your repo for the plugin is `my-username/my-vito-plugin`, the directory must be `app/Vito/Plugins/MyUsername/MyVitoPlugin` and the namespace of your plugin must be `App\Vito\Plugins\MyUsername\MyVitoPlugin`.
+:::warning
+If your repo for the plugin is `my-username/my-vito-plugin`, the directory must be `app/Vito/Plugins/MyUsername/MyVitoPlugin` and the namespace of your plugin must be `App\Vito\Plugins\MyUsername\MyVitoPlugin`.
+:::
 
 ### Plugin.php
 
@@ -174,10 +174,10 @@ Use `App\Plugins\RegisterSiteType` to register a new site type using the `boot` 
 The `handler` method should point to a class that extends `App\SiteTypes\AbstractSiteType` or implements
 `App\SiteTypes\SiteType`.
 
-> **Info**
->
-> You can find some of the built-in site types are
-> in [Site Types](https://github.com/vitodeploy/vito/tree/3.x/app/SiteTypes)
+:::info
+You can find some of the built-in site types are
+in [Site Types](https://github.com/vitodeploy/vito/tree/3.x/app/SiteTypes)
+:::
 
 ### Register site features and actions
 
@@ -217,19 +217,19 @@ Vito allows you to register a feature to a site with actions or register actions
     ->register();
 ```
 
-> **Info**
->
-> You can define forms when you're registering a site feature or inside the site feature action. It is recommended to use the action form as you will have access to the site object.
+:::info
+You can define forms when you're registering a site feature or inside the site feature action. It is recommended to use the action form as you will have access to the site object.
+:::
 
 Every feature must implement the `App\SiteFeatures\FeatureInterface` interface.
 
 Every action must extend the `App\SiteFeatures\Action` class or implement the `App\SiteFeatures\ActionInterface`
 interface.
 
-> **Info**
->
-> You can find an example of a site feature in
-> the [Laravel Octane Plugin](https://github.com/vitodeploy/laravel-octane-plugin)
+:::info
+You can find an example of a site feature in
+the [Laravel Octane Plugin](https://github.com/vitodeploy/laravel-octane-plugin)
+:::
 
 ### Register server features and actions
 
@@ -332,10 +332,10 @@ Supported service types are:
 - `process_manager`: Will be used for Workers like Supervisor
 - `firewall`: Will be used for firewall services like UFW or CSF
 
-> **Info**
->
-> These were the services Vito has built-in web interface for them. You are not limited to these service types, and you
-> can create your own.
+:::info
+These were the services Vito has built-in web interface for them. You are not limited to these service types, and you
+can create your own.
+:::
 
 **Service Handlers:**
 
@@ -349,14 +349,14 @@ interface or extend the `App\Services\Webserver\AbstractWebserver` class.
 
 You can register your service's config files using the `configPaths` method. Vito will allow you to modify these files in the Services page.
 
-> **Info**
->
-> For a non-listed service types, you can implement the `App\Services\ServiceInterface` interface or extend the
-> `App\Services\AbstractService` class.
+:::info
+For a non-listed service types, you can implement the `App\Services\ServiceInterface` interface or extend the
+`App\Services\AbstractService` class.
+:::
 
-> **Info**
->
-> You can find plenty of examples in the [Services](https://github.com/vitodeploy/vito/tree/3.x/app/Services)
+:::info
+You can find plenty of examples in the [Services](https://github.com/vitodeploy/vito/tree/3.x/app/Services)
+:::
 
 ### Register server providers
 
@@ -382,10 +382,10 @@ You can register your own server provider using the `boot` method in your `Plugi
 The handler must implement the `App\ServerProviders\ServerProvider` interface or extend the
 `App\ServerProviders\AbstractServerProvider` class.
 
-> **Info**
->
-> You can find plenty of examples in
-> the [Server Providers](https://github.com/vitodeploy/vito/tree/3.x/app/ServerProviders)
+:::info
+You can find plenty of examples in
+the [Server Providers](https://github.com/vitodeploy/vito/tree/3.x/app/ServerProviders)
+:::
 
 ### Register storage providers
 
@@ -410,10 +410,10 @@ You can register your own storage provider using `App\Plugins\RegisterStoragePro
 The handler must implement the `App\StorageProviders\StorageProvider` interface or extend the
 `App\StorageProviders\AbstractStorageProvider` class.
 
-> **Info**
->
-> You can find plenty of examples in
-> the [Storage Providers](https://github.com/vitodeploy/vito/tree/3.x/app/StorageProviders)
+:::info
+You can find plenty of examples in
+the [Storage Providers](https://github.com/vitodeploy/vito/tree/3.x/app/StorageProviders)
+:::
 
 ### Register source controls
 
@@ -438,9 +438,9 @@ You can register your own source control provider using `App\Plugins\RegisterSou
 The handler must implement the `App\SourceControls\SourceControl` interface or extend the
 `App\SourceControls\AbstractSourceControl` class.
 
-> **Info**
->
-> You can find plenty of examples in the [Source Controls](https://github.com/vitodeploy/vito/tree/3.x/app/SourceControls)
+:::info
+You can find plenty of examples in the [Source Controls](https://github.com/vitodeploy/vito/tree/3.x/app/SourceControls)
+:::
 
 ### Register notification channels
 
@@ -465,10 +465,10 @@ You can register your own notification channel using `App\Plugins\RegisterNotifi
 The handler must implement the `App\NotificationChannels\NotificationChannel` interface or extend the
 `App\NotificationChannels\AbstractNotificationChannel` class.
 
-> **Info**
->
-> You can find plenty of examples in
-> the [Notification Channels](https://github.com/vitodeploy/vito/tree/3.x/app/NotificationChannels)
+:::info
+You can find plenty of examples in
+the [Notification Channels](https://github.com/vitodeploy/vito/tree/3.x/app/NotificationChannels)
+:::
 
 ### Register Workflow Actions
 

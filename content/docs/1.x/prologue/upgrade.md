@@ -1,8 +1,8 @@
 # Upgrade
 
-> **Warning**
->
-> Before upgrade first make a backup of your database and storage folder.
+:::warning
+Before upgrade first make a backup of your database and storage folder.
+:::
 
 ## Upgrading to 1.x from 0.x
 

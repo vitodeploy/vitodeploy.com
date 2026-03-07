@@ -15,9 +15,9 @@ docker run -v vito_storage:/var/www/html/storage \
     -p 80:80 vitodeploy/vito:1.x
 ```
 
-> **Warning**
->
-> Make sure you modify the env variables when running the command.
+:::warning
+Make sure you modify the env variables when running the command.
+:::
 
 ### Docker Compose
 
@@ -61,13 +61,13 @@ volumes:
 - 1 CPU
 - 80 and 443 ports should be open
 
-> **Info**
->
-> Other Ubuntu versions might also work but we don't recommend them.
+:::info
+Other Ubuntu versions might also work but we don't recommend them.
+:::
 
-> **Warning**
->
-> You cannot use Vito to install applications into the same server as Vito. Otherwise, It might crash your Vito instance.
+:::warning
+You cannot use Vito to install applications into the same server as Vito. Otherwise, It might crash your Vito instance.
+:::
 
 ### Installation
 
@@ -77,9 +77,9 @@ Vito can be installed with only one single command on your server:
 bash <(curl -Ls https://raw.githubusercontent.com/vitodeploy/vito/1.x/scripts/install.sh)
 ```
 
-> **Warning**
->
-> The command should be ran as `root`
+:::warning
+The command should be ran as `root`
+:::
 
 The installation will ask you for these inputs:
 

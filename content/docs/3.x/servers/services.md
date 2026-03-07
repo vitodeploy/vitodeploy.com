@@ -23,9 +23,9 @@ Vito gives you the ability to manage some of the installed services on your serv
 - [Monitoring](./monitoring)
 - Node.js
 
-> **Info**
->
-> To add more services, you can develop a plugin for Vito. You can find more information about plugins in the [Plugins](../plugins.md#register-services) section.
+:::info
+To add more services, you can develop a plugin for Vito. You can find more information about plugins in the [Plugins](../plugins.md#register-services) section.
+:::
 
 ## Supported Operations
 
@@ -47,7 +47,7 @@ Vito enables you to uninstall services that you don't want.
 For example, you want to change your database from Mysql to PostgreSQL. You will need to uninstall Mysql first and then
 install PostgreSQL.
 
-> **Warning**
->
-> You cannot uninstall a service that is being used by other resources. For example, you cannot uninstall Nginx if you
-> already have sites running on the server.
+:::warning
+You cannot uninstall a service that is being used by other resources. For example, you cannot uninstall Nginx if you
+already have sites running on the server.
+:::

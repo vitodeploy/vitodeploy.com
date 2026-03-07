@@ -34,10 +34,10 @@ To install a database, you can select the database type and version during the s
 
 Vito also allows you to install databases after the server creation in the [Services](./services) section.
 
-> **Info**
->
-> Every server can have only one database type installed. For example, you can not install both Mysql and Postgresql on
-> the same server.
+:::info
+Every server can have only one database type installed. For example, you can not install both Mysql and Postgresql on
+the same server.
+:::
 
 ## Uninstall Database
 

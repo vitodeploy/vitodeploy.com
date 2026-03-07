@@ -42,12 +42,7 @@ import { useState } from "react"
 
 const navLinks = [
   { href: "/docs/getting-started/introduction", label: "Docs" },
-  { href: "/blog", label: "Blog" },
-  {
-    href: "https://demo.vitodeploy.com",
-    label: "Live Demo",
-    external: true,
-  },
+  { href: "/blog", label: "Blog" }
 ]
 
 const socialLinks = [

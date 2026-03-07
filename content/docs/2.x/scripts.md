@@ -27,9 +27,9 @@ Vito enables you to execute the scripts on every server you want.
 
 While executing, You can select the system user that you want to execute the script with.
 
-> **Warning**
->
-> Be careful when executing scripts with root user, as it can cause damage to your server.
+:::warning
+Be careful when executing scripts with root user, as it can cause damage to your server.
+:::
 
 ## Script Logs
 

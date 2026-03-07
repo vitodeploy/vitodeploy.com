@@ -9,9 +9,9 @@
 Vito supports URL redirections for your sites. You can redirect your site to another URL or path. This is useful when
 you want to redirect your site to a new domain or a new path.
 
-> **Warning**
->
-> Creating or deleting site redirects will regenerate the Nginx vhost file and any manual changes to the Nginx vhost will be lost.
+:::warning
+Creating or deleting site redirects will regenerate the Nginx vhost file and any manual changes to the Nginx vhost will be lost.
+:::
 
 ## Supported Redirect Types
 

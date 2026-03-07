@@ -32,9 +32,9 @@ To add a Discord channel you will need to enter Discord's webhook URL.
 
 To add an Email channel you just need to enter the email address that you want to send the notifications to it.
 
-> **Warning**
->
-> You need to [configure](../getting-started/configuration.md#email) Vito to use an email driver first.
+:::warning
+You need to [configure](../getting-started/configuration.md#email) Vito to use an email driver first.
+:::
 
 ### Telegram
 

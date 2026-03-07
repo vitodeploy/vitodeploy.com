@@ -40,9 +40,9 @@ the [Services](../servers/services) section.
 
 Blank PHP site type is simply a blank php website that doesn't require a source control or composer.
 
-> **Info**
->
-> Vito doesn't provide a file manager, and you need to upload your files by connecting to the server via SSH.
+:::info
+Vito doesn't provide a file manager, and you need to upload your files by connecting to the server via SSH.
+:::
 
 ### Laravel
 
@@ -60,10 +60,10 @@ Deploying a Node.js app requires `build` and `start` scripts to be available in 
 Vito installs WordPress easily by just submitting a form. You don't need to download WordPress and upload it to your
 server.
 
-> **Info**
->
-> Additional to the PHP site type requirements, You also need to have Mysql service in
-> the [Services](../servers/services) section.
+:::info
+Additional to the PHP site type requirements, You also need to have Mysql service in
+the [Services](../servers/services) section.
+:::
 
 ### PHPMyAdmin
 

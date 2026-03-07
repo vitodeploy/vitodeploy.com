@@ -38,11 +38,6 @@ const footerLinks = {
     links: [
       { label: "Blog", href: "/blog" },
       {
-        label: "Live Demo",
-        href: "https://demo.vitodeploy.com",
-        external: true,
-      },
-      {
         label: "Sponsor",
         href: "https://github.com/sponsors/saeedvaziry",
         external: true,
