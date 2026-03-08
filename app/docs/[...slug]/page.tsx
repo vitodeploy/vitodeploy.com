@@ -10,7 +10,7 @@ import {
 } from "@/lib/docs"
 import { DEFAULT_VERSION, parseDocSlug, docUrl } from "@/lib/docs-config"
 import { renderMDX, extractHeadings } from "@/lib/mdx"
-import { ChevronLeftIcon, ChevronRightIcon, PencilIcon } from "lucide-react"
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { TableOfContents } from "@/components/table-of-contents"
 
@@ -69,21 +69,9 @@ export default async function DocPage({ params }: PageProps) {
   const content = await renderMDX(doc.content)
   const headings = extractHeadings(doc.content)
 
-  const editUrl = `https://github.com/vitodeploy/vitodeploy.com/edit/main/content/docs/${version}/${docSlug.join("/")}.mdx`
-
   return (
     <div className="flex gap-8">
       <article className="min-w-0 flex-1 px-4 py-8 md:px-8">
-        <a
-          href={editUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="float-right inline-flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <PencilIcon className="size-3.5" />
-          <span className="hidden sm:inline">Edit this page</span>
-        </a>
-
         <div className="prose-headings:scroll-mt-20 [&>h1:first-child]:mt-0">
           {content}
         </div>

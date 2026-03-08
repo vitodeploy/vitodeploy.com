@@ -4,6 +4,7 @@ import Image from "next/image"
 import React from "react"
 import { cn } from "@/lib/utils"
 import { CodeBlock } from "./code-block"
+import { GenerateAppKey } from "./generate-app-key"
 
 type CalloutType = "info" | "tip" | "warning" | "danger"
 
@@ -250,4 +251,5 @@ export const mdxComponents: MDXComponents = {
   hr: () => <hr className="my-8 border-border" />,
   // Admonitions / Callouts
   Callout,
+  GenerateAppKey,
 }

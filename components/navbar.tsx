@@ -5,12 +5,6 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
   Sheet,
   SheetContent,
   SheetHeader,
@@ -22,7 +16,6 @@ import {
   MenuIcon,
   MoonIcon,
   SunIcon,
-  ChevronDownIcon,
   ExternalLinkIcon,
 } from "lucide-react"
 import {
@@ -32,14 +25,8 @@ import {
   SiYoutube,
 } from "@icons-pack/react-simple-icons"
 import { useTheme } from "next-themes"
-import {
-  VERSIONS,
-  DEFAULT_VERSION,
-  type Version,
-  docUrl,
-} from "@/lib/docs-config"
 import { useEffect, useState } from "react"
-import { SearchDialog } from "@/components/search-dialog"
+import { SearchDialog, SearchTrigger } from "@/components/search-dialog"
 
 const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/docs/getting-started/introduction", label: "Docs" },
@@ -84,17 +71,8 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [isHome])
 
-  // Detect current version from path
-  // Non-default versions have the version in the URL: /docs/2.x/...
-  // Default version has no prefix: /docs/getting-started/...
-  const versionMatch = pathname.match(/^\/docs\/(\d+\.x)/)
-  const matchedVersion = versionMatch?.[1] as Version | undefined
-  const currentVersion: Version =
-    matchedVersion && VERSIONS.includes(matchedVersion)
-      ? matchedVersion
-      : DEFAULT_VERSION
-
   return (
+    <SearchDialog>
     <header
       className={cn(
         "top-0 z-50 w-full transition-colors",
@@ -145,38 +123,13 @@ export function Navbar() {
         {/* Search - absolutely centered on desktop */}
         <div className="pointer-events-none absolute inset-0 hidden items-center justify-center md:flex">
           <div className="pointer-events-auto w-full max-w-62">
-            <SearchDialog />
+            <SearchTrigger />
           </div>
         </div>
 
         <div className="ml-auto flex items-center gap-1">
           {/* Mobile search icon */}
-          <SearchDialog mobile />
-          {/* Version dropdown - only visible on docs pages */}
-          {pathname.startsWith("/docs") && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-1 text-xs">
-                  v{currentVersion}
-                  <ChevronDownIcon className="size-3" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {VERSIONS.map((v) => (
-                  <DropdownMenuItem key={v} asChild>
-                    <Link
-                      href={docUrl(v, "getting-started/introduction")}
-                      className={cn(v === currentVersion && "font-medium")}
-                    >
-                      v{v}
-                      {v === DEFAULT_VERSION && " (latest)"}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
-
+          <SearchTrigger mobile />
           {/* Social icons - desktop */}
           <div className="hidden items-center md:flex">
             {socialLinks.map((link) => (
@@ -213,11 +166,11 @@ export function Navbar() {
                 <MenuIcon className="size-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72">
-              <SheetHeader>
+            <SheetContent side="right" className="w-64 p-4">
+              <SheetHeader className="sr-only">
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-              <nav className="mt-6 flex flex-col gap-2">
+              <nav className="mt-8 flex flex-col gap-1.5">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -225,28 +178,28 @@ export function Navbar() {
                     target={link.external ? "_blank" : undefined}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm transition-colors hover:text-foreground",
+                      "flex items-center gap-1 rounded-md px-3 py-2 text-sm transition-colors",
                       pathname.startsWith(
                         link.href.startsWith("/docs/")
                           ? "/docs"
                           : link.href.split("?")[0]
                       )
-                        ? "font-medium text-indigo-600 dark:text-indigo-400"
-                        : "text-muted-foreground"
+                        ? "bg-accent font-medium text-foreground"
+                        : "text-muted-foreground hover:bg-accent hover:text-foreground"
                     )}
                   >
                     {link.label}
                     {link.external && <ExternalLinkIcon className="size-3" />}
                   </Link>
                 ))}
-                <div className="my-2 border-t" />
+                <div className="my-1.5 border-t" />
                 {socialLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent"
+                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                   >
                     <link.icon className="size-4" />
                     {link.label}
@@ -258,5 +211,6 @@ export function Navbar() {
         </div>
       </div>
     </header>
+    </SearchDialog>
   )
 }

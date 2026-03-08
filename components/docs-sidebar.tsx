@@ -3,7 +3,21 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { type SidebarItem, type Version, docUrl } from "@/lib/docs-config"
+import {
+  VERSIONS,
+  DEFAULT_VERSION,
+  type SidebarItem,
+  type Version,
+  docUrl,
+} from "@/lib/docs-config"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
+import { ChevronDownIcon } from "lucide-react"
 import { useCallback, useEffect, useRef } from "react"
 
 function SidebarCategory({
@@ -130,6 +144,34 @@ export function DocsSidebar({
       ref={restoreScroll}
       className="h-[calc(100vh-3.5rem)] overflow-y-auto py-4 pr-4"
     >
+      <div className="mb-3 pl-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-9 w-full justify-between"
+            >
+              v{version}
+              {version === DEFAULT_VERSION && " (latest)"}
+              <ChevronDownIcon className="size-3.5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-[var(--radix-dropdown-menu-trigger-width)]">
+            {VERSIONS.map((v) => (
+              <DropdownMenuItem key={v} asChild>
+                <Link
+                  href={docUrl(v, "getting-started/introduction")}
+                  className={cn(v === version && "font-medium")}
+                >
+                  v{v}
+                  {v === DEFAULT_VERSION && " (latest)"}
+                </Link>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
       <div className="space-y-2" onClick={handleLinkClick}>
         {items

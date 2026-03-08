@@ -20,17 +20,7 @@ docker run -v vito_storage:/var/www/html/storage \
 :::info
 `APP_KEY` is Laravel's encryption key and should be a 32-character string.
 
-<button
-  onClick={() => {
-    const randomBytes = new Uint8Array(32);
-    crypto.getRandomValues(randomBytes);
-    const base64String = `base64:${btoa(String.fromCharCode(...randomBytes))}`;
-    alert(base64String); // Show the generated string in an alert
-  }}
-  className="h-8 cursor-pointer rounded-md bg-indigo-500 px-4 py-2 text-white transition duration-200 hover:bg-indigo-600"
->
-  Get a random APP_KEY
-</button>
+<GenerateAppKey />
 :::
 
 :::warning

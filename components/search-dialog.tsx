@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { liteClient as algoliasearch } from "algoliasearch/lite"
 import {
@@ -45,15 +45,78 @@ interface SearchHit {
   }
 }
 
-function SearchInput() {
+const quickLinks = [
+  {
+    label: "Getting Started",
+    url: "/docs/getting-started/introduction",
+    icon: FileTextIcon,
+  },
+  {
+    label: "Installation",
+    url: "/docs/getting-started/installation",
+    icon: FileTextIcon,
+  },
+  {
+    label: "Servers",
+    url: "/docs/servers/create",
+    icon: FileTextIcon,
+  },
+  {
+    label: "Sites",
+    url: "/docs/sites/create",
+    icon: FileTextIcon,
+  },
+]
+
+function SearchContent({ onSelect }: { onSelect: (url: string) => void }) {
   const { query, refine } = useSearchBox()
+  const { items } = useHits<SearchHit>()
+  const { status } = useInstantSearch()
   const inputRef = useRef<HTMLInputElement>(null)
+  const resultsRef = useRef<HTMLDivElement>(null)
   const [inputValue, setInputValue] = useState(query)
+  const [activeIndex, setActiveIndex] = useState(-1)
+  const [prevQuery, setPrevQuery] = useState(query)
+  const [prevItemsLength, setPrevItemsLength] = useState(items.length)
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(null)
 
+  const isLoading = status === "loading" || status === "stalled"
+  const hasResults = query && items.length > 0
+
+  // Group search results by type
+  const docs = items.filter((h) => h.type === "doc")
+  const blogs = items.filter((h) => h.type === "blog")
+
+  // Ordered items matching display order (docs first, then blogs)
+  const orderedItems = query ? [...docs, ...blogs] : quickLinks
+  const maxIndex = orderedItems.length - 1
+
+  // Reset active index when results change
+  if (prevQuery !== query || prevItemsLength !== items.length) {
+    setPrevQuery(query)
+    setPrevItemsLength(items.length)
+    setActiveIndex(-1)
+  }
+
+  // Focus input on mount
   useEffect(() => {
     inputRef.current?.focus()
   }, [])
+
+  // Cleanup debounce on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+    }
+  }, [])
+
+  // Scroll active item into view
+  useEffect(() => {
+    const container = resultsRef.current
+    if (!container || activeIndex < 0) return
+    const activeEl = container.querySelector(`[data-index="${activeIndex}"]`)
+    activeEl?.scrollIntoView({ block: "nearest" })
+  }, [activeIndex])
 
   function handleChange(value: string) {
     setInputValue(value)
@@ -61,140 +124,128 @@ function SearchInput() {
     debounceRef.current = setTimeout(() => refine(value), 300)
   }
 
-  useEffect(() => {
-    return () => {
-      if (debounceRef.current) clearTimeout(debounceRef.current)
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (orderedItems.length === 0) return
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault()
+      setActiveIndex((prev) => Math.min(prev + 1, maxIndex))
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault()
+      setActiveIndex((prev) => Math.max(prev - 1, 0))
+    } else if (e.key === "Enter" && activeIndex >= 0) {
+      e.preventDefault()
+      onSelect(orderedItems[activeIndex].url)
     }
-  }, [])
+  }
 
   return (
-    <div className="flex items-center gap-3 border-b px-4 py-3">
-      <SearchIcon className="size-4 shrink-0 text-muted-foreground" />
-      <input
-        ref={inputRef}
-        type="text"
-        placeholder="Search docs and blog..."
-        value={inputValue}
-        onChange={(e) => handleChange(e.target.value)}
-        className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
-      />
-      <kbd className="hidden rounded border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground sm:inline-block">
-        ESC
-      </kbd>
+    <div onKeyDown={handleKeyDown}>
+      {/* Search input */}
+      <div className="flex items-center gap-3 border-b px-4 py-3">
+        <SearchIcon className="size-4 shrink-0 text-muted-foreground" />
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search docs and blog..."
+          value={inputValue}
+          onChange={(e) => handleChange(e.target.value)}
+          className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+        />
+        <kbd className="hidden rounded border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground sm:inline-block">
+          ESC
+        </kbd>
+      </div>
+
+      {/* Results area */}
+      {!query ? (
+        <div ref={resultsRef} className="px-4 py-8">
+          <div className="mb-6 flex flex-col items-center text-muted-foreground">
+            <SearchIcon className="mb-2 size-6 opacity-20" />
+            <p className="text-sm">Search docs and blog posts</p>
+          </div>
+          <div className="space-y-1.5">
+            <p className="px-2 text-xs font-medium text-muted-foreground">
+              Quick links
+            </p>
+            {quickLinks.map((link, idx) => (
+              <button
+                key={link.url}
+                data-index={idx}
+                onClick={() => onSelect(link.url)}
+                onMouseEnter={() => setActiveIndex(idx)}
+                className={cn(
+                  "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors",
+                  idx === activeIndex
+                    ? "bg-accent text-accent-foreground"
+                    : "hover:bg-accent hover:text-accent-foreground"
+                )}
+              >
+                <link.icon className="size-4 shrink-0 text-muted-foreground" />
+                {link.label}
+                {idx === activeIndex && (
+                  <CornerDownLeftIcon className="ml-auto size-3 shrink-0 text-muted-foreground" />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : isLoading ? (
+        <div className="flex items-center justify-center py-12 text-muted-foreground">
+          <LoaderIcon className="size-4 animate-spin" />
+        </div>
+      ) : items.length === 0 ? (
+        <div className="flex flex-col items-center justify-center px-4 py-12 text-center text-muted-foreground">
+          <SearchIcon className="mb-3 size-6 opacity-20" />
+          <p className="text-sm font-medium">
+            No results for &ldquo;{query}&rdquo;
+          </p>
+          <p className="mt-1 text-xs">
+            Try different keywords or check spelling
+          </p>
+        </div>
+      ) : (
+        <SearchResultsList
+          docs={docs}
+          blogs={blogs}
+          activeIndex={activeIndex}
+          resultsRef={resultsRef}
+          onSelect={onSelect}
+          onHover={setActiveIndex}
+        />
+      )}
+
+      {/* Footer */}
+      {(hasResults || !query) && (
+        <div className="flex items-center justify-end gap-3 border-t px-3 py-2 text-[10px] text-muted-foreground">
+          <span className="flex items-center gap-1">
+            <CornerDownLeftIcon className="size-3" /> to select
+          </span>
+          <span className="flex items-center gap-1">
+            <ArrowRightIcon className="size-3 rotate-[-90deg]" />
+            <ArrowRightIcon className="size-3 rotate-90" /> to navigate
+          </span>
+        </div>
+      )}
     </div>
   )
 }
 
-function SearchResults({ onSelect }: { onSelect: (url: string) => void }) {
-  const { items } = useHits<SearchHit>()
-  const { status } = useInstantSearch()
-  const { query } = useSearchBox()
-  const [activeIndex, setActiveIndex] = useState(0)
-  const resultsRef = useRef<HTMLDivElement>(null)
-
-  // Reset active index when results change
-  useEffect(() => {
-    setActiveIndex(0)
-  }, [items.length, query])
-
-  // Keyboard navigation
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "ArrowDown") {
-        e.preventDefault()
-        setActiveIndex((prev) => Math.min(prev + 1, items.length - 1))
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault()
-        setActiveIndex((prev) => Math.max(prev - 1, 0))
-      } else if (e.key === "Enter" && items[activeIndex]) {
-        e.preventDefault()
-        onSelect(items[activeIndex].url)
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [items, activeIndex, onSelect])
-
-  // Scroll active item into view
-  useEffect(() => {
-    const container = resultsRef.current
-    if (!container) return
-    const activeEl = container.querySelector(`[data-index="${activeIndex}"]`)
-    activeEl?.scrollIntoView({ block: "nearest" })
-  }, [activeIndex])
-
-  if (!query) {
-    return (
-      <div className="px-4 py-8">
-        <div className="mb-6 flex flex-col items-center text-muted-foreground">
-          <SearchIcon className="mb-2 size-6 opacity-20" />
-          <p className="text-sm">Search docs and blog posts</p>
-        </div>
-        <div className="space-y-1.5">
-          <p className="px-2 text-xs font-medium text-muted-foreground">
-            Quick links
-          </p>
-          {[
-            {
-              label: "Getting Started",
-              url: "/docs/getting-started/introduction",
-              icon: FileTextIcon,
-            },
-            {
-              label: "Installation",
-              url: "/docs/getting-started/installation",
-              icon: FileTextIcon,
-            },
-            {
-              label: "Servers",
-              url: "/docs/servers/create",
-              icon: FileTextIcon,
-            },
-            {
-              label: "Sites",
-              url: "/docs/sites/create",
-              icon: FileTextIcon,
-            },
-          ].map((link) => (
-            <button
-              key={link.url}
-              onClick={() => onSelect(link.url)}
-              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-            >
-              <link.icon className="size-4 shrink-0 text-muted-foreground" />
-              {link.label}
-            </button>
-          ))}
-        </div>
-      </div>
-    )
-  }
-
-  if (status === "loading" || status === "stalled") {
-    return (
-      <div className="flex items-center justify-center py-12 text-muted-foreground">
-        <LoaderIcon className="size-4 animate-spin" />
-      </div>
-    )
-  }
-
-  if (items.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center px-4 py-12 text-center text-muted-foreground">
-        <SearchIcon className="mb-3 size-6 opacity-20" />
-        <p className="text-sm font-medium">
-          No results for &ldquo;{query}&rdquo;
-        </p>
-        <p className="mt-1 text-xs">Try different keywords or check spelling</p>
-      </div>
-    )
-  }
-
-  // Group results by type
-  const docs = items.filter((h) => h.type === "doc")
-  const blogs = items.filter((h) => h.type === "blog")
-
+function SearchResultsList({
+  docs,
+  blogs,
+  activeIndex,
+  resultsRef,
+  onSelect,
+  onHover,
+}: {
+  docs: SearchHit[]
+  blogs: SearchHit[]
+  activeIndex: number
+  resultsRef: React.RefObject<HTMLDivElement | null>
+  onSelect: (url: string) => void
+  onHover: (index: number) => void
+}) {
   let globalIndex = 0
 
   return (
@@ -213,7 +264,7 @@ function SearchResults({ onSelect }: { onSelect: (url: string) => void }) {
                 isActive={idx === activeIndex}
                 index={idx}
                 onSelect={onSelect}
-                onHover={setActiveIndex}
+                onHover={onHover}
               />
             )
           })}
@@ -233,32 +284,12 @@ function SearchResults({ onSelect }: { onSelect: (url: string) => void }) {
                 isActive={idx === activeIndex}
                 index={idx}
                 onSelect={onSelect}
-                onHover={setActiveIndex}
+                onHover={onHover}
               />
             )
           })}
         </div>
       )}
-
-    </div>
-  )
-}
-
-function SearchFooter() {
-  const { items } = useHits<SearchHit>()
-  const { query } = useSearchBox()
-
-  if (!query || items.length === 0) return null
-
-  return (
-    <div className="flex items-center justify-end gap-3 border-t px-3 py-2 text-[10px] text-muted-foreground">
-      <span className="flex items-center gap-1">
-        <CornerDownLeftIcon className="size-3" /> to select
-      </span>
-      <span className="flex items-center gap-1">
-        <ArrowRightIcon className="size-3 rotate-[-90deg]" />
-        <ArrowRightIcon className="size-3 rotate-90" /> to navigate
-      </span>
     </div>
   )
 }
@@ -333,7 +364,50 @@ function HitItem({
   )
 }
 
-export function SearchDialog({ mobile }: { mobile?: boolean } = {}) {
+export function SearchTrigger({ mobile }: { mobile?: boolean } = {}) {
+  const { setOpen } = useSearchDialog()
+
+  if (mobile) {
+    return (
+      <button
+        onClick={() => setOpen(true)}
+        className="flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground md:hidden"
+        aria-label="Search"
+      >
+        <SearchIcon className="size-4" />
+      </button>
+    )
+  }
+
+  return (
+    <button
+      onClick={() => setOpen(true)}
+      className="flex h-9 w-full items-center gap-2 rounded-lg border bg-muted/50 px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+    >
+      <SearchIcon className="size-4 shrink-0" />
+      <span className="flex-1 text-left">Search...</span>
+      <kbd className="shrink-0 rounded border bg-background px-1.5 py-0.5 text-[10px] font-medium">
+        {typeof navigator !== "undefined" &&
+        navigator.platform?.includes("Mac")
+          ? "\u2318K"
+          : "Ctrl+K"}
+      </kbd>
+    </button>
+  )
+}
+
+const SearchDialogContext = React.createContext<{
+  open: boolean
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+} | null>(null)
+
+function useSearchDialog() {
+  const ctx = React.useContext(SearchDialogContext)
+  if (!ctx) throw new Error("useSearchDialog must be used within SearchDialog")
+  return ctx
+}
+
+export function SearchDialog({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   const router = useRouter()
 
@@ -359,31 +433,8 @@ export function SearchDialog({ mobile }: { mobile?: boolean } = {}) {
   )
 
   return (
-    <>
-      {mobile ? (
-        <button
-          onClick={() => setOpen(true)}
-          className="flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground md:hidden"
-          aria-label="Search"
-        >
-          <SearchIcon className="size-4" />
-        </button>
-      ) : (
-        <button
-          onClick={() => setOpen(true)}
-          className="flex h-9 w-full items-center gap-2 rounded-lg border bg-muted/50 px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-        >
-          <SearchIcon className="size-4 shrink-0" />
-          <span className="flex-1 text-left">Search...</span>
-          <kbd className="shrink-0 rounded border bg-background px-1.5 py-0.5 text-[10px] font-medium">
-            {typeof navigator !== "undefined" &&
-            navigator.platform?.includes("Mac")
-              ? "\u2318K"
-              : "Ctrl+K"}
-          </kbd>
-        </button>
-      )}
-
+    <SearchDialogContext.Provider value={{ open, setOpen }}>
+      {children}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
           showCloseButton={false}
@@ -391,12 +442,10 @@ export function SearchDialog({ mobile }: { mobile?: boolean } = {}) {
         >
           <DialogTitle className="sr-only">Search</DialogTitle>
           <InstantSearch searchClient={searchClient} indexName={indexName}>
-            <SearchInput />
-            <SearchResults onSelect={handleSelect} />
-            <SearchFooter />
+            <SearchContent onSelect={handleSelect} />
           </InstantSearch>
         </DialogContent>
       </Dialog>
-    </>
+    </SearchDialogContext.Provider>
   )
 }
