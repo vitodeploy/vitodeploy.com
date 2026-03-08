@@ -39,6 +39,7 @@ import {
   docUrl,
 } from "@/lib/docs-config"
 import { useEffect, useState } from "react"
+import { SearchDialog } from "@/components/search-dialog"
 
 const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/docs/getting-started/introduction", label: "Docs" },
@@ -94,8 +95,16 @@ export function Navbar() {
       : DEFAULT_VERSION
 
   return (
-    <header className={cn("top-0 z-50 w-full transition-colors", isHome ? "fixed" : "sticky", isHome && !scrolled ? "bg-transparent" : "border-b bg-background/80 backdrop-blur-sm")}>
-      <div className="container mx-auto flex h-14 items-center gap-4 px-4">
+    <header
+      className={cn(
+        "top-0 z-50 w-full transition-colors",
+        isHome ? "fixed" : "sticky",
+        isHome && !scrolled
+          ? "bg-transparent"
+          : "border-b bg-background/80 backdrop-blur-sm"
+      )}
+    >
+      <div className="container relative mx-auto flex h-14 items-center gap-4 px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
@@ -118,7 +127,11 @@ export function Navbar() {
               rel={link.external ? "noopener noreferrer" : undefined}
               className={cn(
                 "flex items-center gap-2 px-3 py-2 text-sm transition-colors hover:text-foreground",
-                pathname.startsWith(link.href.startsWith("/docs/") ? "/docs" : link.href.split("?")[0])
+                pathname.startsWith(
+                  link.href.startsWith("/docs/")
+                    ? "/docs"
+                    : link.href.split("?")[0]
+                )
                   ? "font-medium text-foreground"
                   : "text-muted-foreground"
               )}
@@ -129,7 +142,16 @@ export function Navbar() {
           ))}
         </nav>
 
+        {/* Search - absolutely centered on desktop */}
+        <div className="pointer-events-none absolute inset-0 hidden items-center justify-center md:flex">
+          <div className="pointer-events-auto w-full max-w-62">
+            <SearchDialog />
+          </div>
+        </div>
+
         <div className="ml-auto flex items-center gap-1">
+          {/* Mobile search icon */}
+          <SearchDialog mobile />
           {/* Version dropdown - only visible on docs pages */}
           {pathname.startsWith("/docs") && (
             <DropdownMenu>
@@ -204,7 +226,11 @@ export function Navbar() {
                     onClick={() => setMobileOpen(false)}
                     className={cn(
                       "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm transition-colors hover:text-foreground",
-                      pathname.startsWith(link.href.startsWith("/docs/") ? "/docs" : link.href.split("?")[0])
+                      pathname.startsWith(
+                        link.href.startsWith("/docs/")
+                          ? "/docs"
+                          : link.href.split("?")[0]
+                      )
                         ? "font-medium text-indigo-600 dark:text-indigo-400"
                         : "text-muted-foreground"
                     )}

@@ -299,6 +299,12 @@
     border-radius: 0.375rem;
   }
 
+  /* Algolia search highlights */
+  mark[class*="ais-"],
+  em[class*="ais-"] {
+    @apply not-italic rounded-sm bg-chart-1/20 px-0.5 font-medium text-foreground;
+  }
+
   /* Pre scrollbar styling inside code blocks */
   [data-rehype-pretty-code-figure] pre::-webkit-scrollbar {
     height: 6px;
