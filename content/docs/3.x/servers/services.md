@@ -1,11 +1,5 @@
 # Services
 
-- [Introduction](#introduction)
-- [Supported Services](#supported-services)
-- [Supported Operations](#supported-operations)
-- [Install](#install)
-- [Uninstall](#uninstall)
-
 ## Introduction
 
 Vito gives you the ability to manage some of the installed services on your server. All the managed services are

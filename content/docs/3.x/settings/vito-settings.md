@@ -1,9 +1,5 @@
 # Vito Settings
 
-- [Introduction](#introduction)
-- [Export](#export)
-- [Import](#import)
-
 ## Introduction
 
 Here you can manage some of the settings of your Vito instance.

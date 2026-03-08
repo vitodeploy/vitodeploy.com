@@ -6,14 +6,6 @@ volumes for the docker
 installations.
 :::
 
-- [Upgrading to 3.x from 2.x](#upgrading-to-3x-from-2x)
-- [Upgrade Docker Installation](#upgrade-docker-installation)
-- [Upgrade VPS Installation](#upgrade-vps-installation)
-  - [Automatic Upgrade](#automatic-upgrade)
-  - [Manual Upgrade](#manual-upgrade)
-  - [Upgrade failed?](#upgrade-failed)
-- [Upgrade Local installation](#upgrade-local-installation)
-
 ## Upgrading to 3.x from 2.x
 
 ## Upgrade Docker Installation

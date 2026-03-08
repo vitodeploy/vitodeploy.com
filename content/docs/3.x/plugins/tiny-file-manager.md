@@ -4,15 +4,6 @@
 File managers are not recommended to use on Production servers. Use at your own Risk.
 :::
 
-- [Introduction](#introduction)
-- [Supported Web Servers](#supported-web-servers)
-- [Supported Methods](#supported-methods)
-- [How it works](#how-it-works)
-- [Installation](#installation)
-- [Enable as a site type](#enable-as-a-site-type)
-- [Example Project](#example-project)
-- [Uninstall](#uninstall)
-
 ## Introduction
 
 [Tiny File Manager Plugin](https://github.com/vitodeploy/tiny-file-manager-plugin) provides an integrated way to install [Tiny File Manager](https://tinyfilemanager.github.io/) on your server.

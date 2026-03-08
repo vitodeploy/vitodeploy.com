@@ -1,9 +1,5 @@
 # Headless Console/Terminal
 
-- [Introduction](#introduction)
-- [Supported Users](#supported-users)
-- [Run commands](#run-commands)
-
 ## Introduction
 
 Sometimes you need to run commands on your server to do some tasks like installing packages, updating the system, etc

@@ -1,12 +1,5 @@
 # Release Notes
 
-- [Migrating to Inertia and React](#migrating-to-inertia-and-react)
-- [New dashboard UI](#new-dashboard-ui)
-- [Plugins](#plugins)
-- [Background jobs performance improvements](#background-jobs-performance-improvements)
-- [Export and Import](#export-and-import)
-- [Redis for Caching, Sessions, and Queues](#redis-for-caching-sessions-and-queues)
-
 ## Migrating to Inertia and React
 
 In this release, we have migrated the dashboard to use Inertia.js and React. This change allows for a more dynamic and

@@ -5,10 +5,6 @@ Before upgrade first make a backup of `/home/vito/storage` folder for VPS instal
 installations.
 :::
 
-- [Upgrading to 2.x from 1.x](#upgrading-to-2x-from-1x)
-  - [Upgrade Docker Installation](#upgrade-docker-installation)
-  - [Upgrade VPS Installation](#upgrade-vps-installation)
-
 ## Upgrading to 2.x from 1.x
 
 ### Upgrade Docker Installation

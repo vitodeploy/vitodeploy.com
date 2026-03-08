@@ -1,16 +1,5 @@
 # Laravel Reverb Plugin
 
-- [Introduction](#introduction)
-- [Supported Web Servers](#supported-web-servers)
-- [Supported site types](#supported-site-types)
-- [Supported Methods](#supported-methods)
-- [How it works](#how-it-works)
-- [Installation](#installation)
-- [Enable as a site feature](#enable-as-a-site-feature)
-- [Enable as a site type](#enable-as-a-site-type)
-- [Example Project](#example-project)
-- [Uninstall](#uninstall)
-
 ## Introduction
 
 VitoDeploy provides a first party plugin to setup Laravel Reverb on your server.
@@ -27,9 +16,6 @@ VitoDeploy provides a first party plugin to setup Laravel Reverb on your server.
 ## Supported Methods
 
 You can setup Laravel Reverb on your server in one of the following ways:
-
-- [Site feature (same domain)](#enable-as-a-site-feature)
-- [Site type (separate subdomain)](#enable-as-a-site-type)
 
 ## How it works
 

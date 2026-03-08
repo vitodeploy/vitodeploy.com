@@ -1,12 +1,5 @@
 # Settings
 
-- [Introduction](#introduction)
-- [Server Details](#server-details)
-- [Update Server Information](#update-server-information)
-- [Update/Upgrade Server](#updateupgrade-server)
-- [Restart](#restart)
-- [Delete](#delete)
-
 ## Introduction
 
 Here you can manage your server settings such as updating the server, restarting the server, and deleting the server and

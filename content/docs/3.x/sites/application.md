@@ -1,12 +1,5 @@
 # Application
 
-- [Introduction](#introduction)
-- [Branch](#branch)
-- [Deployment Script](#deployment-script)
-- [Environment variables](#environment-variables)
-- [Deploy](#deploy)
-- [Auto Deployment](#auto-deployment)
-
 ## Introduction
 
 In the Application page you can manage your app and deployments.

@@ -1,9 +1,5 @@
 # Workers
 
-- [Introduction](#introduction)
-- [Create Worker](#create-workers)
-- [Stop, Start and Restart](#stop-start-and-restart)
-
 ## Introduction
 
 Vito installs [Supervisor](http://supervisord.org/) on your server and uses it to provide you background worker functionality.

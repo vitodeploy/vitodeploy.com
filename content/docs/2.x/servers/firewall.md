@@ -1,14 +1,5 @@
 # Firewall
 
-- [Introduction](#introduction)
-- [Rules](#rules)
-- [Create new Rule](#create-new-rule)
-    - [Rule Type](#rule-type)
-    - [Protocol](#protocol)
-    - [Port](#port)
-    - [Source](#source)
-    - [Mask](#mask)
-
 ## Introduction
 
 It is essential to a server to have a firewall to protect it from unauthorized access. Vito provides a simple, yet

@@ -1,16 +1,5 @@
 # Site Types
 
-- [Introduction](#introduction)
-- [Supported Site Types](#supported-site-types)
-    - [PHP](#php)
-    - [Blank PHP](#blank-php)
-    - [Laravel](#laravel)
-    - [WordPress](#wordpress)
-    - [PHPMyAdmin](#phpmyadmin)
-    - [Load Balancer](#load-balancer)
-- [Site Type Features](#site-type-features)
-- [Composer](#composer)
-
 ## Introduction
 
 Vito is built to support deploying PHP applications and currently, it supports any PHP applications. But it has site

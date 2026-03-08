@@ -1,14 +1,5 @@
 # Contribution Guide
 
-- [Environment Setup](#environment-setup)
-- [Where to start?](#where-to-start)
-- [Development Discussion](#development-discussion)
-- [Which Branch?](#which-branch)
-- [Security Vulnerabilities](#security-vulnerabilities)
-- [Coding Style](#coding-style)
-- [Code Quality](#code-quality)
-- [Code of Conduct](#code-of-conduct)
-
 ## Environment Setup
 
 Set up your local environment by following

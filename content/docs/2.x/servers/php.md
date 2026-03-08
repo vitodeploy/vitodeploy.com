@@ -1,13 +1,5 @@
 # PHP
 
-- [Introduction](#introduction)
-- [Supported PHP Versions](#supported-php-versions)
-- [Default PHP Cli](#default-php-cli)
-- [Edit php.ini](#edit-phpini)
-- [Restart](#restart)
-- [Install and Uninstall](#install-and-uninstall)
-- [Install PHP Extensions](#install-php-extensions)
-
 ## Introduction
 
 Vito supports multiple PHP versions, and you can install and uninstall them during the server creation or after the

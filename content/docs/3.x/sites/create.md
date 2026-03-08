@@ -1,13 +1,5 @@
 # Create site
 
-- [Introduction](#introduction)
-- [Create a new site](#create-a-new-site)
-  - [Select a site type](#select-a-site-type)
-  - [Domain](#domain)
-  - [Aliases](#aliases)
-  - [Site type fields](#site-type-fields)
-  - [Isolation](#isolation)
-
 ## Introduction
 
 In this section, you can create a new site on your server. Sites are accessible in the main menu and every server's own

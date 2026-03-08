@@ -1,9 +1,5 @@
 # Logs
 
-- [Introduction](#introduction)
-- [Vito Logs](#vito-logs)
-- [Remote Logs](#remote-logs)
-
 ## Introduction
 
 Every action on your servers via Vito are being logged.

@@ -1,11 +1,5 @@
 # Workflows & Automations
 
-- [Introduction](#introduction)
-- [Actions](#actions)
-- [Action Inputs and Outputs](#action-inputs-and-outputs)
-- [Flow](#flow)
-- [Running Workflows](#running-workflows)
-
 ## Introduction
 
 Workflows are a powerful way to automate repetitive tasks and streamline your processes. With Vito's workflow system, you can create custom workflows that trigger actions for the designed workflow.

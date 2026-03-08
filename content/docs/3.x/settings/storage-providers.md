@@ -1,14 +1,5 @@
 # Storage Providers
 
-- [Introduction](#introduction)
-- [Supported Providers](#supported-providers)
-  - [Amazon S3](#amazon-s3)
-  - [FTP(s)](#ftps)
-  - [Wassabi (Depreciated)](#wassabi-depreciated)
-  - [Dropbox](#dropbox)
-  - [Local](#local)
-- [Scope](#scope)
-
 ## Introduction
 
 Vito supports multiple storage providers to store your backups, files, and other data.

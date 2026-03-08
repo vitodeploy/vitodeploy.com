@@ -1,19 +1,10 @@
 # Server Monitoring
 
-- [Introduction](#introduction)
-- [Remote Monitor](#remote-monitor)
-- [Vito Agent](#vito-agent)
-- [Monitoring](#monitoring)
-- [Data Retention](#data-retention)
-
 ## Introduction
 
 VitoDeploy enables you to monitor your servers' resource usages like CPU Load, Memory, and Disk usage.
 
 Vito offers 2 ways of monitoring servers.
-
-- [Remote Monitor](#remote-monitor) (No agent required)
-- [Vito Agent](#vito-agent) (Via an agent installed on your server)
 
 ## Remote Monitor
 

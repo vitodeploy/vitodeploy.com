@@ -1,12 +1,5 @@
 # Backups
 
-- [Introduction](#introduction)
-- [Storage Provider](#storage-provider)
-- [Database Backups](#database-backups)
-- [Restore Database Backup](#restore-database-backup)
-- [File/Directory Backups](#filedirectory-backups)
-- [Restore File/Directory Backup](#restore-filedirectory-backup)
-
 ## Introduction
 
 Vito provides a simple interface so you can backup your server's files, directories or even databases.

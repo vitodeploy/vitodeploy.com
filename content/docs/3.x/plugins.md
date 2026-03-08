@@ -1,37 +1,5 @@
 # Plugins
 
-- [Introduction](#introduction)
-- [What can Plugins Do?](#what-can-plugins-do)
-- [Installing and Managing Plugins](#installing-and-managing-plugins)
-  - [Install](#install)
-  - [Enable](#enable)
-  - [Disable](#disable)
-  - [Uninstall](#uninstall)
-- [Plugin Development](#plugin-development)
-  - [Creating a Plugin](#creating-a-plugin)
-  - [Local Setup](#local-setup)
-  - [Plugin.php](#pluginphp)
-  - [Discover Plugins](#discover-plugins)
-  - [Error Handling](#error-handling)
-  - [Register site types](#register-site-types)
-  - [Register site features and actions](#register-site-features-and-actions)
-  - [Register server features and actions](#register-server-features-and-actions)
-  - [Register services](#register-services)
-  - [Register server providers](#register-server-providers)
-  - [Register storage providers](#register-storage-providers)
-  - [Register source controls](#register-source-controls)
-  - [Register notification channels](#register-notification-channels)
-  - [Register Workflow Actions](#register-workflow-actions)
-  - [Events](#events)
-  - [Store Service Data](#store-service-data)
-  - [Dynamic Fields](#dynamic-fields)
-  - [Hooks](#hooks)
-  - [Register Commands](#register-commands)
-  - [Register Views](#register-views)
-- [Publishing a Plugin](#publishing-a-plugin)
-- [Versioning](#versioning)
-- [Updating Plugins](#updating-plugins)
-
 ## Introduction
 
 Vito supports plugins to extend its functionality and integrate with various services.

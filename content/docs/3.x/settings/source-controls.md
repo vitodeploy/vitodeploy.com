@@ -1,14 +1,5 @@
 # Source Controls
 
-- [Introduction](#introduction)
-- [Supported Providers](#supported-providers)
-- [Required API Permissions](#required-api-permissions)
-  - [Github](#github)
-  - [Gitlab](#gitlab)
-  - [Bitbucket (Deprecated)](#bitbucket)
-  - [Bitbucket V2](#bitbucket-v2)
-- [Scope](#scope)
-
 ## Introduction
 
 Vito uses source controls to pull your source codes for the websites you install. It also uses to set up hooks for auto

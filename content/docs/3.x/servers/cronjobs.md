@@ -1,13 +1,5 @@
 # CronJobs
 
-- [Introduction](#introduction)
-- [Create a new Cronjob](#create-a-new-cronjob)
-  - [Command](#command)
-  - [User](#user)
-  - [Frequency](#frequency)
-- [Delete Cronjob](#delete-cronjob)
-- [Enable/Disable Cronjob](#enabledisable-cronjob)
-
 ## Introduction
 
 Vito makes managing CronJobs painless! It interacts directly with your server's `crontab` and deploys your CronJobs there.

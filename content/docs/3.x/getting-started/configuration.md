@@ -1,10 +1,5 @@
 # Configuration
 
-- [Introduction](#introduction)
-- [App URL](#app-url)
-- [Email](#email)
-- [Force HTTPS](#force-https)
-
 ## Introduction
 
 VitoDeploy uses environment variables to configure the app.

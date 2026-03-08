@@ -1,13 +1,5 @@
 # Notification Channels
 
-- [Introduction](#introduction)
-- [Supported Channels](#supported-channels)
-  - [Slack](#slack)
-  - [Discord](#discord)
-  - [Email](#email)
-  - [Telegram](#telegram)
-- [Scope](#scope)
-
 ## Introduction
 
 Vito provides integration with some most used platforms to send notifications to you. You can add multiple channels to

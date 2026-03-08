@@ -1,16 +1,5 @@
 # Admin
 
-- [Introduction](#introduction)
-- [Admin Area](#admin-area)
-  - [Users](#users)
-  - [Export and Import](#export-and-import)
-  - [Plugins](#plugins)
-- [Terminal](#terminal)
-  - [Clear Logs](#clear-logs)
-  - [Create User](#create-user)
-  - [Delete older metrics](#delete-older-metrics)
-  - [Generate SSH Keys](#generate-ssh-keys)
-
 ## Introduction
 
 You can manage some of the features of your Vito instance from its admin area and some others from the server terminal.

@@ -1,11 +1,5 @@
 # DNS Providers
 
-- [Introduction](#introduction)
-- [Supported Providers](#supported-providers)
-- [Required Permissions](#required-permissions)
-  - [Cloudflare](#cloudflare)
-- [Scope](#scope)
-
 ## Introduction
 
 Vito provides integration with DNS providers to to manage your domains' NS records.

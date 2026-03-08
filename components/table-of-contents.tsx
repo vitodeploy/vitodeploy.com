@@ -55,7 +55,8 @@ export function TableOfContents({ headings }: { headings: TocEntry[] }) {
               className={cn(
                 "block text-muted-foreground transition-colors hover:text-foreground",
                 heading.depth === 3 && "pl-3",
-                activeId === heading.id && "font-medium text-foreground"
+                activeId === heading.id &&
+                  "font-medium text-indigo-600 dark:text-indigo-400"
               )}
             >
               {heading.text}

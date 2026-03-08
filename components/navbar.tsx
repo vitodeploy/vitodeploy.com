@@ -40,9 +40,9 @@ import {
 } from "@/lib/docs-config"
 import { useState } from "react"
 
-const navLinks = [
+const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/docs/getting-started/introduction", label: "Docs" },
-  { href: "/blog", label: "Blog" }
+  { href: "/blog", label: "Blog" },
 ]
 
 const socialLinks = [
@@ -57,7 +57,7 @@ const socialLinks = [
     label: "Discord",
   },
   {
-    href: "https://x.com/AnomalyDev",
+    href: "https://x.com/vitodeploy",
     icon: SiX,
     label: "X",
   },
@@ -107,9 +107,9 @@ export function Navbar() {
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
               className={cn(
-                "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm transition-colors hover:text-foreground",
+                "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent",
                 pathname.startsWith(link.href.split("?")[0])
-                  ? "text-foreground"
+                  ? "bg-indigo-500/10 font-medium text-indigo-600 dark:text-indigo-400"
                   : "text-muted-foreground"
               )}
             >
@@ -192,7 +192,12 @@ export function Navbar() {
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent"
+                    className={cn(
+                      "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm transition-colors hover:text-foreground",
+                      pathname.startsWith(link.href.split("?")[0])
+                        ? "font-medium text-indigo-600 dark:text-indigo-400"
+                        : "text-muted-foreground"
+                    )}
                   >
                     {link.label}
                     {link.external && <ExternalLinkIcon className="size-3" />}

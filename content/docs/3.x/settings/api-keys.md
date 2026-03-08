@@ -1,8 +1,5 @@
 # API Keys
 
-- [Introduction](#introduction)
-- [How to Generate an API Key](#how-to-generate-an-api-key)
-
 ## Introduction
 
 Vito exposes API endpoints that allows you to interact with your Vito instance programmatically. To use the API, you need to generate an API key.

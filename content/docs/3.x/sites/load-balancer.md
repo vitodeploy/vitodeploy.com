@@ -1,10 +1,5 @@
 # Load Balancer
 
-- [Introduction](#introduction)
-- [How to set up Load Balancer](#how-to-set-up-load-balancer)
-- [Balancing Methods](#balancing-methods)
-- [Load Balancer Servers](#load-balancer-servers)
-
 ## Introduction
 
 Vito uses Nginx to create load balancer to distribute incoming traffic across multiple servers.

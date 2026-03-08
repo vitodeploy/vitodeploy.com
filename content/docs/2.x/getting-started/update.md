@@ -1,8 +1,5 @@
 # Update
 
-- [Update VPS](#update-vps)
-- [Update Docker](#update-docker)
-
 ## Update VPS
 
 If you've installed VitoDeploy on a linux virtual machine, To update it to the latest version you just need to run the

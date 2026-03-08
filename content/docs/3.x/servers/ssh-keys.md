@@ -1,10 +1,5 @@
 # SSH Keys
 
-- [Introduction](#introduction)
-- [Personal SSH Keys](#personal-ssh-keys)
-- [Server SSH Keys](#server-ssh-keys)
-- [SSH to Server](#ssh-to-server)
-
 ## Introduction
 
 Vito manages SSH Keys in Profile and Server level. Every user can have multiple SSH Keys attached to their account and

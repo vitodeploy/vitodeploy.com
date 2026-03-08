@@ -1,10 +1,5 @@
 # Scripts
 
-- [Introduction](#introduction)
-- [Variables](#variables)
-- [Execute Script](#execute-script)
-- [Script Logs](#script-logs)
-
 ## Introduction
 
 Scripts allows you to create bash scripts and execute them on your servers any time you want.

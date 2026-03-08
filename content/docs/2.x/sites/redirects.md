@@ -1,9 +1,5 @@
 # Site Redirects
 
-- [Introduction](#introduction)
-- [Supported Redirect Types](#supported-redirect-types)
-- [Create a Redirect](#create-a-redirect)
-
 ## Introduction
 
 Vito supports URL redirections for your sites. You can redirect your site to another URL or path. This is useful when

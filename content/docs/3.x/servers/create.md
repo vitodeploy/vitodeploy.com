@@ -1,14 +1,5 @@
 # Create server
 
-- [Introduction](#introduction)
-- [How to Create a Server](#how-to-create-a-server)
-  - [Select a server provider](#select-a-server-provider)
-  - [Fill in the form](#fill-in-the-form)
-  - [Select services](#select-services)
-  - [Create the server](#create-the-server)
-- [Server overview](#server-overview)
-- [Installation failure](#installation-failure)
-
 ## Introduction
 
 VitoDeploy allows you to create servers on your connected server providers with ease. You can create servers with a few

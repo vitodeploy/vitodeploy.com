@@ -1,15 +1,5 @@
 # File Manager
 
-- [Introduction](#introduction)
-- [File Browser](#file-browser)
-- [Upload Files](#upload-files)
-- [Download Files](#download-files)
-- [Create New File](#create-new-file)
-- [Create New Directory](#create-new-directory)
-- [Edit Files](#edit-files)
-- [Delete Files](#delete-files)
-- [Zip Extract](#zip-extract)
-
 ## Introduction
 
 Vito has a built-in file manager that allows you to manage your files and directories directly from the the server's dashboard.

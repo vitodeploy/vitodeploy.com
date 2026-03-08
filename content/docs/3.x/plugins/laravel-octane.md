@@ -1,14 +1,5 @@
 # Laravel Octane Plugin
 
-- [Introduction](#introduction)
-- [Supported Web Servers](#supported-web-servers)
-- [Supported site types](#supported-site-types)
-- [Supported Methods](#supported-methods)
-- [How it works](#how-it-works)
-- [Installation](#installation)
-- [Enable as a site feature](#enable-as-a-site-feature)
-- [Uninstall](#uninstall)
-
 ## Introduction
 
 VitoDeploy provides a first party plugin to setup Laravel Octane on your server.
@@ -24,8 +15,6 @@ VitoDeploy provides a first party plugin to setup Laravel Octane on your server.
 ## Supported Methods
 
 You can setup Laravel Octane on your server in one of the following ways:
-
-- [Site feature (same domain)](#enable-as-a-site-feature)
 
 ## How it works
 

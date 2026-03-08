@@ -4,8 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { type SidebarItem, type Version, docUrl } from "@/lib/docs-config"
-import { ChevronRightIcon } from "lucide-react"
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useEffect, useRef } from "react"
 
 function SidebarCategory({
   item,
@@ -16,28 +15,12 @@ function SidebarCategory({
   version: Version
   pathname: string
 }) {
-  const hasActiveChild = item.items?.some((child) => {
-    const href = child.id ? docUrl(version, child.id) : ""
-    return pathname === href
-  })
-
-  const [open, setOpen] = useState(true)
-
   return (
     <div>
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex w-full items-center gap-1 rounded-md px-2 py-1.5 text-sm font-medium text-foreground hover:text-foreground/80"
-      >
-        <ChevronRightIcon
-          className={cn(
-            "size-3.5 shrink-0 transition-transform",
-            open && "rotate-90"
-          )}
-        />
+      <div className="px-2 py-1.5 text-sm font-medium text-foreground">
         {item.label}
-      </button>
-      {open && item.items && (
+      </div>
+      {item.items && (
         <div className="ml-3 space-y-0.5 border-l pl-2">
           {item.items.map((child) => (
             <SidebarItemComponent
@@ -71,7 +54,7 @@ function SidebarDocLink({
       className={cn(
         "block rounded-md px-2 py-1.5 text-sm transition-colors",
         isActive
-          ? "bg-primary/10 font-medium text-primary"
+          ? "bg-indigo-500/10 font-medium text-indigo-600 dark:text-indigo-400"
           : "text-muted-foreground hover:text-foreground"
       )}
     >
@@ -121,6 +104,24 @@ export function DocsSidebar({
       if (saved) {
         node.scrollTop = Number(saved)
       }
+    }
+  }, [])
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    let timeout: ReturnType<typeof setTimeout>
+    const onScroll = () => {
+      el.classList.add("is-scrolling")
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        el.classList.remove("is-scrolling")
+      }, 1000)
+    }
+    el.addEventListener("scroll", onScroll, { passive: true })
+    return () => {
+      el.removeEventListener("scroll", onScroll)
+      clearTimeout(timeout)
     }
   }, [])
 

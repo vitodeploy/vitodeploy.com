@@ -1,11 +1,5 @@
 # Settings
 
-- [Introduction](#introduction)
-- [Change PHP Version](#change-php-version)
-- [Update Aliases](#update-aliases)
-- [Update VHost](#update-vhost)
-- [Delete](#delete)
-
 ## Introduction
 
 In the Settings page, you can manage your website settings like its PHP version, Aliases, Custom Vhost and more.

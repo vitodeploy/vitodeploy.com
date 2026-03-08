@@ -1,16 +1,5 @@
 # Server Providers
 
-- [Introduction](#introduction)
-- [Supported Providers](#supported-providers)
-- [Required Permissions](#required-permissions)
-  - [AWS](#aws)
-  - [Linode](#linode)
-  - [Digital Ocean](#digital-ocean)
-  - [Vultr](#vultr)
-  - [Hetzner](#hetzner)
-  - [Custom](#custom)
-- [Scope](#scope)
-
 ## Introduction
 
 Vito provides integration with multiple server providers to deploy your servers with ease.

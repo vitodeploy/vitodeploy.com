@@ -1,12 +1,5 @@
 # Database
 
-- [Introduction](#introduction)
-- [Supported Databases](#supported-databases)
-- [Install Database](#install-database)
-- [Uninstall Database](#uninstall-database)
-- [Linking](#linking)
-- [Backup](#backup)
-
 ## Introduction
 
 Vito provides a simple interface to manage your databases disregards to their type, and you can create databases, users,

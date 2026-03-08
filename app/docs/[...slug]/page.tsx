@@ -74,22 +74,19 @@ export default async function DocPage({ params }: PageProps) {
   return (
     <div className="flex gap-8">
       <article className="min-w-0 flex-1 px-4 py-8 md:px-8">
-        <div className="flex items-start justify-between gap-4">
-          <h1 className="text-3xl font-bold tracking-tight">
-            {doc.meta.title}
-          </h1>
-          <a
-            href={editUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 inline-flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <PencilIcon className="size-3.5" />
-            <span className="hidden sm:inline">Edit this page</span>
-          </a>
-        </div>
+        <a
+          href={editUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="float-right inline-flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <PencilIcon className="size-3.5" />
+          <span className="hidden sm:inline">Edit this page</span>
+        </a>
 
-        <div className="prose-headings:scroll-mt-20 mt-8">{content}</div>
+        <div className="prose-headings:scroll-mt-20 [&>h1:first-child]:mt-0">
+          {content}
+        </div>
 
         {/* Prev / Next navigation */}
         <div className="mt-12 flex items-center justify-between border-t pt-6">

@@ -89,11 +89,35 @@ export const mdxComponents: MDXComponents = {
       {children}
     </h4>
   ),
-  p: ({ children, ...props }) => (
-    <p className="leading-7 [&:not(:first-child)]:mt-4" {...props}>
-      {children}
-    </p>
-  ),
+  p: ({ children, ...props }) => {
+    // Detect if children contain block-level elements (e.g. Callout <div>, button).
+    // If so, render a <div> instead of <p> to avoid invalid HTML nesting,
+    // which causes React hydration errors.
+    const hasBlockChild = React.Children.toArray(children).some(
+      (child) =>
+        React.isValidElement(child) &&
+        (typeof child.type === "function" ||
+          typeof child.type === "object" ||
+          (typeof child.type === "string" &&
+            ["div", "button", "figure", "table", "ul", "ol", "pre"].includes(
+              child.type
+            )))
+    )
+
+    if (hasBlockChild) {
+      return (
+        <div className="leading-7 [&:not(:first-child)]:mt-4" {...props}>
+          {children}
+        </div>
+      )
+    }
+
+    return (
+      <p className="leading-7 [&:not(:first-child)]:mt-4" {...props}>
+        {children}
+      </p>
+    )
+  },
   a: ({ href, children, ...props }) => {
     const isExternal = href?.startsWith("http")
     if (isExternal) {
@@ -172,16 +196,13 @@ export const mdxComponents: MDXComponents = {
     </td>
   ),
   code: ({ children, ...props }) => {
-    // Block code (inside <pre>) has data-language from rehype-pretty-code
-    // Inline code does not — style only inline code here
+    // Block code (inside <pre>) has data-language from rehype-pretty-code.
+    // Return a single <code> to avoid nested <code><code> which causes
+    // hydration errors.
     const isBlockCode =
       "data-language" in props || "data-theme" in props || "style" in props
     if (isBlockCode) {
-      return (
-        <code className="font-mono" {...props}>
-          {children}
-        </code>
-      )
+      return <code {...props}>{children}</code>
     }
     return (
       <code

@@ -1,10 +1,5 @@
 # Release Notes
 
-- [Migrating to FilamentPHP](#migrating-to-filamentphp)
-- [API Support](#api-support)
-- [Server Provider Integration](#server-provider-integration)
-- [Tables and Filters](#tables-and-filters)
-
 ## Migrating to FilamentPHP
 
 We've migrated VitoDeploy from [HTMX](https://htmx.org/) to [FilamentPHP](https://filamentphp.com/). This has reduced a

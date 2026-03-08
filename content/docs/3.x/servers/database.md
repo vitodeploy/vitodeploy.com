@@ -1,17 +1,5 @@
 # Database
 
-- [Introduction](#introduction)
-- [Supported Databases](#supported-databases)
-- [Install Database](#install-database-service)
-- [Uninstall Database](#uninstall-database)
-- [Create Database](#create-database)
-- [Delete Database](#delete-database)
-- [Sync Databases](#sync-databases)
-- [Create Database User](#create-database-user)
-- [Link User to Database](#link-user-to-database)
-- [Sync Database Users](#sync-database-users)
-- [Backup](#backup)
-
 ## Introduction
 
 Vito provides a simple interface to manage your databases disregards to their type, and you can create databases, users,

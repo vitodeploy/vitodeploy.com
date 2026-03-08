@@ -4,12 +4,6 @@
 This guide is only for VitoDeploy instances installed on a Virtual Private Server.
 :::
 
-- [Install SSL on Vito instance](#install-ssl-on-vito-instance)
-- [Attach a domain](#attach-a-domain)
-- [Get SSL](#get-ssl)
-- [Vito behind proxy](#vito-behind-proxy)
-- [Update environment variables](#update-environment-variables)
-
 ## Install SSL on Vito instance
 
 If you've installed VitoDeploy on a VPS, By default your Vito instance will be accessible via your server's IP address which is not secure.

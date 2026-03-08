@@ -1,9 +1,5 @@
 # Commands
 
-- [Introduction](#introduction)
-- [Default Commands](#default-commands)
-- [Variables](#variables)
-
 ## Introduction
 
 Commands are useful tools that allow users to run single commands on the root directory of a site.

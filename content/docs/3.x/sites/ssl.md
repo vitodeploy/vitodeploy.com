@@ -1,12 +1,5 @@
 # SSL
 
-- [Introduction](#introduction)
-- [Letsencrypt](#letsencrypt)
-- [Custom SSLs](#custom-ssls)
-- [SSL for Subdomains/Aliases](#ssl-for-subdomainsaliases)
-- [Multiple SSLs](#multiple-ssls)
-- [Force HTTPS/SSL](#force-httpsssl)
-
 ## Introduction
 
 Vito supports SSL installation for your sites. It can issue a Letsencrypt Certificate for your website, or you can

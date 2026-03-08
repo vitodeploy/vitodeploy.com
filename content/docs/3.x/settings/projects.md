@@ -1,11 +1,5 @@
 # Projects
 
-- [Introduction](#introduction)
-- [Creating a Project](#creating-a-project)
-- [Project User Management](#project-user-management)
-- [Deleting a Project](#deleting-a-project)
-- [Switching Projects](#switching-projects)
-
 ## Introduction
 
 Vito enables you to handle your different projects.

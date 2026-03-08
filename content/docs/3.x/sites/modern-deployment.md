@@ -1,15 +1,5 @@
 # Modern Deployment
 
-- [Introduction](#introduction)
-- [How Modern Deployment Works](#how-modern-deployment-works)
-- [Supported site types](#supported-site-types)
-- [Enabling Modern Deployment](#enabling-modern-deployment)
-- [Zero Downtime Deployment](#zero-downtime-deployment)
-- [Rollbacks](#rollbacks)
-- [Removing releases](#removing-releases)
-- [Modern Deployment Configuration](#modern-deployment-configuration)
-- [Disabling Modern Deployment](#disabling-modern-deployment)
-
 :::warning
 Modern Deployment is in Beta. Please use it with caution and report any issues you find.
 :::

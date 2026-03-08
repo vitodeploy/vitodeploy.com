@@ -1,9 +1,5 @@
 # Diagnoses and Troubleshooting
 
-- [Introduction](#introduction)
-- [Logs](#logs)
-- [Horizon](#horizon)
-
 ## Introduction
 
 Vito is a Laravel application, and it ships with diagnostic tools to help you troubleshoot issues with your Vito
