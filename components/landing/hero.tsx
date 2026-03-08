@@ -10,15 +10,27 @@ import { motion } from "motion/react"
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Gradient background with brand indigo tones */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        {/* Primary indigo glow - top center */}
-        <div className="absolute top-0 left-1/2 h-[600px] w-[900px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-indigo-500/10 blur-[120px] dark:bg-indigo-500/15" />
-        {/* Secondary violet accent - left */}
-        <div className="absolute top-1/4 -left-32 h-[400px] w-[400px] rounded-full bg-violet-400/8 blur-[100px] dark:bg-violet-500/10" />
-        {/* Tertiary indigo accent - right */}
-        <div className="absolute top-1/3 -right-32 h-[350px] w-[350px] rounded-full bg-indigo-400/8 blur-[100px] dark:bg-indigo-400/10" />
-      </div>
+      {/* Gradient background — uses radial-gradient instead of blurred divs to avoid banding */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          backgroundImage: [
+            "radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.55 0.15 264 / 8%), transparent)",
+            "radial-gradient(ellipse 40% 40% at 10% 40%, oklch(0.6 0.12 280 / 5%), transparent)",
+            "radial-gradient(ellipse 40% 35% at 90% 45%, oklch(0.55 0.15 264 / 5%), transparent)",
+          ].join(", "),
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 hidden dark:block"
+        style={{
+          backgroundImage: [
+            "radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.55 0.15 264 / 12%), transparent)",
+            "radial-gradient(ellipse 40% 40% at 10% 40%, oklch(0.6 0.12 280 / 8%), transparent)",
+            "radial-gradient(ellipse 40% 35% at 90% 45%, oklch(0.55 0.15 264 / 8%), transparent)",
+          ].join(", "),
+        }}
+      />
 
       {/* Grid pattern overlay */}
       <div className="grid-pattern pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]" />
@@ -75,7 +87,7 @@ export function Hero() {
               <Button
                 size="lg"
                 asChild
-                className="bg-indigo-600 text-white shadow-lg shadow-indigo-500/25 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600"
+                className="bg-indigo-600 text-white shadow-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600"
               >
                 <Link href="/docs/getting-started/introduction">
                   <BookOpenIcon className="mr-2 size-4" />
@@ -112,7 +124,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >
-          <div className="overflow-hidden rounded-xl border bg-card shadow-2xl shadow-indigo-500/5 dark:shadow-indigo-500/10">
+          <div className="overflow-hidden rounded-xl border bg-card shadow-sm">
             <Image
               src="/img/overview-light.png"
               alt="VitoDeploy Dashboard"
@@ -130,10 +142,6 @@ export function Hero() {
               priority
             />
           </div>
-          {/* Gradient fade at bottom */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
-          {/* Subtle indigo glow behind the screenshot */}
-          <div className="pointer-events-none absolute -inset-4 -z-10 rounded-2xl bg-gradient-to-b from-indigo-500/5 via-transparent to-transparent blur-2xl" />
         </motion.div>
       </div>
     </section>

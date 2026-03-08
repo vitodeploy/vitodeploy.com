@@ -109,11 +109,6 @@ export function Contributors() {
 
   return (
     <section ref={sectionRef} className="relative py-20">
-      {/* Background accent */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute bottom-0 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-indigo-500/5 blur-[100px] dark:bg-indigo-500/8" />
-      </div>
-
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight">
@@ -155,8 +150,6 @@ export function Contributors() {
                       className="rounded-full ring-2 ring-transparent transition-all duration-300 group-hover:scale-110 group-hover:ring-indigo-400/50 dark:group-hover:ring-indigo-500/50"
                       unoptimized
                     />
-                    {/* Glow on hover */}
-                    <div className="pointer-events-none absolute -inset-1 rounded-full bg-indigo-500/0 blur-md transition-all duration-300 group-hover:bg-indigo-500/20" />
                   </div>
                 </a>
               </TooltipTrigger>

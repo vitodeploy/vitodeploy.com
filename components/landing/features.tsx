@@ -70,7 +70,7 @@ const features: { title: string; description: string; icon: ReactNode }[] = [
   },
   {
     title: "Console",
-    description: "Run commands directly on your server",
+    description: "Live terminal to your server from the dashboard",
     icon: <TerminalIcon className="size-5" />,
   },
   {
@@ -129,12 +129,6 @@ export function Features() {
 
   return (
     <section ref={sectionRef} className="relative border-t py-20">
-      {/* Background gradient */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-muted/40 via-transparent to-muted/20" />
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[120px] dark:bg-indigo-500/8" />
-      </div>
-
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight">
@@ -165,9 +159,6 @@ export function Features() {
                 transitionDelay: isVisible ? `${i * 50}ms` : "0ms",
               }}
             >
-              {/* Hover gradient overlay */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-violet-500/0 opacity-0 transition-opacity duration-300 group-hover:opacity-[0.04] dark:group-hover:opacity-[0.08]" />
-
               <div className="relative">
                 <div className="flex size-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 transition-all duration-300 group-hover:bg-indigo-600 group-hover:text-white group-hover:shadow-md group-hover:shadow-indigo-500/25 dark:bg-indigo-500/10 dark:text-indigo-400 dark:group-hover:bg-indigo-500 dark:group-hover:text-white">
                   {feature.icon}

@@ -38,7 +38,7 @@ import {
   type Version,
   docUrl,
 } from "@/lib/docs-config"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const navLinks: { href: string; label: string; external?: boolean }[] = [
   { href: "/docs/getting-started/introduction", label: "Docs" },
@@ -72,6 +72,16 @@ export function Navbar() {
   const pathname = usePathname()
   const { setTheme, resolvedTheme } = useTheme()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const isHome = pathname === "/"
+
+  useEffect(() => {
+    if (!isHome) return
+    const onScroll = () => setScrolled(window.scrollY > 0)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [isHome])
 
   // Detect current version from path
   // Non-default versions have the version in the URL: /docs/2.x/...
@@ -84,7 +94,7 @@ export function Navbar() {
       : DEFAULT_VERSION
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-sm">
+    <header className={cn("top-0 z-50 w-full transition-colors", isHome ? "fixed" : "sticky", isHome && !scrolled ? "bg-transparent" : "border-b bg-background/80 backdrop-blur-sm")}>
       <div className="container mx-auto flex h-14 items-center gap-4 px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -107,9 +117,9 @@ export function Navbar() {
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
               className={cn(
-                "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent",
-                pathname.startsWith(link.href.split("?")[0])
-                  ? "bg-indigo-500/10 font-medium text-indigo-600 dark:text-indigo-400"
+                "flex items-center gap-2 px-3 py-2 text-sm transition-colors hover:text-foreground",
+                pathname.startsWith(link.href.startsWith("/docs/") ? "/docs" : link.href.split("?")[0])
+                  ? "font-medium text-foreground"
                   : "text-muted-foreground"
               )}
             >
@@ -194,7 +204,7 @@ export function Navbar() {
                     onClick={() => setMobileOpen(false)}
                     className={cn(
                       "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm transition-colors hover:text-foreground",
-                      pathname.startsWith(link.href.split("?")[0])
+                      pathname.startsWith(link.href.startsWith("/docs/") ? "/docs" : link.href.split("?")[0])
                         ? "font-medium text-indigo-600 dark:text-indigo-400"
                         : "text-muted-foreground"
                     )}

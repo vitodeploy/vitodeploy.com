@@ -96,9 +96,6 @@ function ReviewCard({ name, username, body, img, url }: (typeof reviews)[0]) {
         "dark:hover:border-indigo-500/30 dark:hover:shadow-indigo-500/10"
       )}
     >
-      {/* Subtle gradient accent on hover */}
-      <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-br from-indigo-500/0 to-violet-500/0 opacity-0 transition-opacity duration-300 group-hover:opacity-[0.03] dark:group-hover:opacity-[0.06]" />
-
       <div className="relative flex items-start gap-3">
         <Image
           src={img}
@@ -150,11 +147,6 @@ function MarqueeRow({
 export function Testimonials() {
   return (
     <section className="relative border-t py-20">
-      {/* Subtle background glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[120px] dark:bg-indigo-500/8" />
-      </div>
-
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight">
