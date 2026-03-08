@@ -32,6 +32,154 @@ function titleFromId(id: string): string {
 
 export function getSidebar(version: Version): SidebarItem[] {
   const sidebars: Record<Version, SidebarItem[]> = {
+    "4.x": [
+      {
+        type: "category",
+        label: "Prologue",
+        items: [
+          { type: "doc", label: "Release Notes", id: "prologue/release-notes" },
+          { type: "doc", label: "Upgrade Guide", id: "prologue/upgrade" },
+          {
+            type: "doc",
+            label: "Contribution Guide",
+            id: "prologue/contribution-guide",
+          },
+        ],
+      },
+      {
+        type: "category",
+        label: "Getting Started",
+        items: [
+          {
+            type: "doc",
+            label: "Introduction",
+            id: "getting-started/introduction",
+          },
+          {
+            type: "doc",
+            label: "Installation",
+            id: "getting-started/installation",
+          },
+          { type: "doc", label: "Securing", id: "getting-started/securing" },
+          {
+            type: "doc",
+            label: "Configuration",
+            id: "getting-started/configuration",
+          },
+          { type: "doc", label: "Update", id: "getting-started/update" },
+        ],
+      },
+      {
+        type: "category",
+        label: "Servers",
+        items: [
+          { type: "doc", label: "Create", id: "servers/create" },
+          { type: "doc", label: "Backups", id: "servers/backups" },
+          { type: "doc", label: "Database", id: "servers/database" },
+          { type: "doc", label: "PHP", id: "servers/php" },
+          { type: "doc", label: "Firewall", id: "servers/firewall" },
+          { type: "doc", label: "Cron Jobs", id: "servers/cronjobs" },
+          { type: "doc", label: "Workers", id: "servers/workers" },
+          { type: "doc", label: "SSH Keys", id: "servers/ssh-keys" },
+          { type: "doc", label: "Services", id: "servers/services" },
+          { type: "doc", label: "Monitoring", id: "servers/monitoring" },
+          { type: "doc", label: "Console", id: "servers/console" },
+          { type: "doc", label: "Redis", id: "servers/redis" },
+          { type: "doc", label: "Settings", id: "servers/settings" },
+          { type: "doc", label: "Logs", id: "servers/logs" },
+        ],
+      },
+      {
+        type: "category",
+        label: "Sites",
+        items: [
+          { type: "doc", label: "Create", id: "sites/create" },
+          { type: "doc", label: "Site Types", id: "sites/site-types" },
+          { type: "doc", label: "Application", id: "sites/application" },
+          { type: "doc", label: "Commands", id: "sites/commands" },
+          { type: "doc", label: "SSL", id: "sites/ssl" },
+          { type: "doc", label: "Settings", id: "sites/settings" },
+          { type: "doc", label: "Isolation", id: "sites/isolation" },
+          { type: "doc", label: "Load Balancer", id: "sites/load-balancer" },
+          { type: "doc", label: "Redirects", id: "sites/redirects" },
+          {
+            type: "doc",
+            label: "Modern Deployment",
+            id: "sites/modern-deployment",
+          },
+        ],
+      },
+      { type: "doc", label: "Scripts", id: "scripts" },
+      {
+        type: "doc",
+        label: "Workflows & Automations",
+        id: "workflows",
+      },
+      { type: "doc", label: "Domains", id: "domains" },
+      {
+        type: "category",
+        label: "Plugins",
+        items: [
+          { type: "doc", label: "Plugins", id: "plugins" },
+          {
+            type: "doc",
+            label: "Laravel Octane",
+            id: "plugins/laravel-octane",
+          },
+          {
+            type: "doc",
+            label: "Laravel Reverb",
+            id: "plugins/laravel-reverb",
+          },
+          {
+            type: "doc",
+            label: "Tiny File Manager",
+            id: "plugins/tiny-file-manager",
+          },
+        ],
+      },
+      {
+        type: "category",
+        label: "Settings",
+        items: [
+          { type: "doc", label: "Profile", id: "settings/profile" },
+          { type: "doc", label: "Projects", id: "settings/projects" },
+          {
+            type: "doc",
+            label: "Server Providers",
+            id: "settings/server-providers",
+          },
+          {
+            type: "doc",
+            label: "Source Controls",
+            id: "settings/source-controls",
+          },
+          {
+            type: "doc",
+            label: "Notification Channels",
+            id: "settings/notification-channels",
+          },
+          {
+            type: "doc",
+            label: "Storage Providers",
+            id: "settings/storage-providers",
+          },
+          {
+            type: "doc",
+            label: "DNS Providers",
+            id: "settings/dns-providers",
+          },
+          { type: "doc", label: "API Keys", id: "settings/api-keys" },
+          {
+            type: "doc",
+            label: "Vito Settings",
+            id: "settings/vito-settings",
+          },
+        ],
+      },
+      { type: "doc", label: "Diagnoses", id: "diagnoses" },
+      { type: "doc", label: "Admin", id: "admin" },
+    ],
     "3.x": [
       {
         type: "category",

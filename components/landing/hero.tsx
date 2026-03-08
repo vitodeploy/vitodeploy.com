@@ -10,28 +10,6 @@ import { motion } from "motion/react"
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Gradient background — uses radial-gradient instead of blurred divs to avoid banding */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          backgroundImage: [
-            "radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.55 0.15 264 / 8%), transparent)",
-            "radial-gradient(ellipse 40% 40% at 10% 40%, oklch(0.6 0.12 280 / 5%), transparent)",
-            "radial-gradient(ellipse 40% 35% at 90% 45%, oklch(0.55 0.15 264 / 5%), transparent)",
-          ].join(", "),
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 -z-10 hidden dark:block"
-        style={{
-          backgroundImage: [
-            "radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.55 0.15 264 / 12%), transparent)",
-            "radial-gradient(ellipse 40% 40% at 10% 40%, oklch(0.6 0.12 280 / 8%), transparent)",
-            "radial-gradient(ellipse 40% 35% at 90% 45%, oklch(0.55 0.15 264 / 8%), transparent)",
-          ].join(", "),
-        }}
-      />
-
       {/* Grid pattern overlay */}
       <div className="grid-pattern pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]" />
 
@@ -61,7 +39,7 @@ export function Hero() {
           >
             Server management
             <br />
-            <span className="bg-gradient-to-r from-indigo-600 via-violet-500 to-indigo-400 bg-clip-text text-transparent dark:from-indigo-400 dark:via-violet-400 dark:to-indigo-300">
+            <span className="text-indigo-600 dark:text-indigo-400">
               made simple
             </span>
           </motion.h1>
@@ -90,17 +68,22 @@ export function Hero() {
                 className="bg-indigo-600 text-white shadow-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600"
               >
                 <Link href="/docs/getting-started/introduction">
-                  <BookOpenIcon className="mr-2 size-4" />
+                  <BookOpenIcon className="size-4" />
                   Documentation
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="bg-background hover:bg-muted dark:bg-background dark:hover:bg-muted"
+              >
                 <a
                   href="https://github.com/sponsors/saeedvaziry"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <HeartIcon className="mr-2 size-4 text-pink-500" />
+                  <HeartIcon className="size-4 text-pink-500" />
                   Sponsor
                 </a>
               </Button>

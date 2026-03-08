@@ -1,5 +1,9 @@
-export const VERSIONS = ["3.x", "2.x", "1.x"] as const
+export const VERSIONS = ["4.x", "3.x", "2.x", "1.x"] as const
 export const DEFAULT_VERSION = "3.x"
+
+export const VERSION_LABELS: Partial<Record<Version, string>> = {
+  "4.x": "4.x (Beta)",
+}
 
 export type Version = (typeof VERSIONS)[number]
 

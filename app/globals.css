@@ -168,7 +168,7 @@
   background-repeat: repeat;
   background-size: 256px 256px;
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
 }
 
 .dark .noise-overlay::before {
@@ -302,7 +302,7 @@
   /* Algolia search highlights */
   mark[class*="ais-"],
   em[class*="ais-"] {
-    @apply not-italic rounded-sm bg-chart-1/20 px-0.5 font-medium text-foreground;
+    @apply rounded-sm bg-chart-1/20 px-0.5 font-medium text-foreground not-italic;
   }
 
   /* Pre scrollbar styling inside code blocks */

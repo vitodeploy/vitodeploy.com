@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import {
   VERSIONS,
   DEFAULT_VERSION,
+  VERSION_LABELS,
   type SidebarItem,
   type Version,
   docUrl,
@@ -152,7 +153,7 @@ export function DocsSidebar({
               size="sm"
               className="h-9 w-full justify-between"
             >
-              v{version}
+              {VERSION_LABELS[version] || `v${version}`}
               {version === DEFAULT_VERSION && " (latest)"}
               <ChevronDownIcon className="size-3.5" />
             </Button>
@@ -164,7 +165,7 @@ export function DocsSidebar({
                   href={docUrl(v, "getting-started/introduction")}
                   className={cn(v === version && "font-medium")}
                 >
-                  v{v}
+                  {VERSION_LABELS[v] || `v${v}`}
                   {v === DEFAULT_VERSION && " (latest)"}
                 </Link>
               </DropdownMenuItem>
