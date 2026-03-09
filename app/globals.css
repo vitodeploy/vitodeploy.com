@@ -127,6 +127,18 @@
   }
 }
 
+/* Search highlight styling */
+[role="dialog"] mark {
+  background-color: oklch(0.488 0.243 264.376 / 25%);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.dark [role="dialog"] mark {
+  background-color: oklch(0.546 0.245 262.881 / 30%);
+}
+
 /* Marquee animation for testimonials */
 @keyframes marquee {
   0% {

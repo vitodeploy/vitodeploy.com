@@ -141,6 +141,16 @@ function getCategory(hit: DocSearchRecord): string {
 }
 
 /**
+ * Derive the docs version from the URL path.
+ * URLs like /docs/2.x/foo → "2.x", /docs/foo → default version (omitted).
+ */
+function getVersionFromUrl(url: string): string | undefined {
+  const match = url.match(/^\/docs\/(\d+\.x)\//)
+  if (match) return match[1]
+  return undefined
+}
+
+/**
  * Convert raw DocSearch records into normalized SearchHit objects,
  * deduplicating by URL (keeping the most relevant hit per page).
  */
@@ -172,7 +182,7 @@ function normalizeHits(records: DocSearchRecord[]): SearchHit[] {
       highlightedTitle: getHighlightedTitle(record),
       url,
       displayType: isBlog ? "blog" : "doc",
-      version: record.version?.[0],
+      version: getVersionFromUrl(pageUrl),
       category: getCategory(record),
       snippet: snippet || undefined,
     })
