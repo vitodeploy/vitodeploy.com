@@ -26,23 +26,159 @@ const searchClient = algoliasearch(
 )
 const indexName = "vitodeploy"
 
-interface SearchHit {
+// Algolia DocSearch record format (populated by Algolia's crawler)
+interface DocSearchRecord {
   objectID: string
-  title: string
   url: string
-  type: "doc" | "blog"
-  version?: string
-  category?: string
-  tags?: string[]
-  date?: string
-  excerpt?: string
+  url_without_anchor: string
+  anchor: string
+  content: string | null
+  type: "lvl0" | "lvl1" | "lvl2" | "lvl3" | "lvl4" | "lvl5" | "lvl6" | "content"
+  version?: string[]
+  docusaurus_tag?: string
+  hierarchy: {
+    lvl0: string | null
+    lvl1: string | null
+    lvl2: string | null
+    lvl3: string | null
+    lvl4: string | null
+    lvl5: string | null
+    lvl6: string | null
+  }
   _highlightResult?: {
-    title?: { value: string }
+    hierarchy?: {
+      lvl0?: { value: string }
+      lvl1?: { value: string }
+      lvl2?: { value: string }
+      lvl3?: { value: string }
+      lvl4?: { value: string }
+      lvl5?: { value: string }
+      lvl6?: { value: string }
+    }
     content?: { value: string }
   }
   _snippetResult?: {
     content?: { value: string }
   }
+}
+
+// Normalized hit for display
+interface SearchHit {
+  objectID: string
+  title: string
+  highlightedTitle: string
+  url: string
+  displayType: "doc" | "blog"
+  version?: string
+  category?: string
+  snippet?: string
+}
+
+/**
+ * Convert Algolia highlight markers to HTML <mark> tags.
+ */
+function formatHighlight(text: string): string {
+  return text
+    .replace(/__ais-highlight__/g, "<mark>")
+    .replace(/__\/ais-highlight__/g, "</mark>")
+}
+
+/**
+ * Convert a full Algolia DocSearch URL to a relative path.
+ * Strips the domain and any trailing anchor for navigation.
+ */
+function toRelativeUrl(url: string): string {
+  try {
+    const parsed = new URL(url)
+    return parsed.pathname + parsed.hash
+  } catch {
+    return url
+  }
+}
+
+/**
+ * Derive a readable title from the DocSearch hierarchy.
+ * Uses the deepest non-null level as the title.
+ */
+function getTitle(hit: DocSearchRecord): string {
+  const h = hit.hierarchy
+  // Return the deepest heading level available
+  return (
+    h.lvl6 || h.lvl5 || h.lvl4 || h.lvl3 || h.lvl2 || h.lvl1 || h.lvl0 || ""
+  )
+}
+
+/**
+ * Derive a highlighted title from the DocSearch _highlightResult.
+ */
+function getHighlightedTitle(hit: DocSearchRecord): string {
+  const h = hit._highlightResult?.hierarchy
+  if (!h) return getTitle(hit)
+  const raw =
+    h.lvl6?.value ||
+    h.lvl5?.value ||
+    h.lvl4?.value ||
+    h.lvl3?.value ||
+    h.lvl2?.value ||
+    h.lvl1?.value ||
+    h.lvl0?.value ||
+    getTitle(hit)
+  return formatHighlight(raw)
+}
+
+/**
+ * Determine the category (breadcrumb) from the hierarchy.
+ * Shows parent levels above the title.
+ */
+function getCategory(hit: DocSearchRecord): string {
+  const h = hit.hierarchy
+  const parts: string[] = []
+  if (h.lvl0) parts.push(h.lvl0)
+  if (h.lvl1) parts.push(h.lvl1)
+  // For content-type hits, the category is lvl0 > lvl1
+  // For heading-type hits (lvl2+), just show the parents
+  return parts.join(" > ")
+}
+
+/**
+ * Convert raw DocSearch records into normalized SearchHit objects,
+ * deduplicating by URL (keeping the most relevant hit per page).
+ */
+function normalizeHits(records: DocSearchRecord[]): SearchHit[] {
+  const seen = new Map<string, SearchHit>()
+
+  for (const record of records) {
+    const url = toRelativeUrl(record.url)
+    const pageUrl = toRelativeUrl(record.url_without_anchor)
+    const isBlog = pageUrl.startsWith("/blog/")
+
+    // Use the full URL (with anchor) as key so different sections appear as separate results
+    const key = url
+
+    // Prefer heading-level hits over content hits for the same URL
+    const existing = seen.get(key)
+    if (existing && record.type === "content") continue
+
+    const rawSnippet =
+      record._snippetResult?.content?.value ||
+      record._highlightResult?.content?.value ||
+      record.content ||
+      ""
+    const snippet = rawSnippet ? formatHighlight(rawSnippet) : ""
+
+    seen.set(key, {
+      objectID: record.objectID,
+      title: getTitle(record),
+      highlightedTitle: getHighlightedTitle(record),
+      url,
+      displayType: isBlog ? "blog" : "doc",
+      version: record.version?.[0],
+      category: getCategory(record),
+      snippet: snippet || undefined,
+    })
+  }
+
+  return Array.from(seen.values())
 }
 
 const quickLinks = [
@@ -70,22 +206,25 @@ const quickLinks = [
 
 function SearchContent({ onSelect }: { onSelect: (url: string) => void }) {
   const { query, refine } = useSearchBox()
-  const { items } = useHits<SearchHit>()
+  const { items: rawItems } = useHits<DocSearchRecord>()
   const { status } = useInstantSearch()
   const inputRef = useRef<HTMLInputElement>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
   const [inputValue, setInputValue] = useState(query)
   const [activeIndex, setActiveIndex] = useState(-1)
   const [prevQuery, setPrevQuery] = useState(query)
-  const [prevItemsLength, setPrevItemsLength] = useState(items.length)
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(null)
+
+  // Normalize DocSearch records into our display format
+  const items = normalizeHits(rawItems as unknown as DocSearchRecord[])
+  const [prevItemsLength, setPrevItemsLength] = useState(items.length)
 
   const isLoading = status === "loading" || status === "stalled"
   const hasResults = query && items.length > 0
 
   // Group search results by type
-  const docs = items.filter((h) => h.type === "doc")
-  const blogs = items.filter((h) => h.type === "blog")
+  const docs = items.filter((h) => h.displayType === "doc")
+  const blogs = items.filter((h) => h.displayType === "blog")
 
   // Ordered items matching display order (docs first, then blogs)
   const orderedItems = query ? [...docs, ...blogs] : quickLinks
@@ -307,8 +446,6 @@ function HitItem({
   onSelect: (url: string) => void
   onHover: (index: number) => void
 }) {
-  const snippet = hit._snippetResult?.content?.value || hit.excerpt || ""
-
   return (
     <button
       data-index={index}
@@ -320,7 +457,7 @@ function HitItem({
       )}
     >
       <div className="mt-0.5 shrink-0">
-        {hit.type === "doc" ? (
+        {hit.displayType === "doc" ? (
           <FileTextIcon className="size-4 text-muted-foreground" />
         ) : (
           <NewspaperIcon className="size-4 text-muted-foreground" />
@@ -330,13 +467,13 @@ function HitItem({
         <div
           className="truncate text-sm font-medium"
           dangerouslySetInnerHTML={{
-            __html: hit._highlightResult?.title?.value || hit.title,
+            __html: hit.highlightedTitle,
           }}
         />
-        {snippet && (
+        {hit.snippet && (
           <div
             className="mt-0.5 line-clamp-1 text-xs text-muted-foreground"
-            dangerouslySetInnerHTML={{ __html: snippet }}
+            dangerouslySetInnerHTML={{ __html: hit.snippet }}
           />
         )}
         <div className="mt-1 flex items-center gap-2">
@@ -348,11 +485,6 @@ function HitItem({
           {hit.category && (
             <span className="text-[10px] text-muted-foreground">
               {hit.category}
-            </span>
-          )}
-          {hit.date && (
-            <span className="text-[10px] text-muted-foreground">
-              {hit.date}
             </span>
           )}
         </div>
@@ -387,8 +519,7 @@ export function SearchTrigger({ mobile }: { mobile?: boolean } = {}) {
       <SearchIcon className="size-4 shrink-0" />
       <span className="flex-1 text-left">Search...</span>
       <kbd className="shrink-0 rounded border bg-background px-1.5 py-0.5 text-[10px] font-medium">
-        {typeof navigator !== "undefined" &&
-        navigator.platform?.includes("Mac")
+        {typeof navigator !== "undefined" && navigator.platform?.includes("Mac")
           ? "\u2318K"
           : "Ctrl+K"}
       </kbd>
