@@ -12,7 +12,7 @@ Modern deployment is a site feature that basically enables you to deploy your si
 
 Enabling Modern Deployment changes your site's structure to the following:
 
-By default, Vito deploys your app under `/home/vito/domain.com` directory or for isolated sites `/home/isolated-user/domain.com`.
+Vito deploys your app under `/home/your-user/domain.com` directory where `your-user` is the isolated user you specified when creating the site.
 
 After enabling modern deployment it will be like the following:
 
@@ -55,7 +55,7 @@ During Beta, Enabling modern deployment is only recommended for fresh websites t
 :::
 
 :::warning
-If you have queue workers or cronjobs or commands set up for your site, You need to update the command of your workers/cronjobs/commands if they are pointing to the old root path of your domain. You need to change the root path to point to the `current` symlink. For example, if your domain is `domain.com`, and your workers/cronjobs/commands has the old root path `/home/vito/domain.com`, you need to change it to `/home/vito/domain.com/current`.
+If you have queue workers or cronjobs or commands set up for your site, You need to update the command of your workers/cronjobs/commands if they are pointing to the old root path of your domain. You need to change the root path to point to the `current` symlink. For example, if your domain is `domain.com` and your user is `myuser`, and your workers/cronjobs/commands has the old root path `/home/myuser/domain.com`, you need to change it to `/home/myuser/domain.com/current`.
 :::
 
 :::danger

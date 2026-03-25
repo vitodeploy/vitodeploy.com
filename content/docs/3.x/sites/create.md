@@ -41,10 +41,10 @@ You can add aliases to your site. Aliases are additional domains that point to t
 Every site type has its own fields that you need to fill in. For example, if you select the WordPress site type, you
 will need to provide the WordPress admin username and password.
 
-### Isolation
+### User
 
-Vito allows you to isolate your site from other sites on the same server. This means that your site will have its own
-user on the server.
+Every site requires a unique system user. VitoDeploy creates a dedicated user on the server for each site to ensure full
+isolation between sites.
 
 Read more about [isolation](./isolation.md).
 

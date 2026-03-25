@@ -1,16 +1,16 @@
 # Site Isolation
 
-Site Isolation is a feature that allows you to create isolated websites. This means, everytime you create a website, you
-can specify a custom system
-user for that website. This way, you can isolate your websites from each other.
+Every site in VitoDeploy is isolated with its own system user. When you create a website, you must specify a unique
+system user for that website. This ensures all sites on a server are fully isolated from each other.
 
-## How to use
+## How it works
 
-When you create a new site, you will see a new field called `User`. You can specify a username (unique) for your
-website. If you don't specify a system user, it will create the website in the main ssh user of your server which is
-`vito` user.
+When you create a new site, you need to provide a `User` field with a unique username. VitoDeploy will create a
+dedicated system user on the server for that site. Each site runs under its own user, ensuring complete isolation.
 
-## Why use Site Isolation
+The site's files will be stored under the user's home directory (e.g., `/home/your-user/domain.com`).
 
-Site Isolation is a good practice to isolate your websites from each other. This way, if one of your websites gets
-hacked, and the hacker gains access to your website's user, they can't access other websites on your server.
+## Why Site Isolation
+
+Site Isolation is a security best practice. By running each site under its own system user, if one of your websites gets
+hacked and the attacker gains access to that site's user, they cannot access other websites on your server.
