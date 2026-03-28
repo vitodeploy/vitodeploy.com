@@ -66,7 +66,7 @@ export default async function DocPage({ params }: PageProps) {
   }
 
   const { prev, next } = getAdjacentDocs(version, docSlug)
-  const content = await renderMDX(doc.content)
+  const content = await renderMDX(doc.content, { version, docSlug })
   const headings = extractHeadings(doc.content)
 
   return (
