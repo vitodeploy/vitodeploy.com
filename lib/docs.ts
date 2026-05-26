@@ -38,6 +38,11 @@ export function getSidebar(version: Version): SidebarItem[] {
         label: "Prologue",
         items: [
           { type: "doc", label: "Release Notes", id: "prologue/release-notes" },
+          {
+            type: "doc",
+            label: "Breaking Changes",
+            id: "prologue/breaking-changes",
+          },
           { type: "doc", label: "Upgrade Guide", id: "prologue/upgrade" },
           {
             type: "doc",
@@ -73,6 +78,7 @@ export function getSidebar(version: Version): SidebarItem[] {
         type: "category",
         label: "Servers",
         items: [
+          { type: "doc", label: "Overview", id: "servers/overview" },
           { type: "doc", label: "Create", id: "servers/create" },
           { type: "doc", label: "Backups", id: "servers/backups" },
           { type: "doc", label: "Database", id: "servers/database" },
@@ -96,8 +102,9 @@ export function getSidebar(version: Version): SidebarItem[] {
           { type: "doc", label: "Create", id: "sites/create" },
           { type: "doc", label: "Site Types", id: "sites/site-types" },
           { type: "doc", label: "Application", id: "sites/application" },
+          { type: "doc", label: "Domains", id: "sites/domains" },
+          { type: "doc", label: "Site Tooling", id: "sites/site-tooling" },
           { type: "doc", label: "Commands", id: "sites/commands" },
-          { type: "doc", label: "SSL", id: "sites/ssl" },
           { type: "doc", label: "Settings", id: "sites/settings" },
           { type: "doc", label: "Isolation", id: "sites/isolation" },
           { type: "doc", label: "Load Balancer", id: "sites/load-balancer" },
@@ -177,8 +184,18 @@ export function getSidebar(version: Version): SidebarItem[] {
           },
         ],
       },
+      {
+        type: "category",
+        label: "Admin",
+        items: [
+          { type: "doc", label: "Users", id: "admin/users" },
+          { type: "doc", label: "Export & Import", id: "admin/export-import" },
+          { type: "doc", label: "Plugins", id: "admin/plugins" },
+          { type: "doc", label: "GitHub App", id: "admin/github-app" },
+          { type: "doc", label: "Terminal", id: "admin/terminal" },
+        ],
+      },
       { type: "doc", label: "Diagnoses", id: "diagnoses" },
-      { type: "doc", label: "Admin", id: "admin" },
     ],
     "3.x": [
       {

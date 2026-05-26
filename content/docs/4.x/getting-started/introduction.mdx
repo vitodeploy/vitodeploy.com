@@ -1,6 +1,6 @@
 # Introduction
 
-Vito is a powerful, open-source server management tool designed to simplify the deployment and management of PHP applications. It provides a user-friendly interface for developers and system administrators to automate server provisioning, application deployment, and maintenance tasks.
+Vito is a powerful, open-source server management tool designed to simplify the deployment and management of web applications. With first-class support for PHP and Laravel, as well as Node.js and Bun applications, it provides a user-friendly interface for developers and system administrators to automate server provisioning, application deployment, and maintenance tasks.
 
 Here are a list of features that Vito provides:
 
@@ -22,12 +22,17 @@ Features available for the databases:
 
 ## Application
 
-Vito simplifies the deployment of web applications specifically PHP by automating the process creating virtual hosts, configuring web servers, cloning repositories, and setting up environment variables.
+Vito simplifies the deployment of web applications by automating the process of creating virtual
+hosts, configuring web servers, cloning repositories, and setting up environment variables. It
+supports PHP and Laravel sites, as well as Node.js and Bun applications served via reverse proxy.
 
 Features available for the websites:
 
-- Deployments
-- SSL
+- Deployments, including resuming failed installations
+- Hosted domains (multiple alias and redirect domains per site, with DNS validation)
+- SSL, including wildcard certificates
+- HTTP basic authentication
+- Site Tooling (per-site runtimes and package managers)
 - Supervisor Workers
 - Commands
 - Environment Variables
@@ -38,7 +43,9 @@ Vito allows you to manage your server's firewall rules easily. You can add, remo
 
 ## Programming Languages
 
-You can install and manage multiple versions of PHP and Node.js on your server. Vito supports various versions of these languages, allowing you to run applications that require different versions.
+You can install and manage multiple versions of PHP on your server, allowing you to run applications
+that require different versions. JavaScript runtimes and package managers such as Node.js, Bun, Yarn,
+and pnpm are managed per site through [Site Tooling](/docs/4.x/sites/site-tooling).
 
 ## Cron Jobs
 
@@ -56,9 +63,11 @@ Vito is a service oriented server management tool, which means you most of the f
 
 Vito provides monitoring capabilities to keep track of your server's performance and resource usage. You can monitor CPU, memory, disk usage to ensure your server is running smoothly.
 
-## Headless Console
+## Console
 
-You can directly run commands on your server using the headless console feature. This allows you to execute commands without needing to SSH into the server, making it easier to manage your server from the Vito interface.
+Vito includes a full, interactive terminal for your server, right in the browser. It opens a live SSH
+shell so you can run commands, install packages, and use interactive programs without opening your own
+SSH client.
 
 ## Plugins
 

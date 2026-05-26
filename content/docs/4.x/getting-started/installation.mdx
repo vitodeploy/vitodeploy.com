@@ -4,6 +4,13 @@
 
 Vito provides a single docker image that you can install it easily!
 
+:::info
+`WS_BROADCAST_SECRET` is optional but **recommended for production**. It is used to authenticate
+realtime WebSocket broadcasts. If you do not set it, Vito falls back to `APP_KEY` and logs a
+deprecation warning. See [Configuration](./configuration#ws_broadcast_secret-recommended) for
+details.
+:::
+
 ### Docker Command
 
 ```sh
@@ -14,6 +21,7 @@ docker run -v vito_storage:/var/www/html/storage \
     -e EMAIL=admin_email \
     -e PASSWORD=admin_password \
     -e APP_URL=http://your-vito-url \
+    -e WS_BROADCAST_SECRET=your_websocket_secret \
     -p 80:80 vitodeploy/vito:latest
 ```
 
@@ -48,6 +56,7 @@ services:
       EMAIL: 'vito@example.com'
       PASSWORD: 'password'
       APP_URL: 'http://localhost:8000' # Change this to your Vito URL
+      WS_BROADCAST_SECRET: 'your-websocket-secret' # Optional, recommended for production
     volumes:
       - 'vito-storage:/var/www/html/storage'
       - 'vito-plugins:/var/www/html/app/Vito/Plugins'
@@ -59,14 +68,14 @@ volumes:
 ```
 
 :::info
-`:latest` tag is the latest release of VitoDeploy from the `3.x` branch, which is stable and recommended for production use.
+`:latest` tag is the latest release of VitoDeploy from the `4.x` branch, which is stable and recommended for production use.
 
-However, if you would like to use the latest code on the `3.x` branch, you may change the image to `vitodeploy/vito:3.x`.
+However, if you would like to use the latest code on the `4.x` branch, you may change the image to `vitodeploy/vito:4.x`.
 :::
 
 ### ARM based images
 
-For arm based architectures, you may add `-arm64` to the image name. For example, `vitodeploy/vito:3.x-arm64`
+For arm based architectures, you may add `-arm64` to the image name. For example, `vitodeploy/vito:4.x-arm64`
 
 ### Environment Variables
 
@@ -81,6 +90,12 @@ For arm based architectures, you may add `-arm64` to the image name. For example
 `PASSWORD`: Your account's password for login (You can change it after login)
 
 `APP_URL`: The URL of your Vito instance, It is required for some features like Vito Logs to work properly.
+
+:::info
+`WS_BROADCAST_SECRET` is optional but **recommended for production**.
+:::
+
+`WS_BROADCAST_SECRET`: A secret used to authenticate realtime WebSocket broadcasts. If unset, Vito falls back to `APP_KEY` and logs a deprecation warning. See [Configuration](./configuration#ws_broadcast_secret-recommended).
 
 ## Install on VPS
 
@@ -106,7 +121,7 @@ You cannot use Vito to install applications into the same server as Vito. Otherw
 Login to the `root` user of your server via SSH and run the following command:
 
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/vitodeploy/vito/3.x/scripts/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/vitodeploy/vito/4.x/scripts/install.sh)
 ```
 
 :::warning

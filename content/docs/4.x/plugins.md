@@ -17,6 +17,15 @@ Plugins can change or extend the following features:
 - **Services**: Add new services or modify existing ones.
 - **Site Types**: Add new site types or modify existing ones.
 - **Site Features**: Add new site features or modify existing ones.
+- **Server Features**: Add new server features or modify existing ones.
+- **Workflow Actions**: Add new actions that can be used in workflows.
+- **Console Commands & Views**: Register console commands and views used by your plugin.
+
+:::warning
+If you are upgrading a plugin from 3.x, several provider contracts changed in v4.x, most notably for
+**Site Types** and **Web Server** services. Review the
+[plugin breaking changes](/docs/4.x/prologue/breaking-changes#plugins) before upgrading.
+:::
 
 ## Installing and Managing Plugins
 
@@ -142,9 +151,49 @@ Use `App\Plugins\RegisterSiteType` to register a new site type using the `boot` 
 The `handler` method should point to a class that extends `App\SiteTypes\AbstractSiteType` or implements
 `App\SiteTypes\SiteType`.
 
+#### Site type contract (v4.x)
+
+In v4.x the vhost rendering model changed: instead of returning markup, a site type points at a
+template and supplies data to it. The `SiteType` interface now requires:
+
+```php
+public function vhostData(): array;                 // data passed to the vhost template
+public function supportedWebservers(): ?array;      // null = all webservers
+public function vhostTemplate(string $webserver): ?string;
+public function deploymentEnvironment(): array;     // extra env vars for deploys/commands
+public function afterDeploy(Deployment $deployment): void;
+public function defaultDeploymentScript(): string;
+```
+
+If you extend `AbstractSiteType`, defaults are provided for all of these, so existing plugins will
+not fatal. The old `vhost(string $webserver)` method has been removed, so move your markup into a
+[Mustache](https://mustache.github.io) template and return its name from `vhostTemplate()`, supplying
+variables via `vhostData()`. By default `defaultDeploymentScript()` reads
+`resources/deployment-scripts/{id}.sh`.
+
+The protected `progress()` helper signature also changed to `progress(int $percentage, ?string $step)`.
+
+Optional tooling hooks let a site type declare the [Site Tooling](/docs/4.x/sites/site-tooling) it
+needs: `static supportsTooling(): bool`, `static requiredTooling(): array`, and
+`static createTimeTools(): array`.
+
 :::info
-You can find some of the built-in site types are
-in [Site Types](https://github.com/vitodeploy/vito/tree/3.x/app/SiteTypes)
+For reverse proxy site types (such as Node and Bun), extend `App\SiteTypes\AbstractProxiedSiteType`,
+which provides the port, start command, and worker handling described in
+[Application](/docs/4.x/sites/application#reverse-proxy-sites).
+:::
+
+:::info
+You can find some of the built-in site types
+in [Site Types](https://github.com/vitodeploy/vito/tree/4.x/app/SiteTypes)
+:::
+
+:::warning
+Site identity attributes are now relation-backed via the isolated user. `$site->user` and
+`$site->ssh_key` are accessors that may resolve from a shared `IsolatedUser`, and FPM pools and users
+can be shared across sibling sites. See the
+[plugin breaking changes](/docs/4.x/prologue/breaking-changes#isolated-users) if your plugin touches
+these.
 :::
 
 ### Register site features and actions
@@ -313,6 +362,17 @@ that service type.
 For example, If you develop a web server service, you will need to implement the `App\Services\Webserver\Webserver`
 interface or extend the `App\Services\Webserver\AbstractWebserver` class.
 
+:::warning
+In v4.x the web server contract changed. `AbstractWebserver` now has two abstract methods you must
+implement: `generateVhost(Site $site, ?string $template = null): string` and `deploySplash(): void`.
+The `updateVHost()` signature was simplified (the block-manipulation arrays were removed and the
+default `$restart` is now `false`), and `changePHPVersion()` was removed entirely. New SSL-related
+methods (`createsSiteSSLs()`, `siteDefaults()`, `canConfigureSSL()`, `allowedSslMethods()`,
+`defaultSslMethod()`) have safe defaults on `AbstractWebserver`. See the
+[plugin breaking changes](/docs/4.x/prologue/breaking-changes#web-server-services) for the full
+detail.
+:::
+
 **Service Config Files**
 
 You can register your service's config files using the `configPaths` method. Vito will allow you to modify these files in the Services page.
@@ -323,7 +383,7 @@ For a non-listed service types, you can implement the `App\Services\ServiceInter
 :::
 
 :::info
-You can find plenty of examples in the [Services](https://github.com/vitodeploy/vito/tree/3.x/app/Services)
+You can find plenty of examples in the [Services](https://github.com/vitodeploy/vito/tree/4.x/app/Services)
 :::
 
 ### Register server providers
@@ -352,7 +412,7 @@ The handler must implement the `App\ServerProviders\ServerProvider` interface or
 
 :::info
 You can find plenty of examples in
-the [Server Providers](https://github.com/vitodeploy/vito/tree/3.x/app/ServerProviders)
+the [Server Providers](https://github.com/vitodeploy/vito/tree/4.x/app/ServerProviders)
 :::
 
 ### Register storage providers
@@ -380,7 +440,7 @@ The handler must implement the `App\StorageProviders\StorageProvider` interface 
 
 :::info
 You can find plenty of examples in
-the [Storage Providers](https://github.com/vitodeploy/vito/tree/3.x/app/StorageProviders)
+the [Storage Providers](https://github.com/vitodeploy/vito/tree/4.x/app/StorageProviders)
 :::
 
 ### Register source controls
@@ -406,8 +466,23 @@ You can register your own source control provider using `App\Plugins\RegisterSou
 The handler must implement the `App\SourceControls\SourceControl` interface or extend the
 `App\SourceControls\AbstractSourceControl` class.
 
+In v4.x the `SourceControlProvider` interface gained four methods: `getSshPort()`,
+`static editableFields()`, `editRules(array $input)`, and `editData(array $input)`. Extending
+`AbstractSourceControlProvider` provides safe defaults (SSH port 22, no editable fields); implementing
+the interface directly means you must add all four.
+
+The `RegisterSourceControl` builder also accepts `->connectable(bool)` and `->usableForSites(bool)`,
+and v4.x ships a built-in GitHub App provider.
+
+:::danger
+If you override `editableFields()` to return a non-empty list, you must also override `editData()` to
+whitelist exactly which keys are merged. The default spread would otherwise let callers overwrite
+encrypted fields such as `token`. See the
+[plugin breaking changes](/docs/4.x/prologue/breaking-changes#source-control-providers).
+:::
+
 :::info
-You can find plenty of examples in the [Source Controls](https://github.com/vitodeploy/vito/tree/3.x/app/SourceControls)
+You can find plenty of examples in the [Source Controls](https://github.com/vitodeploy/vito/tree/4.x/app/SourceControls)
 :::
 
 ### Register notification channels
@@ -435,14 +510,38 @@ The handler must implement the `App\NotificationChannels\NotificationChannel` in
 
 :::info
 You can find plenty of examples in
-the [Notification Channels](https://github.com/vitodeploy/vito/tree/3.x/app/NotificationChannels)
+the [Notification Channels](https://github.com/vitodeploy/vito/tree/4.x/app/NotificationChannels)
 :::
 
 ### Register Workflow Actions
 
 [Workflows](./workflows.md) can be extended by adding new actions. You can register your own workflow action using `App\Plugins\RegisterWorkflowAction` in the `boot` method of your `Plugin.php` file.
 
-You can find handful examples of workflow actions in the [Workflow Actions](https://github.com/vitodeploy/vito/tree/3.x/app/WorkflowActions)
+You can find handful examples of workflow actions in the [Workflow Actions](https://github.com/vitodeploy/vito/tree/4.x/app/WorkflowActions)
+
+### Tooling providers
+
+v4.x introduces [Site Tooling](/docs/4.x/sites/site-tooling), which installs developer runtimes and
+package managers (such as Node, Bun, Yarn, and pnpm) for a site's isolated user.
+
+A tooling provider implements `App\Tooling\ToolingInterface`, or extends `App\Tooling\AbstractTooling`
+(or `App\Tooling\AbstractMiseTooling` for runtimes managed by Mise). Providers are registered through
+the `tooling.providers` config array:
+
+```php
+config([
+    'tooling.providers' => array_merge(
+        config('tooling.providers', []),
+        [YourTooling::class],
+    ),
+]);
+```
+
+:::info
+There is no dedicated `RegisterTooling` plugin builder yet; tooling providers are registered via
+config. You can find the built-in providers in
+[Tooling](https://github.com/vitodeploy/vito/tree/4.x/app/Tooling).
+:::
 
 ### Events
 
@@ -480,12 +579,17 @@ Dynamic fields are a set of input fields designed to collect inputs from the act
 
 Here are the list of supported fields:
 
-- Label
 - Text field
+- Password field (with an optional show/hide toggle)
+- Textarea
 - Checkbox
 - Select field
 - Alert (with types: info, warning, error, success)
 - Link
+- Component (render a custom frontend component)
+
+v4.x also adds tooling-aware fields for use with [Site Tooling](/docs/4.x/sites/site-tooling), such as
+a tooling picker and selector.
 
 For more details, check `App\DTOs\DynamicField::class`
 

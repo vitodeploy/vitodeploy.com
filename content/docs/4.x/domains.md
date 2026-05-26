@@ -1,5 +1,10 @@
 # Domains
 
+:::info
+This page is about managing a domain's **DNS records** through a connected DNS provider. To attach
+domains to a specific site and manage their SSL, see [Site Domains](./sites/domains.md).
+:::
+
 ## Introduction
 
 One of the most frequent actions you need to do when deploying a new website on a new server is to point your domain to that server. For that you need to login to your domain registrar or DNS provider and change the NS records of that domain to point to your server's IP address.

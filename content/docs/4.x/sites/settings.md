@@ -2,7 +2,14 @@
 
 ## Introduction
 
-In the Settings page, you can manage your website settings like its PHP version, Aliases, Custom Vhost and more.
+In the Settings page you can manage your site's details, its PHP version, web directory, vhost
+template, basic auth, and more.
+
+## Site details
+
+The Settings page shows read-only details for the site, including its ID, domain, type, repository,
+path, status, and creation date. Several of these have inline controls to change them, described
+below.
 
 ## Change PHP Version
 
@@ -19,109 +26,65 @@ You can change the branch of your cloned repository in the Settings page.
 
 You can change the source control of your cloned repository in the Settings page.
 
-## Update Aliases
+## Web directory
 
-You can add/remove site aliases. It will update the aliases on your site's nginx vhost configuration.
+You can change the web (public) directory of your site relative to its root path, for example
+`/public` for a Laravel application. Updating it regenerates the vhost.
 
-:::info
-This will only override the #[port] block in your vhost configuration. The rest will remain unchanged.
-:::
+## Aliases
 
-:::info
-Updating the aliases will reload the Nginx service. If you need a restart, you need to go to [services](../servers/services.md) and restart nginx manually.
-:::
+Site aliases are no longer managed here. In v4.x they are handled as alias
+[domains](/docs/4.x/sites/domains), where you can add multiple alias and redirect domains per site,
+each with its own DNS validation and SSL configuration.
 
-## Update VHost
+## VHost
 
-It is possible to customize the virtual host configuration of your webserver (Nginx). However, it is not recommended to
-do so unless you know what you are doing.
+In v4.x the vhost is generated from a [Mustache](https://mustache.github.io) template, replacing the
+custom-block model used in earlier versions. The Settings page gives you two related controls.
 
-Vito will show you the current configuration of the site, and you can modify it as you wish.
+### View VHost
 
-Vito now uses custom blocks in the VHost configuration, to enable you to add custom configurations without your configuration being overridden by Vito.
+**View VHost** opens a read-only view of the vhost that is currently deployed to the server, so you
+can see exactly what Vito generated.
+
+### VHost Template
+
+**Edit Template** opens the Mustache template used to generate the vhost. From here you can:
+
+- **Edit** the template with syntax highlighting for your webserver (nginx or Caddy).
+- **Preview** the generated output from your edits before saving, without touching the live config.
+- **Reset** the template back to the default, which regenerates the vhost and discards your
+  customizations.
+
+Changes to the template persist across SSL, domain, and redirect updates. When a site uses a
+customized template, the Settings page flags it so you know it differs from the default.
 
 :::tip
-You can use the custom blocks when you write a plugin for Vito.
+See the [Mustache manual](https://mustache.github.io/mustache.5.html) for the template syntax.
 :::
 
-Here is an example of Nginx vhost configuration:
+### VHost generation
 
-```nginx
-#[header]
-#[force-ssl]
-#[/force-ssl]
-
-#[laravel-octane-map]
-map $http_upgrade $connection_upgrade {
-    default upgrade;
-    ''      close;
-}
-#[/laravel-octane-map]
-
-#[/header]
-
-server {
-    #[main]
-    #[port]
-    listen 80;
-    listen [::]:80;
-    #[/port]
-
-    #[core]
-    server_name yourdomain.com ;
-    root /home/vito/yourdomain.com/public;
-    add_header X-Frame-Options "SAMEORIGIN";
-    add_header X-Content-Type-Options "nosniff";
-    charset utf-8;
-    access_log off;
-    error_log  /var/log/nginx/yourdomain.com-error.log error;
-    location ~ /\.(?!well-known).* {
-        deny all;
-    }
-    #[/core]
-
-    #[laravel-octane]
-    index index.php index.html;
-    error_page 404 /index.php;
-    location /index.php {
-        try_files /not_exists @octane;
-    }
-    location / {
-        try_files $uri $uri/ @octane;
-    }
-    location @octane {
-        set $suffix "";
-        if ($uri = /index.php) {
-            set $suffix ?$query_string;
-        }
-        proxy_http_version 1.1;
-        proxy_set_header Host $http_host;
-        proxy_set_header Scheme $scheme;
-        proxy_set_header SERVER_PORT $server_port;
-        proxy_set_header REMOTE_ADDR $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
-        proxy_pass http://127.0.0.1:8000$suffix;
-    }
-    #[/laravel-octane]
-
-    #[redirects]
-    #[/redirects]
-
-    #[/main]
-}
-
-#[footer]
-#[/footer]
-```
+Automatic vhost generation can be enabled or disabled per site. While it is disabled, changes to
+SSL, domains, or redirects will not update the vhost on the server.
 
 :::warning
-Most of the vhost file's blocks will get reset if you generate or modify SSLs, Aliases, or create/delete site redirects.
+On sites that existed before upgrading to v4.x, vhost generation is **disabled by default** so the
+upgrade does not overwrite a working configuration. Review the template, then re-enable generation
+(a banner on the site provides a quick **Re-enable** action). See
+[Custom VHost Configuration](/docs/4.x/prologue/breaking-changes) for details.
 :::
+
+## Basic Auth
+
+For sites served by nginx or Caddy, you can protect the site with HTTP Basic Authentication, adding
+one or more username/password pairs. This is useful for staging and preview sites that must be
+publicly reachable but not openly accessible. Basic auth is managed from the Settings page and shows
+whether it is currently enabled and how many users are configured.
 
 ## Delete
 
 You can delete the website from your server.
 
-This will delete the files of your website and the webserver configurations related to your website from the Server.
+This will delete the files of your website and the webserver configurations related to your website
+from the server.

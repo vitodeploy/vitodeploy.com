@@ -30,7 +30,9 @@ Do not add any frequency (`* * * * *`) to the command because VitoDeploy will ad
 
 ### User
 
-The cronjob command will be executed by this user
+The cronjob command will be executed by this user, which will include any tooling that the user has enabled.  `root` and
+`vito` users will not have access to tooling installed per site.  It's recommended, unless absolutely nessisary, to run 
+the command as the user of the site it's running against.
 
 ### Frequency
 
