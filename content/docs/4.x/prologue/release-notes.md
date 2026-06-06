@@ -33,7 +33,7 @@ Sites that fail during installation now enter a failed state instead of being lo
 surfaces a friendly error summary, and a Retry action resumes the install idempotently from where it
 left off.
 
-## Shared isolated users
+### Shared isolated users
 
 Isolated users can now be shared across multiple sites on a server rather than being tied to one.
 This release adds default username suggestions, distributed locking to prevent race conditions, and
@@ -49,7 +49,8 @@ option, and vhost generation is driven by editable nginx/Caddy templates with pr
 
 Per-site tooling management has been expanded and standardised, with install and uninstall actions.
 Tooling now correctly runs as the site's isolated user and is available across all site types, not
-just PHP.
+just PHP. The available tools are Node.js, Bun, Yarn, pnpm, and Composer, each installed per isolated
+user.
 
 ### Site stats (beta)
 
@@ -74,6 +75,33 @@ preview sites that must be publicly reachable but not openly accessible. Users a
 managed from the site settings UI.
 
 ## Server improvements
+
+### Server networking (IP management)
+
+Vito can now manage a server's IP addresses. Add individual addresses or whole ranges, set the
+interface and prefix length, and mark a primary public and private IP for the server. Addresses you
+add are listed alongside the ones Vito detects, and you can refresh at any time to pick up changes
+made on the server.
+
+### Server security
+
+A new Security section gives each server a hardening dashboard. From here you can install and
+configure fail2ban, manage the UFW firewall, toggle SSH password authentication and root login, and
+enable automatic package updates on a schedule. Vito shows an overall security score and can run an
+on-demand check to confirm the server's live state matches your settings.
+
+### Live terminal
+
+The server console is now a full, interactive terminal in the browser. Vito opens a real SSH shell to
+the server and streams it over a WebSocket, so it is stateful (commands like `cd` carry over) and
+supports interactive programs such as `top`, `vim`, and `nano`. You can choose which user to connect
+as and open more than one session at a time.
+
+### Valkey
+
+[Valkey](https://valkey.io) joins Redis as a supported in-memory data store. Install it as a service
+from the Services page (a server can run one in-memory service at a time), with its logs available in
+the Service Logs viewer.
 
 ### Service Log viewer
 
@@ -102,3 +130,16 @@ in beta, and we would not recommend using on a production server just yet.
 SSL certificates can now be managed directly at the server level, in addition to per-site. This adds
 custom certificates, CSR generation and download, and auto-renewing wildcard Let's Encrypt certificates 
 for domains managed by Vito.
+
+## Other improvements
+
+### API key project scoping
+
+API keys can now be scoped to specific projects and granted read-only or read-and-write access,
+instead of always having full account access. Leave the project list empty for a key that works
+across all of your projects.
+
+### SFTP storage
+
+A new SFTP storage provider lets you store backups on any SFTP server. Provide the host, port, path,
+and credentials, and Vito verifies the connection before saving.
