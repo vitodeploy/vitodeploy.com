@@ -31,10 +31,14 @@ You can develop a plugin to add more site types to VitoDeploy.
 The domain of your site. You can use a custom domain or a subdomain. Make sure to add the domain to your DNS provider
 and point it to your server's IP address.
 
+After creation, you can add more domains and manage SSL per domain from the [Domains](./domains.md) page.
+
 ### Aliases
 
 You can add aliases to your site. Aliases are additional domains that point to the same site. For example, you can add
 `www.example.com` as an alias for `example.com`.
+
+Aliases are managed as alias [domains](./domains.md) once the site is created.
 
 ### Site type fields
 
@@ -43,8 +47,9 @@ will need to provide the WordPress admin username and password.
 
 ### User
 
-Every site requires a unique system user. VitoDeploy creates a dedicated user on the server for each site to ensure full
-isolation between sites.
+Every site requires a system user. VitoDeploy creates a dedicated user on the server for each site to ensure full
+isolation between sites, and in v4.x a user can be shared across several sites.
 
-Read more about [isolation](./isolation.md).
+Read more about [isolation](./isolation.md). You can also install per-site runtimes and package
+managers through [Site Tooling](./site-tooling.md).
 

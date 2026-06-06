@@ -4,11 +4,23 @@
 
 VitoDeploy enables you to monitor your servers' resource usages like CPU Load, Memory, and Disk usage.
 
-Vito offers 2 ways of monitoring servers.
+Vito offers 2 ways of monitoring servers, which differ in how the metrics are collected:
+
+- **Remote Monitor** - your Vito instance **polls** each server over SSH every minute.
+- **VitoAgent** - an agent on each server **pushes** metrics to your Vito instance.
+
+:::warning
+If Vito is managing more than around 8-10 servers, or runs on a lower-specification node, we
+recommend using **VitoAgent** rather than Remote Monitor. Because Remote Monitor opens an SSH
+connection to every server every minute, the cost grows with each server you add and is borne
+entirely by the Vito instance. VitoAgent pushes metrics from each server instead, spreading the work
+out and keeping your Vito instance responsive at scale.
+:::
 
 ## Remote Monitor
 
-If you chose to use the Remote Monitor, Vito will check your servers every minute to extract their resource usages.
+If you chose to use the Remote Monitor, Vito will poll your servers over SSH every minute to extract
+their resource usages.
 
 To install Remote Monitor you just need to go to the Services and hit the Install button on the Remote Monitor service
 under the Supported Services section.
@@ -16,6 +28,11 @@ under the Supported Services section.
 After the installation was successful, You can navigate to the Metrics page and view the statistics.
 
 Keep in mind that it will take a couple of minutes to collect enough data to visualize them.
+
+:::info
+Remote Monitor is simple to set up and works well for a handful of servers. As your fleet grows,
+switch to [VitoAgent](#vito-agent) for better scalability.
+:::
 
 ## Vito Agent
 

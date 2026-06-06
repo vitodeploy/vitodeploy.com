@@ -87,6 +87,30 @@ proxy_buffers   4 256k;
 proxy_busy_buffers_size   256k;
 ```
 
+In v4.x Vito uses a WebSocket server for its live console and realtime updates. When Vito is behind a
+reverse proxy, you must also forward the `/ws/` path to the WebSocket server with the upgrade headers,
+otherwise the live console and live updates will not work:
+
+```nginx
+location /ws/ {
+    proxy_pass http://127.0.0.1:8085;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_read_timeout 86400;
+}
+```
+
+:::info
+The WebSocket server listens on `127.0.0.1:8085` by default (configurable via `WS_HOST` and
+`WS_PORT`). Make sure `APP_URL` is set to the domain you access Vito on, as `WS_ALLOWED_ORIGINS`
+defaults to it. See [Configuration](./configuration#realtime-websocket) for the related environment
+variables.
+:::
+
 ### Update environment variables
 
 Now you need add/update the following variables in the `.env` file if you are using VPS installation or docker's environment variables if you are using docker:

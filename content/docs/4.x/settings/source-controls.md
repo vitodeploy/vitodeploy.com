@@ -7,9 +7,39 @@ deployments.
 
 ## Supported Providers
 
-- GitHub
+- GitHub (personal access token)
+- GitHub App
 - Gitlab (Cloud and Self-hosted)
 - Bitbucket
+
+## GitHub App
+
+In v4.x you can connect GitHub through a **GitHub App** instead of a personal access token. A GitHub
+App is a more secure way to connect, authenticating with short-lived, per-repository tokens rather
+than a long-lived token tied to your account.
+
+Deployments through a GitHub App also **no longer require deployment keys**. Instead of adding an SSH
+deploy key to each repository, Vito injects a short-lived (1 hour), per-repository token at deploy
+time, which exists only in the environment during the deployment and is never written to disk.
+
+You register the app once for your Vito instance from the admin area. See
+[Admin > GitHub App](/docs/4.x/admin/github-app) for the setup steps.
+
+Once the app is installed on a GitHub organization or account, each connected organization appears
+automatically as a source control record here. These records behave differently from the other
+providers:
+
+- They are created as **global** records (available to all projects).
+- You can **edit** a record to make it non-global (scoped to a single project).
+- You **cannot delete** them from within Vito. They are managed through GitHub instead.
+- When you **uninstall** the app from an organization on GitHub, its record is removed from this list
+  automatically.
+
+:::info
+GitHub App installations are kept in sync with GitHub via webhooks, with a periodic background sync
+as a fallback. If your Vito instance is not publicly reachable, changes are picked up on the sync or
+when you trigger it manually. See [Admin > GitHub App](/docs/4.x/admin/github-app#keeping-installations-in-sync).
+:::
 
 ## Required API Permissions
 

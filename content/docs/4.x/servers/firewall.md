@@ -39,7 +39,7 @@ Select the protocol you want to apply the rule to
 
 ### Port
 
-Incoming port which you are going to apply the rule to
+Incoming port which you are going to apply the rule to, this can be a range, for example; `8000:8100`
 
 ### Source
 
