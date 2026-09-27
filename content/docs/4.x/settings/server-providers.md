@@ -13,6 +13,7 @@ When creating new servers, You can select the provider you've connected and depl
 - Digital Ocean
 - Vultr
 - Hetzner
+- Proxmox VE (self-hosted)
 - Custom (Bring your own provider)
 
 ## Required Permissions
@@ -40,6 +41,12 @@ Personal Access Token allows full access on Vultr.
 ### Hetzner
 
 Read/Write API Token
+
+### Proxmox VE
+
+An API token for a user with the `PVEVMAdmin`, `PVEDatastoreUser` and `PVESDNUser` roles. Add `PVEAuditor` so Vito can grey out plans that don't fit a node. Proxmox also needs a cloud-init template for each Ubuntu version you want to use.
+
+Follow the [Proxmox VE guide](../servers/proxmox.md) for the full setup, from creating the token to creating your first server.
 
 ### Custom
 

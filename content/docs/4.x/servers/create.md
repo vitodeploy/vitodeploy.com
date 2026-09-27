@@ -37,6 +37,8 @@ mkdir -p /root/.ssh && touch /root/.ssh/authorized_keys && echo 'ssh-rsa XXXXXXX
 
 If you've selected a cloud server provider, you will need to fill in the form with the required information like region, plan etc.
 
+On Proxmox VE, the region is the Proxmox node, and you can also set a static IP and gateway for the server. See the [Proxmox VE guide](./proxmox.md) for the setup it needs first.
+
 The rest of the fields are:
 
 - **Server Name**: The name of your server (must be unique among your current project).

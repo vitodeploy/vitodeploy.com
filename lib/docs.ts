@@ -80,6 +80,7 @@ export function getSidebar(version: Version): SidebarItem[] {
         items: [
           { type: "doc", label: "Overview", id: "servers/overview" },
           { type: "doc", label: "Create", id: "servers/create" },
+          { type: "doc", label: "Proxmox VE", id: "servers/proxmox" },
           { type: "doc", label: "Backups", id: "servers/backups" },
           { type: "doc", label: "Database", id: "servers/database" },
           { type: "doc", label: "PHP", id: "servers/php" },
